@@ -1,0 +1,13 @@
+ID,Text,Comment
+eMka.ModSettingsExamples.AdvancedSettingsHeader,Advanced settings,
+eMka.ModSettingsExamples.BigIntRange,Slider with negative values,
+eMka.ModSettingsExamples.BoolSetting,Boolean setting,
+eMka.ModSettingsExamples.Dropdown,Example dropdown,
+eMka.ModSettingsExamples.Dropdown1,First value,
+eMka.ModSettingsExamples.Dropdown2,Second value,
+eMka.ModSettingsExamples.Dropdown3,Third value,
+eMka.ModSettingsExamples.FloatSetting,Float setting,
+eMka.ModSettingsExamples.IntSetting,Integer setting,
+eMka.ModSettingsExamples.SimpleSettingsHeader,Simple settings,
+eMka.ModSettingsExamples.SmallIntRange,Small range slider,
+eMka.ModSettingsExamples.StringSetting,String setting,

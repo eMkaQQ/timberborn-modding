@@ -1,0 +1,9 @@
+{
+  "Name": "Mod Settings",
+  "Version": "0.6.1.0",
+  "Id": "eMka.ModSettings",
+  "MinimumGameVersion": "0.6.1.0",
+  "Description": "",
+  "RequiredMods": [
+  ]
+}

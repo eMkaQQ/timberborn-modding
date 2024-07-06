@@ -1,0 +1,15 @@
+{
+  "name": "ModSettingsUI",
+  "references": [
+    "ModSettings",
+    "Timberborn.CoreUI",
+    "Timberborn.Localization",
+    "Timberborn.SingletonSystem",
+    "Timberborn.MainMenuModdingUI",
+    "Timberborn.ModdingUI",
+    "Timberborn.Modding",
+    "Timberborn.Common",
+    "Timberborn.DropdownSystem"
+  ],
+  "autoReferenced": false
+}

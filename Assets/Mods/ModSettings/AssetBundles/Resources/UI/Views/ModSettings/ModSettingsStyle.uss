@@ -1,0 +1,62 @@
+.mod-settings-button {
+    width: 29px;
+    height: 28px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    --background-image: resource('UI/Images/Backgrounds/bg-button-4');
+    --background-slice-scale: 0.5;
+    --background-slice: 24;
+    --click-sound: "UI.Click";
+}
+
+.mod-settings-button:hover {
+    --background-image: resource('UI/Images/Backgrounds/bg-button-3');
+}
+
+.mod-settings-button__icon {
+    width: 36px;
+    height: 36px;
+    left: -4px;
+    top: -5px;
+    position: absolute;
+    background-image: resource('UI/Images/Game/sluice-auto');
+}
+
+.mod-settings-box {
+    max-height: 650px;
+    width: 590px;
+}
+
+.mod-setting__wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.mod-setting__label {
+    width: 220px;
+    white-space: normal;
+}
+
+.mod-setting__scrollbar-spacer {
+    width: 25px;
+    flex-shrink: 1;
+}
+
+.mod-setting__text-field {
+    height: 25px;
+    margin: 0 2px;
+}
+
+.mod-setting__controls {
+    width: 245px;
+}
+
+.mod-setting__slider-wrapper {
+    flex-direction: row;
+}
+
+.mod-setting__toggle {
+    align-self: center;
+}

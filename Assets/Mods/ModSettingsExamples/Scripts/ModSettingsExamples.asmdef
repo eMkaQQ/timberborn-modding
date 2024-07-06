@@ -1,0 +1,7 @@
+﻿{
+  "name": "ModSettingsExamples",  
+  "references": [
+    "ModSettings"
+  ],
+  "autoReferenced": false
+}
