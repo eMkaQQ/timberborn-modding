@@ -1,0 +1,23 @@
+{
+    "name": "Tests.ModSettings",
+    "references": [
+        "ModSettings"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Moq.dll",
+        "System.Collections.Immutable.dll",
+        "Timberborn.Common.dll",
+        "Timberborn.Modding.dll",
+        "Timberborn.SettingsSystem.dll",
+        "Timberborn.Versioning.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+    ]
+}
