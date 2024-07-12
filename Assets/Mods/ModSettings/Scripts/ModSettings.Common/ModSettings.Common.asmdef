@@ -1,7 +1,6 @@
-﻿{
-  "name": "ModSettingsExamples",  
+{
+  "name": "ModSettings.Common",
   "references": [
-    "ModSettings.Common",
     "ModSettings.Core"
   ],
   "autoReferenced": false

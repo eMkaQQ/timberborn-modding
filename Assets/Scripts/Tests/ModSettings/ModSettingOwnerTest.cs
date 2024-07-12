@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
-using ModSettings;
+using ModSettings.Common;
+using ModSettings.Core;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using ModSettings;
+﻿using ModSettings.Common;
+using ModSettings.Core;
 using NUnit.Framework;
 
 namespace Tests.ModSettings {

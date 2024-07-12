@@ -4,7 +4,7 @@
         <ui:VisualElement name="SettingWrapper" class="mod-setting__wrapper">
             <ui:Label name="SettingLabel" class="settings-text mod-setting__label" />
             <ui:VisualElement name="ScrollbarSpacer" class="mod-setting__scrollbar-spacer" />
-            <ModSettingsUI.NineSliceFloatField name="FloatField" class="mod-setting__text-field mod-setting__controls text-field" />
+            <ModSettings.CoreUI.NineSliceFloatField name="FloatField" class="mod-setting__text-field mod-setting__controls text-field" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

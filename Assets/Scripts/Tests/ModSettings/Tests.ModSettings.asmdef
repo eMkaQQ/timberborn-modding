@@ -1,7 +1,8 @@
 {
     "name": "Tests.ModSettings",
     "references": [
-        "ModSettings"
+        "ModSettings.Core",
+        "ModSettings.Common"
     ],
     "includePlatforms": [
         "Editor"

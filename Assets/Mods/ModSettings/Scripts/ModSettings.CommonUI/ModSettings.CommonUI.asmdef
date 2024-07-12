@@ -1,0 +1,9 @@
+{
+  "name": "ModSettings.CommonUI",
+  "references": [
+    "ModSettings.Common",
+    "ModSettings.Core",
+    "ModSettings.CoreUI"
+  ],
+  "autoReferenced": false
+}
