@@ -28,13 +28,26 @@ namespace ModSettings {
     public virtual string HeaderLocKey => null;
 
     public void Load() {
-      InitializeModSettings();
+      OnBeforeLoad();
+      InitializePropertyModSettings();
       RegisterModSettingOwner();
+      OnAfterLoad();
+    }
+
+    public void AddCustomModSetting<T>(ModSetting<T> modSetting, string id) {
+      var key = $"ModSetting.{ModId}.{id}";
+      InitializeModSetting(modSetting, typeof(T), key);
     }
 
     protected abstract string ModId { get; }
 
-    private void InitializeModSettings() {
+    protected virtual void OnBeforeLoad() {
+    }
+
+    protected virtual void OnAfterLoad() {
+    }
+
+    private void InitializePropertyModSettings() {
       var type = GetType();
       var properties =
           type.GetMembers(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
@@ -42,16 +55,20 @@ namespace ModSettings {
         if (memberInfo is PropertyInfo propertyInfo) {
           if (propertyInfo.PropertyType.IsGenericType
               && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(ModSetting<>)) {
-            InitializeModSetting(type, propertyInfo);
+            InitializePropertyModSetting(type, propertyInfo);
           }
         }
       }
     }
 
-    private void InitializeModSetting(Type type, PropertyInfo propertyInfo) {
+    private void InitializePropertyModSetting(Type type, PropertyInfo propertyInfo) {
       var key = $"ModSetting.{ModId}.{type.Name}.{propertyInfo.Name}";
       var genericType = propertyInfo.PropertyType.GetGenericArguments()[0];
       var settingObject = propertyInfo.GetValue(this);
+      InitializeModSetting(settingObject, genericType, key);
+    }
+
+    private void InitializeModSetting(object settingObject, Type genericType, string key) {
       _modSettings.Add(settingObject);
       if (genericType == typeof(int)) {
         var intSetting = (ModSetting<int>) settingObject;
@@ -75,10 +92,8 @@ namespace ModSettings {
     }
 
     private void RegisterModSettingOwner() {
-      if (_modSettings.Count > 0) {
-        foreach (var mod in _modRepository.Mods.Where(m => m.Manifest.Id == ModId)) {
-          _modSettingsOwnerRegistry.RegisterModSettingOwner(mod, this);
-        }
+      foreach (var mod in _modRepository.Mods.Where(m => m.Manifest.Id == ModId)) {
+        _modSettingsOwnerRegistry.RegisterModSettingOwner(mod, this);
       }
     }
 

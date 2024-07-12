@@ -127,7 +127,7 @@ namespace Tests.ModSettings {
       modSettingOwner.Load();
 
       // then
-      Assert.IsTrue(modSettingOwnerRegistry.HasModSettingOwners(mod));
+      Assert.IsTrue(modSettingOwnerRegistry.HasModSettings(mod));
     }
     
     [Test]
@@ -148,8 +148,8 @@ namespace Tests.ModSettings {
       var modSettingOwners = modSettingOwnerRegistry.GetModSettingOwners(mod);
       Assert.AreEqual(1, modSettingOwners.Count);
       Assert.AreEqual(modSettingOwner, modSettingOwners[0]);
-      Assert.IsFalse(modSettingOwnerRegistry.HasModSettingOwners(dummyMod));
-      Assert.IsFalse(modSettingOwnerRegistry.HasModSettingOwners(randomMod));
+      Assert.IsFalse(modSettingOwnerRegistry.HasModSettings(dummyMod));
+      Assert.IsFalse(modSettingOwnerRegistry.HasModSettings(randomMod));
     }
     
     [Test]
@@ -180,7 +180,46 @@ namespace Tests.ModSettings {
       modSettingOwner.Load();
 
       // then
-      Assert.IsFalse(modSettingOwnerRegistry.HasModSettingOwners(mod));
+      Assert.IsFalse(modSettingOwnerRegistry.HasModSettings(mod));
+    }
+
+    [Test]
+    public void ShouldAddCustomModSetting() {
+      // given
+      var mod = CreateMod("modMock");
+      var modRepository = CreateModRepository(new[] { mod });
+      var modSettingOwnerRegistry = new ModSettingsOwnerRegistry();
+      var modSettingOwner = new ModSettingOwnerMock(new SettingsMock(), modSettingOwnerRegistry, 
+                                                    modRepository);
+      var customModSetting = new ModSetting<int>("custom", 20);
+      Assert.AreEqual(0, customModSetting.Value);
+      
+      // when
+      modSettingOwner.Load();
+      modSettingOwner.AddCustomModSetting(customModSetting, "CustomSetting");
+      
+      // then
+      Assert.AreEqual(8, modSettingOwner.ModSettings.Count);
+      Assert.AreEqual(20, customModSetting.Value);
+    }
+    
+    [Test]
+    public void ShouldHaveSettingAfterAddingCustomModSetting() {
+      // given
+      var mod = CreateMod("modMock");
+      var modRepository = CreateModRepository(new[] { mod });
+      var modSettingOwnerRegistry = new ModSettingsOwnerRegistry();
+      var modSettingOwner = new NoSettingsModSettingOwner(new SettingsMock(), 
+                                                          modSettingOwnerRegistry, 
+                                                          modRepository);
+      var customModSetting = new ModSetting<int>("custom", 20);
+      
+      // when
+      modSettingOwner.Load();
+      modSettingOwner.AddCustomModSetting(customModSetting, "CustomSetting");
+      
+      // then
+      Assert.IsTrue(modSettingOwnerRegistry.HasModSettings(mod));
     }
 
     private static string GetModSettingKey(string modId, string modSettingOwnerName,

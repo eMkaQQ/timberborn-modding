@@ -60,7 +60,7 @@ namespace ModSettingsUI {
       modItem.Root.Add(button);
       button.RegisterCallback<AttachToPanelEvent>(
           _ => button.ToggleDisplayStyle(
-              _modSettingsOwnerRegistry.HasModSettingOwners(modItem.Mod)));
+              _modSettingsOwnerRegistry.HasModSettings(modItem.Mod)));
       button.RegisterCallback<ClickEvent>(_ => _modSettingsBox.Open(modItem.Mod));
     }
 

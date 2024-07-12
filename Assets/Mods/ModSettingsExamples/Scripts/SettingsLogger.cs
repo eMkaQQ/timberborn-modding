@@ -17,7 +17,7 @@ namespace ModSettingsExamples {
       Debug.Log($"{nameof(_advancedSettingsExample.SmallIntRangeSetting)} value:"
                 + $" {_advancedSettingsExample.SmallIntRangeSetting.Value}");
       Debug.Log($"{nameof(_advancedSettingsExample.NegativeRangeSetting)} value:"
-                + $" {_advancedSettingsExample.NegativeRangeSetting.Value}");
+                + $" {_advancedSettingsExample.NegativeRangeSetting}");
       Debug.Log($"{nameof(_advancedSettingsExample.DropdownSetting)} value:"
                 + $" {_advancedSettingsExample.DropdownSetting.Value}");
       Debug.Log($"{nameof(_simpleSettingsExample.IntSetting)} value:"

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Timberborn.Common;
 using Timberborn.Modding;
 
@@ -12,8 +13,9 @@ namespace ModSettings {
       _modSettingOwners.GetOrAdd(mod).Add(modSettingsOwner);
     }
 
-    public bool HasModSettingOwners(Mod mod) {
-      return _modSettingOwners.ContainsKey(mod);
+    public bool HasModSettings(Mod mod) {
+      return _modSettingOwners.TryGetValue(mod, out var modSettingsOwners)
+             && modSettingsOwners.Any(modSettingsOwner => modSettingsOwner.ModSettings.Any());
     }
 
     public ReadOnlyList<ModSettingsOwner> GetModSettingOwners(Mod mod) {
