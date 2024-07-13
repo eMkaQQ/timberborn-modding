@@ -71,24 +71,27 @@ namespace ModSettings.Core {
     private void InitializeModSetting(object settingObject, Type genericType, string key) {
       _modSettings.Add(settingObject);
       if (genericType == typeof(int)) {
-        var intSetting = (ModSetting<int>) settingObject;
-        intSetting.SetValue(_settings.GetInt(key, intSetting.DefaultValue));
-        intSetting.ValueChanged += (_, value) => _settings.SetInt(key, value);
+        InitializeModSetting(
+            (ModSetting<int>) settingObject, key, _settings.GetInt, _settings.SetInt);
       } else if (genericType == typeof(float)) {
-        var floatSetting = (ModSetting<float>) settingObject;
-        floatSetting.SetValue(_settings.GetFloat(key, floatSetting.DefaultValue));
-        floatSetting.ValueChanged += (_, value) => _settings.SetFloat(key, value);
+        InitializeModSetting(
+            (ModSetting<float>) settingObject, key, _settings.GetFloat, _settings.SetFloat);
       } else if (genericType == typeof(string)) {
-        var stringSetting = (ModSetting<string>) settingObject;
-        stringSetting.SetValue(_settings.GetString(key, stringSetting.DefaultValue));
-        stringSetting.ValueChanged += (_, value) => _settings.SetString(key, value);
+        InitializeModSetting(
+            (ModSetting<string>) settingObject, key, _settings.GetString, _settings.SetString);
       } else if (genericType == typeof(bool)) {
-        var boolSetting = (ModSetting<bool>) settingObject;
-        boolSetting.SetValue(_settings.GetBool(key, boolSetting.DefaultValue));
-        boolSetting.ValueChanged += (_, value) => _settings.SetBool(key, value);
+        InitializeModSetting(
+            (ModSetting<bool>) settingObject, key, _settings.GetBool, _settings.SetBool);
       } else {
         throw new($"Unsupported ModSetting type {genericType}");
       }
+    }
+
+    private static void InitializeModSetting<T>(ModSetting<T> modSetting, string key,
+                                                Func<string, T, T> valueGetter,
+                                                Action<string, T> valueSetter) {
+      modSetting.SetValue(valueGetter(key, modSetting.DefaultValue));
+      modSetting.ValueChanged += (_, value) => valueSetter(key, value);
     }
 
     private void RegisterModSettingOwner() {

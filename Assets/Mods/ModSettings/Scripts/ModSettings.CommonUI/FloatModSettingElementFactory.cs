@@ -1,19 +1,18 @@
 using ModSettings.Core;
 using ModSettings.CoreUI;
 using Timberborn.CoreUI;
-using Timberborn.Localization;
 using UnityEngine.UIElements;
 
 namespace ModSettings.CommonUI {
   internal class FloatModSettingElementFactory : IModSettingElementFactory {
 
     private readonly VisualElementLoader _visualElementLoader;
-    private readonly ILoc _loc;
+    private readonly ModSettingDisplayNameProvider _modSettingDisplayNameProvider;
 
     public FloatModSettingElementFactory(VisualElementLoader visualElementLoader,
-                                         ILoc loc) {
+                                         ModSettingDisplayNameProvider modSettingDisplayNameProvider) {
       _visualElementLoader = visualElementLoader;
-      _loc = loc;
+      _modSettingDisplayNameProvider = modSettingDisplayNameProvider;
     }
 
     public int Priority => 0;
@@ -21,7 +20,7 @@ namespace ModSettings.CommonUI {
     public bool TryCreateElement(object modSetting, VisualElement parent) {
       if (modSetting is ModSetting<float> floatModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/FloatModSettingElement");
-        root.Q<Label>("SettingLabel").text = _loc.T(floatModSetting.LocKey);
+        root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(floatModSetting);
         var floatField = root.Q<FloatField>();
         floatField.value = floatModSetting.Value;
         floatField.RegisterValueChangedCallback(evt => floatModSetting.SetValue(evt.newValue));
