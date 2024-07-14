@@ -18,16 +18,17 @@ namespace ModSettings.CommonUI {
 
     public int Priority => 0;
 
-    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is ModSetting<int> intSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/IntModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(intSetting);
         var intField = root.Q<IntegerField>();
         intField.value = intSetting.Value;
         intField.RegisterCallback<FocusOutEvent>(_ => intSetting.SetValue(intField.value));
-        parent.Add(root);
+        element = new TextInputBaseFieldModSettingElement<int>(root, intField);
         return true;
       }
+      element = null;
       return false;
     }
 

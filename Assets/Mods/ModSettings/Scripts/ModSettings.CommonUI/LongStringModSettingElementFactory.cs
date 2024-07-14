@@ -19,7 +19,7 @@ namespace ModSettings.CommonUI {
 
     public int Priority => 100;
 
-    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is LongStringModSetting longStringModSetting) {
         var root =
             _visualElementLoader.LoadVisualElement("ModSettings/LongStringModSettingElement");
@@ -29,9 +29,10 @@ namespace ModSettings.CommonUI {
         textField.value = longStringModSetting.Value;
         textField.RegisterCallback<FocusOutEvent>(
             _ => longStringModSetting.SetValue(textField.value));
-        parent.Add(root);
+        element = new TextInputBaseFieldModSettingElement<string>(root, textField);
         return true;
       }
+      element = null;
       return false;
     }
 

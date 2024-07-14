@@ -18,16 +18,17 @@ namespace ModSettings.CommonUI {
 
     public int Priority => 0;
 
-    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is ModSetting<bool> boolModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/BoolModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(boolModSetting);
         var toggle = root.Q<Toggle>();
         toggle.value = boolModSetting.Value;
         toggle.RegisterValueChangedCallback(evt => boolModSetting.SetValue(evt.newValue));
-        parent.Add(root);
+        element = new ModSettingElement(root);
         return true;
       }
+      element = null;
       return false;
     }
 

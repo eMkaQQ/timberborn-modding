@@ -23,6 +23,7 @@ namespace ModSettings.CoreUI {
     private VisualElement _root;
     private ScrollView _scrollView;
     private Mod _currentMod;
+    private readonly List<IModSettingElement> _modSettingElements = new();
 
     public ModSettingsBox(VisualElementLoader visualElementLoader,
                           PanelStack panelStack,
@@ -61,12 +62,15 @@ namespace ModSettings.CoreUI {
     }
 
     public void OnUICancelled() {
-      Close();
+      if (!IsInputBlocked()) {
+        Close();
+      }
     }
 
     private void Close() {
       _currentMod = null;
       _panelStack.Pop(this);
+      _modSettingElements.Clear();
       _scrollView.Clear();
     }
 
@@ -94,7 +98,9 @@ namespace ModSettings.CoreUI {
 
     private void CreateSettingElement(ModSetting modSetting) {
       foreach (var factory in _modSettingElementFactories) {
-        if (factory.TryCreateElement(modSetting, _scrollView)) {
+        if (factory.TryCreateElement(modSetting, out var element)) {
+          _scrollView.Add(element.Root);
+          _modSettingElements.Add(element);
           return;
         }
       }
@@ -116,6 +122,10 @@ namespace ModSettings.CoreUI {
         settingOwner.ResetModSettings();
       }
       Open(currentMod);
+    }
+
+    private bool IsInputBlocked() {
+      return _modSettingElements.Any(element => element.ShouldBlockInput);
     }
 
   }

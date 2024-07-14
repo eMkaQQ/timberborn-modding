@@ -21,14 +21,15 @@ namespace ModSettings.CommonUI {
 
     public int Priority => 100;
 
-    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is RangeIntModSetting rangeIntModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/SliderIntModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(rangeIntModSetting);
         InitializeSlider(root, rangeIntModSetting);
-        parent.Add(root);
+        element = new ModSettingElement(root);
         return true;
       }
+      element = null;
       return false;
     }
 

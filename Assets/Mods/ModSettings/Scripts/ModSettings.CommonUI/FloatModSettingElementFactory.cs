@@ -18,16 +18,17 @@ namespace ModSettings.CommonUI {
 
     public int Priority => 0;
 
-    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is ModSetting<float> floatModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/FloatModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(floatModSetting);
         var floatField = root.Q<FloatField>();
         floatField.value = floatModSetting.Value;
         floatField.RegisterCallback<FocusOutEvent>(_ => floatModSetting.SetValue(floatField.value));
-        parent.Add(root);
+        element = new TextInputBaseFieldModSettingElement<float>(root, floatField);
         return true;
       }
+      element = null;
       return false;
     }
 
