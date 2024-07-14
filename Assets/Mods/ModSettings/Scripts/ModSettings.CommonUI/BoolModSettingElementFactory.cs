@@ -18,7 +18,7 @@ namespace ModSettings.CommonUI {
 
     public int Priority => 0;
 
-    public bool TryCreateElement(object modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
       if (modSetting is ModSetting<bool> boolModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/BoolModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(boolModSetting);

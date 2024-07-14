@@ -27,6 +27,18 @@
     width: 590px;
 }
 
+.mod-settings-box__reset-button {
+    bottom: -10px;
+    right: -10px;
+    margin-top: 15px;
+    align-self: flex-end;
+    --click-sound: "UI.Click";
+}
+
+.mod-settings-box__reset-button:hover:enabled {
+    color: yellow;
+}
+
 .mod-setting__wrapper {
     flex-direction: row;
     justify-content: space-between;

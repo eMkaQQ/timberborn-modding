@@ -13,7 +13,7 @@ namespace ModSettings.Core {
     private readonly ISettings _settings;
     private readonly ModSettingsOwnerRegistry _modSettingsOwnerRegistry;
     private readonly ModRepository _modRepository;
-    private readonly List<object> _modSettings = new();
+    private readonly List<ModSetting> _modSettings = new();
 
     protected ModSettingsOwner(ISettings settings,
                                ModSettingsOwnerRegistry modSettingsOwnerRegistry,
@@ -23,7 +23,7 @@ namespace ModSettings.Core {
       _modRepository = modRepository;
     }
 
-    public ReadOnlyList<object> ModSettings => new(_modSettings);
+    public ReadOnlyList<ModSetting> ModSettings => new(_modSettings);
     public virtual int Order => 0;
     public virtual string HeaderLocKey => null;
 
@@ -37,6 +37,12 @@ namespace ModSettings.Core {
     public void AddCustomModSetting<T>(ModSetting<T> modSetting, string id) {
       var key = $"ModSetting.{ModId}.{id}";
       InitializeModSetting(modSetting, typeof(T), key);
+    }
+
+    public void ResetModSettings() {
+      foreach (var modSetting in _modSettings) {
+        modSetting.Reset();
+      }
     }
 
     protected abstract string ModId { get; }
@@ -69,7 +75,6 @@ namespace ModSettings.Core {
     }
 
     private void InitializeModSetting(object settingObject, Type genericType, string key) {
-      _modSettings.Add(settingObject);
       if (genericType == typeof(int)) {
         InitializeModSetting(
             (ModSetting<int>) settingObject, key, _settings.GetInt, _settings.SetInt);
@@ -87,9 +92,10 @@ namespace ModSettings.Core {
       }
     }
 
-    private static void InitializeModSetting<T>(ModSetting<T> modSetting, string key,
-                                                Func<string, T, T> valueGetter,
-                                                Action<string, T> valueSetter) {
+    private void InitializeModSetting<T>(ModSetting<T> modSetting, string key,
+                                         Func<string, T, T> valueGetter,
+                                         Action<string, T> valueSetter) {
+      _modSettings.Add(modSetting);
       modSetting.SetValue(valueGetter(key, modSetting.DefaultValue));
       modSetting.ValueChanged += (_, value) => valueSetter(key, value);
     }

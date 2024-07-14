@@ -12,6 +12,7 @@
                         <ui:ScrollView name="Content" />
                     </ui:VisualElement>
                     <ui:Button name="CloseButton" class="close-button" />
+                    <Timberborn.CoreUI.LocalizableButton name="ResetToDefault" text="ResetToDefault" text-loc-key="ModSettingsBox.ResetToDefault" class="mod-settings-box__reset-button text--default text--bold" />
                 </Timberborn.CoreUI.NineSliceVisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

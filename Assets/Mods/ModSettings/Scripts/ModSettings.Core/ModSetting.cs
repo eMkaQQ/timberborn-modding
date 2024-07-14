@@ -1,17 +1,14 @@
 using System;
 
 namespace ModSettings.Core {
-  public class ModSetting<T> {
+  public class ModSetting<T> : ModSetting {
 
     public event EventHandler<T> ValueChanged;
-    public string LocKey { get; }
     public T DefaultValue { get; }
     public T Value { get; private set; }
-    public string DisplayName { get; set; }
 
     public ModSetting(string locKey,
-                      T defaultValue) {
-      LocKey = locKey;
+                      T defaultValue) : base(locKey) {
       DefaultValue = defaultValue;
     }
 
@@ -21,6 +18,23 @@ namespace ModSettings.Core {
         ValueChanged?.Invoke(this, value);
       }
     }
+
+    public override void Reset() {
+      SetValue(DefaultValue);
+    }
+
+  }
+
+  public abstract class ModSetting {
+
+    public string LocKey { get; }
+    public string DisplayName { get; set; }
+
+    protected ModSetting(string locKey) {
+      LocKey = locKey;
+    }
+
+    public abstract void Reset();
 
   }
 }

@@ -1,4 +1,5 @@
 using ModSettings.Common;
+using ModSettings.Core;
 using ModSettings.CoreUI;
 using System.Globalization;
 using Timberborn.CoreUI;
@@ -12,14 +13,15 @@ namespace ModSettings.CommonUI {
     private readonly ModSettingDisplayNameProvider _modSettingDisplayNameProvider;
 
     public SliderIntModSettingElementFactory(VisualElementLoader visualElementLoader,
-                                             ModSettingDisplayNameProvider modSettingDisplayNameProvider) {
+                                             ModSettingDisplayNameProvider
+                                                 modSettingDisplayNameProvider) {
       _visualElementLoader = visualElementLoader;
       _modSettingDisplayNameProvider = modSettingDisplayNameProvider;
     }
 
     public int Priority => 100;
 
-    public bool TryCreateElement(object modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
       if (modSetting is RangeIntModSetting rangeIntModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/SliderIntModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(rangeIntModSetting);

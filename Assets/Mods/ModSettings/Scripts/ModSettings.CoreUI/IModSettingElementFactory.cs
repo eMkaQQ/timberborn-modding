@@ -1,3 +1,4 @@
+using ModSettings.Core;
 using UnityEngine.UIElements;
 
 namespace ModSettings.CoreUI {
@@ -5,7 +6,7 @@ namespace ModSettings.CoreUI {
 
     int Priority { get; }
 
-    bool TryCreateElement(object modSetting, VisualElement parent);
+    bool TryCreateElement(ModSetting modSetting, VisualElement parent);
 
   }
 }

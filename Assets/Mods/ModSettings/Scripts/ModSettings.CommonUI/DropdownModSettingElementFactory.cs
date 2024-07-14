@@ -1,4 +1,5 @@
 using ModSettings.Common;
+using ModSettings.Core;
 using ModSettings.CoreUI;
 using Timberborn.CoreUI;
 using Timberborn.DropdownSystem;
@@ -22,7 +23,7 @@ namespace ModSettings.CommonUI {
 
     public int Priority => 100;
 
-    public bool TryCreateElement(object modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
       if (modSetting is LimitedStringModSetting limitedString) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/DropdownModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(limitedString);

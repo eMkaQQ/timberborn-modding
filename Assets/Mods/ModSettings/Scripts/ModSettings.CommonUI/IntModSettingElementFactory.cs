@@ -10,14 +10,15 @@ namespace ModSettings.CommonUI {
     private readonly ModSettingDisplayNameProvider _modSettingDisplayNameProvider;
 
     public IntModSettingElementFactory(VisualElementLoader visualElementLoader,
-                                       ModSettingDisplayNameProvider modSettingDisplayNameProvider) {
+                                       ModSettingDisplayNameProvider
+                                           modSettingDisplayNameProvider) {
       _visualElementLoader = visualElementLoader;
       _modSettingDisplayNameProvider = modSettingDisplayNameProvider;
     }
 
     public int Priority => 0;
 
-    public bool TryCreateElement(object modSetting, VisualElement parent) {
+    public bool TryCreateElement(ModSetting modSetting, VisualElement parent) {
       if (modSetting is ModSetting<int> intSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/IntModSettingElement");
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(intSetting);

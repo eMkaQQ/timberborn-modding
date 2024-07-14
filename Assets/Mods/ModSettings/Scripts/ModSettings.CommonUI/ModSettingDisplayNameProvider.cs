@@ -10,7 +10,7 @@ namespace ModSettings.CommonUI {
       _loc = loc;
     }
 
-    public string Get<T>(ModSetting<T> modSetting) {
+    public string Get(ModSetting modSetting) {
       return modSetting.DisplayName ?? _loc.T(modSetting.LocKey);
     }
 
