@@ -25,6 +25,9 @@ namespace ModSettings.CommonUI {
       containerDefinition.MultiBind<IModSettingElementFactory>()
           .To<SliderIntModSettingElementFactory>()
           .AsSingleton();
+      containerDefinition.MultiBind<IModSettingElementFactory>()
+          .To<LongStringModSettingElementFactory>()
+          .AsSingleton();
     }
 
   }

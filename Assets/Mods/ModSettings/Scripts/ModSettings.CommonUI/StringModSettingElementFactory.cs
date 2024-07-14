@@ -24,7 +24,7 @@ namespace ModSettings.CommonUI {
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(stringModSetting);
         var textField = root.Q<TextField>();
         textField.value = stringModSetting.Value;
-        textField.RegisterValueChangedCallback(evt => stringModSetting.SetValue(evt.newValue));
+        textField.RegisterCallback<FocusOutEvent>(_ => stringModSetting.SetValue(textField.value));
         parent.Add(root);
         return true;
       }

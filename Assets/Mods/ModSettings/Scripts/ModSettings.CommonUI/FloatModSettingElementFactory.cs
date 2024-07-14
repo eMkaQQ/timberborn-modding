@@ -24,7 +24,7 @@ namespace ModSettings.CommonUI {
         root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(floatModSetting);
         var floatField = root.Q<FloatField>();
         floatField.value = floatModSetting.Value;
-        floatField.RegisterValueChangedCallback(evt => floatModSetting.SetValue(evt.newValue));
+        floatField.RegisterCallback<FocusOutEvent>(_ => floatModSetting.SetValue(floatField.value));
         parent.Add(root);
         return true;
       }

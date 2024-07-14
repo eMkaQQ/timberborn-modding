@@ -46,6 +46,10 @@
     margin: 3px 0;
 }
 
+.mod-setting__margin {
+    margin: 3px 0;
+}
+
 .mod-setting__label {
     width: 220px;
     white-space: normal;
@@ -61,8 +65,14 @@
     margin: 0 2px;
 }
 
+.mod-setting__large-text-field {
+    height: 180px;
+    margin-top: 5px;
+}
+
 .mod-setting__controls {
     width: 245px;
+    flex-shrink: 0;
 }
 
 .mod-setting__slider-wrapper {

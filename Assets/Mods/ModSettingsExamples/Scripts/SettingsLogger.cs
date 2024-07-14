@@ -6,11 +6,14 @@ namespace ModSettingsExamples {
 
     private readonly AdvancedSettingsExample _advancedSettingsExample;
     private readonly SimpleSettingsExample _simpleSettingsExample;
+    private readonly FileStoredSettingsExample _fileStoredSettingsExample;
 
     public SettingsLogger(AdvancedSettingsExample advancedSettingsExample,
-                          SimpleSettingsExample simpleSettingsExample) {
+                          SimpleSettingsExample simpleSettingsExample,
+                          FileStoredSettingsExample fileStoredSettingsExample) {
       _advancedSettingsExample = advancedSettingsExample;
       _simpleSettingsExample = simpleSettingsExample;
+      _fileStoredSettingsExample = fileStoredSettingsExample;
     }
 
     public void Load() {
@@ -28,6 +31,8 @@ namespace ModSettingsExamples {
                 + $" {_simpleSettingsExample.StringSetting.Value}");
       Debug.Log($"{nameof(_simpleSettingsExample.BoolSetting)} value:"
                 + $" {_simpleSettingsExample.BoolSetting.Value}");
+      Debug.Log($"{nameof(_fileStoredSettingsExample.LongStringSetting)} value:"
+                + $" {_fileStoredSettingsExample.LongStringSetting.Value}");
     }
 
   }

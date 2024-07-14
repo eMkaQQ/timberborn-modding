@@ -33,7 +33,7 @@ namespace ModSettingsExamples {
 
     protected override string ModId => "eMka.ModSettingsExamples";
 
-    protected override void OnAfterLoad() {
+    protected override void OnBeforeLoad() {
       _negativeRangeSetting.DisplayName = "Custom label";
       AddCustomModSetting(_negativeRangeSetting, "NegativeRangeSetting");
     }
