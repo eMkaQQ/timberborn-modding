@@ -1,4 +1,5 @@
 using System;
+using Timberborn.SettingsSystem;
 
 namespace ModSettings.Core {
   public class ModSetting<T> : ModSetting {
@@ -35,6 +36,10 @@ namespace ModSettings.Core {
     }
 
     public abstract void Reset();
+
+    public virtual bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings) {
+      return true;
+    }
 
   }
 }

@@ -222,6 +222,38 @@ namespace Tests.ModSettings {
       // then
       Assert.IsTrue(modSettingOwnerRegistry.HasModSettings(mod));
     }
+    
+    [Test]
+    public void ShouldResetModSettings() {
+      // given
+      var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
+      var modSettingOwner = new ModSettingOwnerMock(new FilledSettingsMock(), new(), modRepository);
+      modSettingOwner.Load();
+      
+      // when
+      modSettingOwner.ResetModSettings();
+      
+      // then
+      Assert.AreEqual(2, modSettingOwner.IntSetting.Value);
+      Assert.AreEqual(1.1f, modSettingOwner.FloatSetting.Value);
+      Assert.AreEqual("default", modSettingOwner.StringSetting.Value);
+      Assert.IsTrue(modSettingOwner.BoolSetting.Value);
+    }
+    
+    [Test]
+    public void ShouldDiscardInvalidModSetting() {
+      // given
+      var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
+      var modSettingOwner = new ModSettingOwnerMock(new FilledSettingsMock(), new(), modRepository);
+      var invalidModSetting = new InvalidModSetting("invalid", 0);
+      
+      // when
+      modSettingOwner.Load();
+      modSettingOwner.AddCustomModSetting(invalidModSetting, "InvalidSetting");
+      
+      // then
+      Assert.AreEqual(7, modSettingOwner.ModSettings.Count);
+    }
 
     private static string GetModSettingKey(string modId, string modSettingOwnerName,
                                            string settingName) {
@@ -457,6 +489,17 @@ namespace Tests.ModSettings {
         throw new NotSupportedException();
       }
 
+    }
+    
+    private class InvalidModSetting : ModSetting<int> {
+      
+      public InvalidModSetting(string locKey, int defaultValue) : base(locKey, defaultValue) {
+      }
+
+      public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings) {
+        return false;
+      }
+      
     }
 
   }
