@@ -9,11 +9,11 @@ namespace ModSettings.Common {
     }
 
     public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings) {
-      if (settings.GetType().Namespace == nameof(Timberborn.SettingsSystem)) {
+      if (settings.GetType().Assembly == typeof(ISettings).Assembly) {
         Debug.LogWarning(
             $"Using {nameof(LongStringModSetting)} with {nameof(Timberborn.SettingsSystem)} "
-            + $"is not supported. Use {nameof(DefaultModFileStoredSettings)} "
-            + $"or other custom {nameof(ISettings)} instead");
+            + $"is not supported. Use the {nameof(DefaultModFileStoredSettings)} "
+            + $"or other custom implementation of {nameof(ISettings)} instead.");
         return false;
       }
       return true;

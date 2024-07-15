@@ -77,7 +77,9 @@ namespace ModSettings.CoreUI {
     private void CreateSettingOwnerSections(Mod mod) {
       var settingOwners = _modSettingsOwnerRegistry.GetModSettingOwners(mod);
       foreach (var settingOwner in settingOwners.OrderBy(settingOwner => settingOwner.Order)) {
-        CreateSettingOwnerSection(settingOwner);
+        if (settingOwner.ModSettings.Any()) {
+          CreateSettingOwnerSection(settingOwner);
+        }
       }
     }
 
