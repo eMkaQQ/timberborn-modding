@@ -16,8 +16,8 @@ namespace ModSettingsExamples {
             new LimitedStringModSettingValue("value3", "eMka.ModSettingsExamples.Dropdown3")
         });
 
-    private readonly ModSetting<int> _negativeRangeSetting = 
-            new RangeIntModSetting(null, 50, -100, 100);
+    private readonly ModSetting<int> _negativeRangeSetting =
+        new RangeIntModSetting(null, 50, -100, 100);
 
     public AdvancedSettingsExample(ISettings settings,
                                    ModSettingsOwnerRegistry modSettingsOwnerRegistry,

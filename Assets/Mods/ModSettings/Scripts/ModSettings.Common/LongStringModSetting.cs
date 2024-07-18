@@ -8,7 +8,8 @@ namespace ModSettings.Common {
     public LongStringModSetting(string locKey, string defaultValue) : base(locKey, defaultValue) {
     }
 
-    public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings) {
+    public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings,
+                                 string key) {
       if (settings.GetType().Assembly == typeof(ISettings).Assembly) {
         Debug.LogWarning(
             $"Using {nameof(LongStringModSetting)} with {nameof(Timberborn.SettingsSystem)} "

@@ -37,7 +37,7 @@ namespace ModSettings.Core {
 
     public abstract void Reset();
 
-    public virtual bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings) {
+    public virtual bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings, string key) {
       return true;
     }
 

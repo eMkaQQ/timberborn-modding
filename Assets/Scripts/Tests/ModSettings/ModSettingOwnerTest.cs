@@ -114,14 +114,14 @@ namespace Tests.ModSettings {
       // then
       Assert.AreEqual(0, modSettingOwner.ModSettings.Count);
     }
-    
+
     [Test]
     public void ShouldAddModSettingOwnerToRegistry() {
       // given
       var mod = CreateMod("modMock");
       var modRepository = CreateModRepository(new[] { mod });
       var modSettingOwnerRegistry = new ModSettingsOwnerRegistry();
-      var modSettingOwner = new ModSettingOwnerMock(new SettingsMock(), modSettingOwnerRegistry, 
+      var modSettingOwner = new ModSettingOwnerMock(new SettingsMock(), modSettingOwnerRegistry,
                                                     modRepository);
 
       // when
@@ -130,7 +130,7 @@ namespace Tests.ModSettings {
       // then
       Assert.IsTrue(modSettingOwnerRegistry.HasModSettings(mod));
     }
-    
+
     [Test]
     public void ShouldAddModSettingOwnerToCorrectMod() {
       // given
@@ -139,7 +139,7 @@ namespace Tests.ModSettings {
       var randomMod = CreateMod("randomMod");
       var modRepository = CreateModRepository(new[] { dummyMod, mod, randomMod });
       var modSettingOwnerRegistry = new ModSettingsOwnerRegistry();
-      var modSettingOwner = new ModSettingOwnerMock(new SettingsMock(), modSettingOwnerRegistry, 
+      var modSettingOwner = new ModSettingOwnerMock(new SettingsMock(), modSettingOwnerRegistry,
                                                     modRepository);
 
       // when
@@ -152,12 +152,12 @@ namespace Tests.ModSettings {
       Assert.IsFalse(modSettingOwnerRegistry.HasModSettings(dummyMod));
       Assert.IsFalse(modSettingOwnerRegistry.HasModSettings(randomMod));
     }
-    
+
     [Test]
     public void ShouldLoadSettingsForNonExistingMod() {
       // given
       var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
-      var modSettingOwner = new NonExistingModSettingOwner(new SettingsMock(), new(), 
+      var modSettingOwner = new NonExistingModSettingOwner(new SettingsMock(), new(),
                                                            modRepository);
 
       // when
@@ -166,15 +166,15 @@ namespace Tests.ModSettings {
       // then
       Assert.AreEqual(2, modSettingOwner.IntSetting.Value);
     }
-    
+
     [Test]
     public void ShouldNotAddModSettingOwnerToRegistryForNonExistingMod() {
       // given
       var mod = CreateMod("modMock");
       var modRepository = CreateModRepository(new[] { mod });
       var modSettingOwnerRegistry = new ModSettingsOwnerRegistry();
-      var modSettingOwner = new NonExistingModSettingOwner(new SettingsMock(), 
-                                                           modSettingOwnerRegistry, 
+      var modSettingOwner = new NonExistingModSettingOwner(new SettingsMock(),
+                                                           modSettingOwnerRegistry,
                                                            modRepository);
 
       // when
@@ -190,69 +190,91 @@ namespace Tests.ModSettings {
       var mod = CreateMod("modMock");
       var modRepository = CreateModRepository(new[] { mod });
       var modSettingOwnerRegistry = new ModSettingsOwnerRegistry();
-      var modSettingOwner = new ModSettingOwnerMock(new SettingsMock(), modSettingOwnerRegistry, 
+      var modSettingOwner = new ModSettingOwnerMock(new SettingsMock(), modSettingOwnerRegistry,
                                                     modRepository);
       var customModSetting = new ModSetting<int>("custom", 20);
       Assert.AreEqual(0, customModSetting.Value);
-      
+
       // when
       modSettingOwner.Load();
       modSettingOwner.AddCustomModSetting(customModSetting, "CustomSetting");
-      
+
       // then
       Assert.AreEqual(8, modSettingOwner.ModSettings.Count);
       Assert.AreEqual(20, customModSetting.Value);
     }
-    
+
     [Test]
     public void ShouldHaveSettingAfterAddingCustomModSetting() {
       // given
       var mod = CreateMod("modMock");
       var modRepository = CreateModRepository(new[] { mod });
       var modSettingOwnerRegistry = new ModSettingsOwnerRegistry();
-      var modSettingOwner = new NoSettingsModSettingOwner(new SettingsMock(), 
-                                                          modSettingOwnerRegistry, 
+      var modSettingOwner = new NoSettingsModSettingOwner(new SettingsMock(),
+                                                          modSettingOwnerRegistry,
                                                           modRepository);
       var customModSetting = new ModSetting<int>("custom", 20);
-      
+
       // when
       modSettingOwner.Load();
       modSettingOwner.AddCustomModSetting(customModSetting, "CustomSetting");
-      
+
       // then
       Assert.IsTrue(modSettingOwnerRegistry.HasModSettings(mod));
     }
-    
+
     [Test]
     public void ShouldResetModSettings() {
       // given
       var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
       var modSettingOwner = new ModSettingOwnerMock(new FilledSettingsMock(), new(), modRepository);
       modSettingOwner.Load();
-      
+
       // when
       modSettingOwner.ResetModSettings();
-      
+
       // then
       Assert.AreEqual(2, modSettingOwner.IntSetting.Value);
       Assert.AreEqual(1.1f, modSettingOwner.FloatSetting.Value);
       Assert.AreEqual("default", modSettingOwner.StringSetting.Value);
       Assert.IsTrue(modSettingOwner.BoolSetting.Value);
     }
-    
+
     [Test]
     public void ShouldDiscardInvalidModSetting() {
       // given
       var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
       var modSettingOwner = new ModSettingOwnerMock(new FilledSettingsMock(), new(), modRepository);
       var invalidModSetting = new InvalidModSetting("invalid", 0);
-      
+
       // when
       modSettingOwner.Load();
       modSettingOwner.AddCustomModSetting(invalidModSetting, "InvalidSetting");
-      
+
       // then
       Assert.AreEqual(7, modSettingOwner.ModSettings.Count);
+    }
+
+    [Test]
+    public void ShouldResetInvalidLimitedStringModSettingValue() {
+      // given
+      var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
+      var settings = new SettingsMock();
+      var modSettingOwner = new NoSettingsModSettingOwner(settings, new(), modRepository);
+      var limitedStringModSettingValue = new LimitedStringModSettingValue("default", "default");
+      var limitedStringModSetting =
+          new LimitedStringModSetting("default", 0, new[] { limitedStringModSettingValue });
+      var key = "ModSetting.modMock.limitedString";
+
+      // when
+      settings.SetString(key, "invalid");
+      Assert.IsTrue(settings.GetString(key, null) == "invalid");
+      modSettingOwner.Load();
+      modSettingOwner.AddCustomModSetting(limitedStringModSetting, "limitedString");
+
+      // then
+      Assert.AreEqual("default", limitedStringModSetting.Value);
+      Assert.IsTrue(settings.GetString(key, null) == null);
     }
 
     private static string GetModSettingKey(string modId, string modSettingOwnerName,
@@ -315,7 +337,7 @@ namespace Tests.ModSettings {
     }
 
     private class IncorrectModSettingOwner : ModSettingsOwner {
-      
+
       [UsedImplicitly]
       public ModSetting<char> CharSetting { get; } = new("eMka.ModSettingsExamples.CharSetting",
                                                          'a');
@@ -344,7 +366,7 @@ namespace Tests.ModSettings {
       protected override string ModId => "modMock";
 
     }
-    
+
     private class NonExistingModSettingOwner : ModSettingsOwner {
 
       public ModSetting<int> IntSetting { get; } = new("eMka.ModSettingsExamples.IntSetting", 2);
@@ -415,7 +437,10 @@ namespace Tests.ModSettings {
       }
 
       public void Clear(string key) {
-        throw new NotSupportedException();
+        _intSettings.Remove(key);
+        _floatSettings.Remove(key);
+        _stringSettings.Remove(key);
+        _boolSettings.Remove(key);
       }
 
     }
@@ -490,16 +515,17 @@ namespace Tests.ModSettings {
       }
 
     }
-    
+
     private class InvalidModSetting : ModSetting<int> {
-      
+
       public InvalidModSetting(string locKey, int defaultValue) : base(locKey, defaultValue) {
       }
 
-      public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings) {
+      public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings,
+                                   string key) {
         return false;
       }
-      
+
     }
 
   }

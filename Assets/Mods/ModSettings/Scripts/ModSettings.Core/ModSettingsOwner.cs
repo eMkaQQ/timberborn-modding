@@ -95,7 +95,7 @@ namespace ModSettings.Core {
     private void InitializeModSetting<T>(ModSetting<T> modSetting, string key,
                                          Func<string, T, T> valueGetter,
                                          Action<string, T> valueSetter) {
-      if (modSetting.IsValid(this, _settings)) {
+      if (modSetting.IsValid(this, _settings, key)) {
         _modSettings.Add(modSetting);
         modSetting.SetValue(valueGetter(key, modSetting.DefaultValue));
         modSetting.ValueChanged += (_, value) => valueSetter(key, value);
