@@ -5,9 +5,13 @@ using Timberborn.Modding;
 namespace ModSettingsExamples {
   public class FileStoredSettingsExample : ModSettingsOwner {
 
+    private static readonly string NameKey = "eMka.ModSettingsExamples.LongStringSetting";
+    private static readonly string TooltipKey = "eMka.ModSettingsExamples.LongStringTooltip";
+
     public ModSetting<string> LongStringSetting { get; } =
-      new LongStringModSetting("eMka.ModSettingsExamples.LongStringSetting",
-                               "Type your long string here...");
+      new LongStringModSetting("Type your long string here...",
+                               ModSettingDescriptor.CreateLocalized(NameKey)
+                                   .SetLocalizedTooltip(TooltipKey));
 
     public FileStoredSettingsExample(DefaultModFileStoredSettings defaultModFileStoredSettings,
                                      ModSettingsOwnerRegistry modSettingsOwnerRegistry,

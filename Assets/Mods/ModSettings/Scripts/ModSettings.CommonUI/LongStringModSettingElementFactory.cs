@@ -8,13 +8,13 @@ namespace ModSettings.CommonUI {
   internal class LongStringModSettingElementFactory : IModSettingElementFactory {
 
     private readonly VisualElementLoader _visualElementLoader;
-    private readonly ModSettingDisplayNameProvider _modSettingDisplayNameProvider;
+    private readonly ModSettingDescriptorInitializer _modSettingDescriptorInitializer;
 
     public LongStringModSettingElementFactory(VisualElementLoader visualElementLoader,
-                                              ModSettingDisplayNameProvider
-                                                  modSettingDisplayNameProvider) {
+                                              ModSettingDescriptorInitializer
+                                                  modSettingDescriptorInitializer) {
       _visualElementLoader = visualElementLoader;
-      _modSettingDisplayNameProvider = modSettingDisplayNameProvider;
+      _modSettingDescriptorInitializer = modSettingDescriptorInitializer;
     }
 
     public int Priority => 100;
@@ -23,8 +23,8 @@ namespace ModSettings.CommonUI {
       if (modSetting is LongStringModSetting longStringModSetting) {
         var root =
             _visualElementLoader.LoadVisualElement("ModSettings/LongStringModSettingElement");
-        root.Q<Label>("SettingLabel").text =
-            _modSettingDisplayNameProvider.Get(longStringModSetting);
+        _modSettingDescriptorInitializer.Initialize(root.Q<VisualElement>("Descriptor"),
+                                                    longStringModSetting);
         var textField = root.Q<TextField>();
         textField.value = longStringModSetting.Value;
         textField.RegisterCallback<FocusOutEvent>(

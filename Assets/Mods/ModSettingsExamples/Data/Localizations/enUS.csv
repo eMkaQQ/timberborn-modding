@@ -10,6 +10,7 @@ eMka.ModSettingsExamples.FileStoredSettingsHeader,Settings stored in custom file
 eMka.ModSettingsExamples.FloatSetting,Float setting,
 eMka.ModSettingsExamples.IntSetting,Integer setting,
 eMka.ModSettingsExamples.LongStringSetting,Long string setting,
+eMka.ModSettingsExamples.LongStringTooltip,This text will be saved to an external file.,
 eMka.ModSettingsExamples.SimpleSettingsHeader,Simple settings,
 eMka.ModSettingsExamples.SmallIntRange,Small range slider,
 eMka.ModSettingsExamples.StringSetting,String setting,

@@ -3,17 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Timberborn.SettingsSystem;
-using UnityEngine;
 
 namespace ModSettings.Common {
   public class LimitedStringModSetting : ModSetting<string> {
 
     public ImmutableArray<LimitedStringModSettingValue> Values { get; }
 
+    [Obsolete("Use constructor with ModSettingDescriptor parameter instead.")]
     public LimitedStringModSetting(string locKey,
                                    int defaultOptionIndex,
                                    IList<LimitedStringModSettingValue> values)
         : base(locKey, values[defaultOptionIndex].Value) {
+      Values = values.ToImmutableArray();
+    }
+
+    public LimitedStringModSetting(int defaultOptionIndex,
+                                   IList<LimitedStringModSettingValue> values,
+                                   ModSettingDescriptor descriptor)
+        : base(values[defaultOptionIndex].Value, descriptor) {
       Values = values.ToImmutableArray();
     }
 
@@ -24,7 +31,9 @@ namespace ModSettings.Common {
           return;
         }
       }
-      throw new ArgumentException($"Trying to set invalid value ({value}) for setting {LocKey}");
+      throw new ArgumentException(
+          $"Trying to set invalid value ({value}) for {nameof(LimitedStringModSetting)}. "
+          + $"Available values: {string.Join(", ", Values)}");
     }
 
     public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings,

@@ -9,15 +9,15 @@ namespace ModSettings.CommonUI {
   internal class DropdownModSettingElementFactory : IModSettingElementFactory {
 
     private readonly VisualElementLoader _visualElementLoader;
-    private readonly ModSettingDisplayNameProvider _modSettingDisplayNameProvider;
+    private readonly ModSettingDescriptorInitializer _modSettingDescriptorInitializer;
     private readonly DropdownItemsSetter _dropdownItemsSetter;
 
     public DropdownModSettingElementFactory(VisualElementLoader visualElementLoader,
-                                            ModSettingDisplayNameProvider
-                                                modSettingDisplayNameProvider,
+                                            ModSettingDescriptorInitializer
+                                                modSettingDescriptorInitializer,
                                             DropdownItemsSetter dropdownItemsSetter) {
       _visualElementLoader = visualElementLoader;
-      _modSettingDisplayNameProvider = modSettingDisplayNameProvider;
+      _modSettingDescriptorInitializer = modSettingDescriptorInitializer;
       _dropdownItemsSetter = dropdownItemsSetter;
     }
 
@@ -26,7 +26,8 @@ namespace ModSettings.CommonUI {
     public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is LimitedStringModSetting limitedString) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/DropdownModSettingElement");
-        root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(limitedString);
+        _modSettingDescriptorInitializer.Initialize(root.Q<VisualElement>("Descriptor"),
+                                                    limitedString);
         var dropdown = root.Q<Dropdown>("Dropdown");
         _dropdownItemsSetter.SetLocalizableItems(
             dropdown, LimitedStringDropdownProvider.Create(limitedString));

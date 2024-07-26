@@ -10,13 +10,13 @@ namespace ModSettings.CommonUI {
   internal class SliderIntModSettingElementFactory : IModSettingElementFactory {
 
     private readonly VisualElementLoader _visualElementLoader;
-    private readonly ModSettingDisplayNameProvider _modSettingDisplayNameProvider;
+    private readonly ModSettingDescriptorInitializer _modSettingDescriptorInitializer;
 
     public SliderIntModSettingElementFactory(VisualElementLoader visualElementLoader,
-                                             ModSettingDisplayNameProvider
-                                                 modSettingDisplayNameProvider) {
+                                             ModSettingDescriptorInitializer
+                                                 modSettingDescriptorInitializer) {
       _visualElementLoader = visualElementLoader;
-      _modSettingDisplayNameProvider = modSettingDisplayNameProvider;
+      _modSettingDescriptorInitializer = modSettingDescriptorInitializer;
     }
 
     public int Priority => 100;
@@ -24,7 +24,8 @@ namespace ModSettings.CommonUI {
     public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is RangeIntModSetting rangeIntModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/SliderIntModSettingElement");
-        root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(rangeIntModSetting);
+        _modSettingDescriptorInitializer.Initialize(root.Q<VisualElement>("Descriptor"),
+                                                    rangeIntModSetting);
         InitializeSlider(root, rangeIntModSetting);
         element = new ModSettingElement(root);
         return true;

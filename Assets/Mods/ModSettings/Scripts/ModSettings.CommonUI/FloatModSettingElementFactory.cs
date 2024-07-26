@@ -7,13 +7,13 @@ namespace ModSettings.CommonUI {
   internal class FloatModSettingElementFactory : IModSettingElementFactory {
 
     private readonly VisualElementLoader _visualElementLoader;
-    private readonly ModSettingDisplayNameProvider _modSettingDisplayNameProvider;
+    private readonly ModSettingDescriptorInitializer _modSettingDescriptorInitializer;
 
     public FloatModSettingElementFactory(VisualElementLoader visualElementLoader,
-                                         ModSettingDisplayNameProvider
-                                             modSettingDisplayNameProvider) {
+                                         ModSettingDescriptorInitializer
+                                             modSettingDescriptorInitializer) {
       _visualElementLoader = visualElementLoader;
-      _modSettingDisplayNameProvider = modSettingDisplayNameProvider;
+      _modSettingDescriptorInitializer = modSettingDescriptorInitializer;
     }
 
     public int Priority => 0;
@@ -21,7 +21,8 @@ namespace ModSettings.CommonUI {
     public bool TryCreateElement(ModSetting modSetting, out IModSettingElement element) {
       if (modSetting is ModSetting<float> floatModSetting) {
         var root = _visualElementLoader.LoadVisualElement("ModSettings/FloatModSettingElement");
-        root.Q<Label>("SettingLabel").text = _modSettingDisplayNameProvider.Get(floatModSetting);
+        _modSettingDescriptorInitializer.Initialize(root.Q<VisualElement>("Descriptor"),
+                                                    floatModSetting);
         var floatField = root.Q<FloatField>();
         floatField.value = floatModSetting.Value;
         floatField.RegisterCallback<FocusOutEvent>(_ => floatModSetting.SetValue(floatField.value));

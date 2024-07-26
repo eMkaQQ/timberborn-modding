@@ -50,9 +50,30 @@
     margin: 3px 0;
 }
 
-.mod-setting__label {
+.mod-setting__descriptor {
     width: 220px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mod-setting__label {
     white-space: normal;
+    flex-shrink: 1;
+}
+
+.mod-setting__tooltip {
+    background-image: resource('UI/Images/Backgrounds/bg-circle-big-3');
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.mod-setting__tooltip-icon {
+    background-image: resource('UI/Images/Game/question-mark');
+    margin: 2px;
+    flex-grow: 1;
 }
 
 .mod-setting__scrollbar-spacer {

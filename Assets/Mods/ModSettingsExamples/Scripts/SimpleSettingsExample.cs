@@ -5,16 +5,18 @@ using Timberborn.SettingsSystem;
 namespace ModSettingsExamples {
   internal class SimpleSettingsExample : ModSettingsOwner {
 
-    public ModSetting<int> IntSetting { get; } = new("eMka.ModSettingsExamples.IntSetting", 2);
+    public ModSetting<int> IntSetting { get; } =
+      new(2, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.IntSetting"));
 
     public ModSetting<float> FloatSetting { get; } =
-      new("eMka.ModSettingsExamples.FloatSetting", 1.1f);
+      new(1.1f, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.FloatSetting"));
 
     public ModSetting<string> StringSetting { get; } =
-      new("eMka.ModSettingsExamples.StringSetting", "default");
+      new("default",
+          ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.StringSetting"));
 
     public ModSetting<bool> BoolSetting { get; } =
-      new("eMka.ModSettingsExamples.BoolSetting", false);
+      new(false, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.BoolSetting"));
 
     public SimpleSettingsExample(ISettings settings,
                                  ModSettingsOwnerRegistry modSettingsOwnerRegistry,

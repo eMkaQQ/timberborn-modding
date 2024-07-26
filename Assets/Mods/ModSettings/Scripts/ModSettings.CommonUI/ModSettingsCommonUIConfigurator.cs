@@ -6,7 +6,7 @@ namespace ModSettings.CommonUI {
   internal class ModSettingsCommonUIConfigurator : IConfigurator {
 
     public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<ModSettingDisplayNameProvider>().AsSingleton();
+      containerDefinition.Bind<ModSettingDescriptorInitializer>().AsSingleton();
       containerDefinition.MultiBind<IModSettingElementFactory>()
           .To<BoolModSettingElementFactory>()
           .AsSingleton();

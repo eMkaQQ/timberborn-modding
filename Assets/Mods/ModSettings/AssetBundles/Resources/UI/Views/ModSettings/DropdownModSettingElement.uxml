@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="DropdownModSettingElement" class="settings-element">
         <Style src="/Assets/Mods/ModSettings/AssetBundles/Resources/UI/Views/ModSettings/ModSettingsStyle.uss" />
+        <ui:Template src="/Assets/Mods/ModSettings/AssetBundles/Resources/UI/Views/ModSettings/ModSettingDescriptor.uxml" name="Descriptor" />
         <ui:VisualElement name="SettingWrapper" class="mod-setting__wrapper">
-            <ui:Label name="SettingLabel" class="settings-text mod-setting__label" />
+            <ui:Instance template="Descriptor" name="Descriptor" />
             <ui:VisualElement name="ScrollbarSpacer" class="mod-setting__scrollbar-spacer" />
             <Timberborn.DropdownSystem.Dropdown name="Dropdown" class="settings-element settings-dropdown mod-setting__controls" />
         </ui:VisualElement>

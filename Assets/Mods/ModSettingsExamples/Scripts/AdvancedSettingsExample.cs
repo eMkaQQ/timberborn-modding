@@ -7,17 +7,16 @@ namespace ModSettingsExamples {
   internal class AdvancedSettingsExample : ModSettingsOwner {
 
     public ModSetting<int> SmallIntRangeSetting { get; } = new RangeIntModSetting(
-        "eMka.ModSettingsExamples.SmallIntRange", 5, 0, 10);
+        5, 0, 10, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.SmallIntRange"));
 
     public ModSetting<string> DropdownSetting { get; } = new LimitedStringModSetting(
-        "eMka.ModSettingsExamples.Dropdown", 0, new[] {
+        0, new[] {
             new LimitedStringModSettingValue("value1", "eMka.ModSettingsExamples.Dropdown1"),
             new LimitedStringModSettingValue("value2", "eMka.ModSettingsExamples.Dropdown2"),
             new LimitedStringModSettingValue("value3", "eMka.ModSettingsExamples.Dropdown3")
-        });
+        }, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.Dropdown"));
 
-    private readonly ModSetting<int> _negativeRangeSetting =
-        new RangeIntModSetting(null, 50, -100, 100);
+    private ModSetting<int> _negativeRangeSetting;
 
     public AdvancedSettingsExample(ISettings settings,
                                    ModSettingsOwnerRegistry modSettingsOwnerRegistry,
@@ -34,7 +33,9 @@ namespace ModSettingsExamples {
     protected override string ModId => "eMka.ModSettingsExamples";
 
     protected override void OnBeforeLoad() {
-      _negativeRangeSetting.DisplayName = "Custom label";
+      _negativeRangeSetting = new RangeIntModSetting(50, -100, 100,
+                                                     ModSettingDescriptor.Create("Custom label")
+                                                         .SetTooltip("With custom tooltip"));
       AddCustomModSetting(_negativeRangeSetting, "NegativeRangeSetting");
     }
 
