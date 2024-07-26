@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "com.mechanistry.timberborn-modding": {
+      "version": "https://github.com/mechanistry/timberborn-modding.git?path=/Assets/Tools#staging",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.inputsystem": "1.8.2",
+        "com.unity.render-pipelines.universal": "17.0.3",
+        "com.unity.services.analytics": "5.1.1"
+      },
+      "hash": "b02387f37284c3d7a8f50aabf3f9e0ed22fccd44"
+    },
     "com.unity.burst": {
       "version": "1.8.15",
       "depth": 2,
