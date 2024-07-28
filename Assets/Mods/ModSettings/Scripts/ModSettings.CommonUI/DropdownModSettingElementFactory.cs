@@ -29,8 +29,13 @@ namespace ModSettings.CommonUI {
         _modSettingDescriptorInitializer.Initialize(root.Q<VisualElement>("Descriptor"),
                                                     limitedString);
         var dropdown = root.Q<Dropdown>("Dropdown");
-        _dropdownItemsSetter.SetLocalizableItems(
-            dropdown, LimitedStringDropdownProvider.Create(limitedString));
+        if (limitedString.IsLocalized) {
+          _dropdownItemsSetter.SetLocalizableItems(
+              dropdown, LimitedStringDropdownProvider.Create(limitedString));
+        } else {
+          _dropdownItemsSetter.SetItems(
+              dropdown, NonLocalizedLimitedStringDropdownProvider.Create(limitedString));
+        }
         element = new ModSettingElement(root);
         return true;
       }

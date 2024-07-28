@@ -23,6 +23,8 @@ namespace ModSettingsExamples {
                 + $" {_advancedSettingsExample.NegativeRangeSetting}");
       Debug.Log($"{nameof(_advancedSettingsExample.DropdownSetting)} value:"
                 + $" {_advancedSettingsExample.DropdownSetting.Value}");
+      Debug.Log($"{nameof(_advancedSettingsExample.NonLocalizedDropdownSetting)} value:"
+                + $" {_advancedSettingsExample.NonLocalizedDropdownSetting.Value}");
       Debug.Log($"{nameof(_simpleSettingsExample.IntSetting)} value:"
                 + $" {_simpleSettingsExample.IntSetting.Value}");
       Debug.Log($"{nameof(_simpleSettingsExample.FloatSetting)} value:"

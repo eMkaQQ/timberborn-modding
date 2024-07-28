@@ -11,13 +11,17 @@ namespace ModSettingsExamples {
 
     public ModSetting<string> DropdownSetting { get; } = new LimitedStringModSetting(
         0, new[] {
-            LimitedStringModSettingValue.CreateLocalized("value1",
-                                                         "eMka.ModSettingsExamples.Dropdown1"),
-            LimitedStringModSettingValue.CreateLocalized("value2",
-                                                         "eMka.ModSettingsExamples.Dropdown2"),
-            LimitedStringModSettingValue.CreateLocalized("value3",
-                                                         "eMka.ModSettingsExamples.Dropdown3")
+            new LimitedStringModSettingValue("value1", "eMka.ModSettingsExamples.Dropdown1"),
+            new LimitedStringModSettingValue("value2", "eMka.ModSettingsExamples.Dropdown2"),
+            new LimitedStringModSettingValue("value3", "eMka.ModSettingsExamples.Dropdown3")
         }, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.Dropdown"));
+
+    public ModSetting<string> NonLocalizedDropdownSetting { get; } =
+      new LimitedStringModSetting(0, new[] {
+          new NonLocalizedLimitedStringModSettingValue("Custom value1"),
+          new NonLocalizedLimitedStringModSettingValue("Custom value2"),
+          new NonLocalizedLimitedStringModSettingValue("Custom value3")
+      }, ModSettingDescriptor.Create("Non-localized dropdown"));
 
     private ModSetting<int> _negativeRangeSetting;
 

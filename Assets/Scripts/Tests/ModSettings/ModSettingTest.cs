@@ -64,9 +64,9 @@ namespace Tests.ModSettings {
     public void ShouldLimitedStringModSettingThrowException() {
       // given
       var values = new[] {
-          LimitedStringModSettingValue.Create("a", ""),
-          LimitedStringModSettingValue.Create("b", ""),
-          LimitedStringModSettingValue.Create("c", "")
+          new LimitedStringModSettingValue("a", ""),
+          new LimitedStringModSettingValue("b", ""),
+          new LimitedStringModSettingValue("c", "")
       };
       var modSetting = new LimitedStringModSetting(0, values, ModSettingDescriptor.Create("test"));
 
@@ -78,9 +78,9 @@ namespace Tests.ModSettings {
     public void ShouldLimitedStringModSettingSetValue() {
       // given
       var values = new[] {
-          LimitedStringModSettingValue.Create("a", ""),
-          LimitedStringModSettingValue.Create("b", ""),
-          LimitedStringModSettingValue.Create("c", "")
+          new LimitedStringModSettingValue("a", ""),
+          new LimitedStringModSettingValue("b", ""),
+          new LimitedStringModSettingValue("c", "")
       };
       var modSetting = new LimitedStringModSetting(0, values, ModSettingDescriptor.Create("test"));
 

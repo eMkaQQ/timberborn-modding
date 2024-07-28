@@ -1,28 +1,42 @@
 using ModSettings.Core;
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
+using Timberborn.Common;
 using Timberborn.SettingsSystem;
 
 namespace ModSettings.Common {
   public class LimitedStringModSetting : ModSetting<string> {
 
-    public ImmutableArray<LimitedStringModSettingValue> Values { get; }
+    public bool IsLocalized { get; }
+
+    private readonly List<ILimitedStringModSettingValue> _values;
 
     [Obsolete("Use constructor with ModSettingDescriptor parameter instead.")]
     public LimitedStringModSetting(string locKey,
                                    int defaultOptionIndex,
                                    IList<LimitedStringModSettingValue> values)
         : base(locKey, values[defaultOptionIndex].Value) {
-      Values = values.ToImmutableArray();
+      _values = new(values);
+      IsLocalized = true;
     }
 
     public LimitedStringModSetting(int defaultOptionIndex,
                                    IList<LimitedStringModSettingValue> values,
                                    ModSettingDescriptor descriptor)
         : base(values[defaultOptionIndex].Value, descriptor) {
-      Values = values.ToImmutableArray();
+      _values = new(values);
+      IsLocalized = true;
     }
+
+    public LimitedStringModSetting(int defaultOptionIndex,
+                                   IList<NonLocalizedLimitedStringModSettingValue> values,
+                                   ModSettingDescriptor descriptor)
+        : base(values[defaultOptionIndex].Value, descriptor) {
+      _values = new(values);
+      IsLocalized = false;
+    }
+
+    public ReadOnlyList<ILimitedStringModSettingValue> Values => _values.AsReadOnlyList();
 
     public override void SetValue(string value) {
       foreach (var limitedStringModSettingValue in Values) {
