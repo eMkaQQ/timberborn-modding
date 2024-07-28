@@ -261,7 +261,7 @@ namespace Tests.ModSettings {
       var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
       var settings = new SettingsMock();
       var modSettingOwner = new NoSettingsModSettingOwner(settings, new(), modRepository);
-      var limitedStringModSettingValue = new LimitedStringModSettingValue("default", "default");
+      var limitedStringModSettingValue = LimitedStringModSettingValue.Create("default", "default");
       var limitedStringModSetting =
           new LimitedStringModSetting(0, new[] { limitedStringModSettingValue },
                                       ModSettingDescriptor.Create("default"));
@@ -311,9 +311,9 @@ namespace Tests.ModSettings {
 
       public ModSetting<string> DropdownSetting { get; } = new LimitedStringModSetting(
           1, new[] {
-              new LimitedStringModSettingValue("value1", "eMka.ModSettingsExamples.Dropdown1"),
-              new LimitedStringModSettingValue("value2", "eMka.ModSettingsExamples.Dropdown2"),
-              new LimitedStringModSettingValue("value3", "eMka.ModSettingsExamples.Dropdown3")
+              LimitedStringModSettingValue.Create("value1", "eMka.ModSettingsExamples.Dropdown1"),
+              LimitedStringModSettingValue.Create("value2", "eMka.ModSettingsExamples.Dropdown2"),
+              LimitedStringModSettingValue.Create("value3", "eMka.ModSettingsExamples.Dropdown3")
           }, ModSettingDescriptor.Create("eMka.ModSettingsExamples.Dropdown"));
 
       public ModSetting<int> IntSetting { get; } =

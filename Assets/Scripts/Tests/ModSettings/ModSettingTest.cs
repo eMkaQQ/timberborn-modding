@@ -16,7 +16,7 @@ namespace Tests.ModSettings {
       // then
       Assert.That(modSetting.Value, Is.EqualTo(1));
     }
-    
+
     [Test]
     public void ShouldInvokeValueChangedEvent() {
       // given
@@ -30,7 +30,7 @@ namespace Tests.ModSettings {
       // then
       Assert.That(invoked, Is.True);
     }
-    
+
     [Test]
     public void ShouldNotInvokeValueChangedEvent() {
       // given
@@ -44,7 +44,7 @@ namespace Tests.ModSettings {
       // then
       Assert.That(invoked, Is.False);
     }
-    
+
     [Test]
     public void ShouldRangeIntModSettingClampValue() {
       // given
@@ -59,28 +59,28 @@ namespace Tests.ModSettings {
       Assert.That(lowModSetting.Value, Is.EqualTo(1));
       Assert.That(highModSetting.Value, Is.EqualTo(10));
     }
-    
+
     [Test]
     public void ShouldLimitedStringModSettingThrowException() {
       // given
       var values = new[] {
-        new LimitedStringModSettingValue("a", ""),
-        new LimitedStringModSettingValue("b", ""),
-        new LimitedStringModSettingValue("c", "")
+          LimitedStringModSettingValue.Create("a", ""),
+          LimitedStringModSettingValue.Create("b", ""),
+          LimitedStringModSettingValue.Create("c", "")
       };
       var modSetting = new LimitedStringModSetting(0, values, ModSettingDescriptor.Create("test"));
 
       // then
       Assert.That(() => modSetting.SetValue("d"), Throws.ArgumentException);
     }
-    
+
     [Test]
     public void ShouldLimitedStringModSettingSetValue() {
       // given
       var values = new[] {
-        new LimitedStringModSettingValue("a", ""),
-        new LimitedStringModSettingValue("b", ""),
-        new LimitedStringModSettingValue("c", "")
+          LimitedStringModSettingValue.Create("a", ""),
+          LimitedStringModSettingValue.Create("b", ""),
+          LimitedStringModSettingValue.Create("c", "")
       };
       var modSetting = new LimitedStringModSetting(0, values, ModSettingDescriptor.Create("test"));
 
@@ -90,6 +90,6 @@ namespace Tests.ModSettings {
       // then
       Assert.That(modSetting.Value, Is.EqualTo("b"));
     }
-    
+
   }
 }
