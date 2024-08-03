@@ -1,0 +1,30 @@
+﻿{
+  "name": "Tests.GoodStatistics",
+  "references": [
+    "GoodStatistics.Core",
+    "ModSettings.Core"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Moq.dll",
+    "Timberborn.BaseComponentSystem.dll",
+    "Timberborn.Common.dll",
+    "Timberborn.GameDistricts.dll",
+    "Timberborn.Goods.dll",
+    "Timberborn.InventorySystem.dll",
+    "Timberborn.Modding.dll",
+    "Timberborn.Persistence.dll",
+    "Timberborn.ResourceCountingSystem.dll",
+    "Timberborn.SettingsSystem.dll",
+    "Timberborn.SingletonSystem.dll",
+    "Timberborn.TimeSystem.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+  ]
+}
