@@ -285,7 +285,8 @@ namespace Tests.ModSettings {
 
     private static Mod CreateMod(string modId) {
       return new(new(), new("", "", ModVersion.Create("0"), modId,
-                            GameVersion.Create("0"), new List<RequiredMod>()), true);
+                            GameVersion.Create("0"), new List<VersionedMod>(),
+                            new List<VersionedMod>()), true);
     }
 
     private static ModRepository CreateModRepository(IEnumerable<Mod> mods) {
