@@ -1,4 +1,5 @@
-﻿using Timberborn.TimeSystem;
+﻿using GoodStatistics.Settings;
+using Timberborn.TimeSystem;
 using UnityEngine;
 
 namespace GoodStatistics.Core {

@@ -2,7 +2,7 @@
 using Timberborn.Persistence;
 
 namespace GoodStatistics.Core {
-  internal class ResourceCountsRegistrySerializer : IObjectSerializer<ResourceCountsRegistry> {
+  public class ResourceCountsRegistrySerializer : IObjectSerializer<ResourceCountsRegistry> {
 
     private static readonly ListKey<ResourceCountHistory> ResourceCountHistoriesKey =
         new("ResourceCountHistories");

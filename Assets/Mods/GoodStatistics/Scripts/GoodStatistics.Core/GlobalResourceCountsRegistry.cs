@@ -3,8 +3,8 @@ using Timberborn.Persistence;
 using Timberborn.SingletonSystem;
 
 namespace GoodStatistics.Core {
-  internal class GlobalResourceCountsRegistry : ISaveableSingleton,
-                                                ILoadableSingleton {
+  public class GlobalResourceCountsRegistry : ISaveableSingleton,
+                                              ILoadableSingleton {
 
     private static readonly SingletonKey GlobalResourceCountsRegistryKey =
         new("GlobalResourceCountsRegistry");

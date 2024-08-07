@@ -6,7 +6,7 @@ using Timberborn.ResourceCountingSystem;
 namespace GoodStatistics.Core {
   public class ResourceCountHistory {
 
-    public static readonly int MaxSamples = 10;
+    public static readonly int MaxSamples = 20;
     public string GoodId { get; }
     private readonly List<ResourceCount> _resourceCounts;
 
@@ -33,6 +33,10 @@ namespace GoodStatistics.Core {
       if (_resourceCounts.Count > MaxSamples) {
         _resourceCounts.RemoveAt(_resourceCounts.Count - 1);
       }
+    }
+
+    public int GetMaxCapacity() {
+      return _resourceCounts.Max(resourceCount => resourceCount.InputOutputCapacity);
     }
 
   }

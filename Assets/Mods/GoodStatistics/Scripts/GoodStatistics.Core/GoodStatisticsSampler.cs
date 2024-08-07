@@ -2,25 +2,29 @@
 using Timberborn.GameDistricts;
 using Timberborn.Goods;
 using Timberborn.ResourceCountingSystem;
+using Timberborn.SingletonSystem;
 
 namespace GoodStatistics.Core {
-  internal class GoodStatisticsSampler {
+  public class GoodStatisticsSampler {
 
     private readonly GlobalResourceCountsRegistry _globalResourceCountsRegistry;
     private readonly ResourceCountingService _resourceCountingService;
     private readonly DistrictContextService _districtContextService;
     private readonly IGoodService _goodService;
+    private readonly EventBus _eventBus;
     private readonly List<DistrictResourceCountsRegistry> _districtResourceCountsRegistries = new();
     private float _nextSampleTime;
 
     public GoodStatisticsSampler(GlobalResourceCountsRegistry globalResourceCountsRegistry,
                                  ResourceCountingService resourceCountingService,
                                  DistrictContextService districtContextService,
-                                 IGoodService goodService) {
+                                 IGoodService goodService,
+                                 EventBus eventBus) {
       _globalResourceCountsRegistry = globalResourceCountsRegistry;
       _resourceCountingService = resourceCountingService;
       _districtContextService = districtContextService;
       _goodService = goodService;
+      _eventBus = eventBus;
     }
 
     public void AddDistrictRegistry(DistrictResourceCountsRegistry
@@ -37,6 +41,7 @@ namespace GoodStatistics.Core {
       foreach (var goodId in _goodService.Goods) {
         CollectGoodSamples(goodId);
       }
+      _eventBus.Post(new ResourceCountSampledEvent());
     }
 
     private void CollectGoodSamples(string goodId) {

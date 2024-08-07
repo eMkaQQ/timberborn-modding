@@ -2,6 +2,7 @@
   "name": "Tests.GoodStatistics",
   "references": [
     "GoodStatistics.Core",
+    "GoodStatistics.Settings",
     "ModSettings.Core"
   ],
   "includePlatforms": [

@@ -1,14 +1,14 @@
 ﻿using Bindito.Core;
 using Timberborn.BaseComponentSystem;
-using Timberborn.ConstructibleSystem;
+using Timberborn.BlockSystem;
 using Timberborn.GameDistricts;
 using Timberborn.Goods;
 using Timberborn.Persistence;
 
 namespace GoodStatistics.Core {
-  internal class DistrictResourceCountsRegistry : BaseComponent,
-                                                  IFinishedStateListener,
-                                                  IPersistentEntity {
+  public class DistrictResourceCountsRegistry : BaseComponent,
+                                                IFinishedStateListener,
+                                                IPersistentEntity {
 
     private static readonly ComponentKey DistrictResourceCountsRegistryKey =
         new("DistrictResourceCountsRegistry");

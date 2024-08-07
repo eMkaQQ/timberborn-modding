@@ -1,0 +1,59 @@
+.good-statistics-group {
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+
+.good-statistics-group__icon {
+    height: 26px;
+    width: 26px;
+    margin: 8px 4px 0 0;
+}
+
+.good-statistics-group__items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: flex-start;
+    margin-right: -0.66%;
+    padding-left: 1px;
+}
+
+.good-statistics-batch-control-item {
+    margin-bottom: 7px;
+    margin-left: 1%;
+    width: 32%;
+    height: 42px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.good-statistics-batch-control-item__good-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    margin-right: 4px;
+}
+
+.good-statistics-batch-control-item__resource-count-history-wrapper {
+    flex-grow: 1;
+    margin-left: 8px;
+    flex-direction: row;
+}
+
+.good-statistics-progress-bar {
+    height: 28px;
+    width: 9px;
+}
+
+.good-statistics-progress-bar__fill {
+    width: 100%;
+}
+
+.good-statistics-progress-bar:hover {
+    background-color: rgba(187, 165, 119, 0.35);
+}
+
+.good-statistics-progress-bar__fill:hover {
+    background-color: rgb(187, 165, 119);
+}

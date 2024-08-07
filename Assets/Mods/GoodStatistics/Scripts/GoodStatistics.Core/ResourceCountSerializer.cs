@@ -5,8 +5,8 @@ using Timberborn.ResourceCountingSystem;
 using Timberborn.SingletonSystem;
 
 namespace GoodStatistics.Core {
-  internal class ResourceCountSerializer : IObjectSerializer<ResourceCount>,
-                                           ILoadableSingleton {
+  public class ResourceCountSerializer : IObjectSerializer<ResourceCount>,
+                                         ILoadableSingleton {
 
     private static readonly PropertyKey<int> InputOutputStockKey = new("InputOutputStock");
     private static readonly PropertyKey<int> OutputStockKey = new("OutputStock");
@@ -15,7 +15,8 @@ namespace GoodStatistics.Core {
     private ConstructorInfo _constructor;
 
     public void Load() {
-      _constructor = typeof(ResourceCount).GetConstructors(BindingFlags.NonPublic).Single();
+      _constructor = typeof(ResourceCount)
+          .GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Single();
     }
 
     public void Serialize(ResourceCount value, IObjectSaver objectSaver) {

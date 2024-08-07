@@ -10,10 +10,10 @@ namespace GoodStatistics.Core {
       containerDefinition.Bind<GlobalResourceCountsRegistry>().AsSingleton();
       containerDefinition.Bind<GoodStatisticsSampler>().AsSingleton();
       containerDefinition.Bind<GoodStatisticsSampleTrigger>().AsSingleton();
-      containerDefinition.Bind<GoodStatisticsSettings>().AsSingleton();
       containerDefinition.Bind<ResourceCountSerializer>().AsSingleton();
       containerDefinition.Bind<ResourceCountHistorySerializer>().AsSingleton();
       containerDefinition.Bind<ResourceCountsRegistrySerializer>().AsSingleton();
+      containerDefinition.Bind<StatisticsSampleTimeCalculator>().AsSingleton();
       containerDefinition.MultiBind<TemplateModule>()
           .ToProvider(ProvideTemplateModule)
           .AsSingleton();

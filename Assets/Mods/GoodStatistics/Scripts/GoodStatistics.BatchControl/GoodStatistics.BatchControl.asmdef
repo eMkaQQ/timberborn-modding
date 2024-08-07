@@ -1,0 +1,8 @@
+﻿{
+  "name": "GoodStatistics.BatchControl",
+  "references": [
+    "GoodStatistics.Core",
+    "GoodStatistics.UI"
+  ],
+  "autoReferenced": false
+}

@@ -38,6 +38,10 @@ namespace GoodStatistics.Core {
       return _resourceCountHistoriesMap.ContainsKey(goodId);
     }
 
+    public ResourceCountHistory GetGoodHistory(string goodId) {
+      return _resourceCountHistoriesMap[goodId];
+    }
+
     public void AddMissingGood(string goodId) {
       var resourceCountHistory = ResourceCountHistory.CreateNew(goodId);
       _resourceCountHistoriesMap[goodId] = resourceCountHistory;

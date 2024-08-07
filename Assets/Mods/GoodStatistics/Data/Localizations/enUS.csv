@@ -1,2 +1,4 @@
 ID,Text,Comment
 eMka.GoodStatistics.SamplePerDaySetting,Samples per day,
+eMka.GoodStatistics.BatchControlKeyBinding,Open Goods Statistics tab,
+eMka.GoodStatistics.BatchControlTabName,Goods Statistics,

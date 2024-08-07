@@ -1,4 +1,5 @@
 ﻿using GoodStatistics.Core;
+using GoodStatistics.Settings;
 using NUnit.Framework;
 using System;
 using Timberborn.TimeSystem;

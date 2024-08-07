@@ -381,7 +381,7 @@ namespace Tests.GoodStatistics {
       goodStatisticsSampler = new(globalResourceCountsRegistry,
                                   resourceCountingService,
                                   districtContextService,
-                                  goodService);
+                                  goodService, new());
     }
 
     private class DummyGoodService : IGoodService {
@@ -422,7 +422,10 @@ namespace Tests.GoodStatistics {
 
     private class DummyGoodDisallower : IGoodDisallower {
 
-      public event EventHandler<DisallowedGoodsChangedEventArgs> DisallowedGoodsChanged;
+      public event EventHandler<DisallowedGoodsChangedEventArgs> DisallowedGoodsChanged {
+        add => throw new NotSupportedException();
+        remove => throw new NotSupportedException();
+      }
 
       public int AllowedAmount(string goodId) {
         return 100;

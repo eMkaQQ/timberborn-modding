@@ -3,8 +3,8 @@ using ModSettings.Core;
 using Timberborn.Modding;
 using Timberborn.SettingsSystem;
 
-namespace GoodStatistics.Core {
-  internal class GoodStatisticsSettings : ModSettingsOwner {
+namespace GoodStatistics.Settings {
+  public class GoodStatisticsSettings : ModSettingsOwner {
 
     public ModSetting<int> SamplesPerDay { get; } =
       new RangeIntModSetting(
