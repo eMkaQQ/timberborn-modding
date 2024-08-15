@@ -1,7 +1,8 @@
 ﻿{
   "name": "GoodStatistics.UI",
   "references": [
-    "GoodStatistics.Core"
+    "GoodStatistics.Core",
+    "GoodStatistics.Settings"
   ],
   "autoReferenced": false
 }

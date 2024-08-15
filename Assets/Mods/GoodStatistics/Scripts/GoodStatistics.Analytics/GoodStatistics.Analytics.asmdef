@@ -1,0 +1,8 @@
+﻿{
+  "name": "GoodStatistics.Analytics",
+  "references": [
+    "GoodStatistics.Core",
+    "GoodStatistics.Settings",
+    "ModSettings.Core"
+  ]
+}

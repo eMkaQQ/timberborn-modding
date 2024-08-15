@@ -1,30 +1,29 @@
 ﻿using Timberborn.Goods;
 using Timberborn.Persistence;
-using Timberborn.ResourceCountingSystem;
 
 namespace GoodStatistics.Core {
   public class ResourceCountHistorySerializer : IObjectSerializer<ResourceCountHistory> {
 
     private static readonly PropertyKey<SavedGood> GoodKey = new("Good");
-    private static readonly ListKey<ResourceCount> ResourceCountsKey = new("ResourceCounts");
+    private static readonly ListKey<GoodSample> GoodSamplesKey = new("GoodSamples");
     private readonly SavedGoodObjectSerializer _savedGoodObjectSerializer;
-    private readonly ResourceCountSerializer _resourceCountSerializer;
+    private readonly GoodSampleSerializer _goodSampleSerializer;
 
     public ResourceCountHistorySerializer(SavedGoodObjectSerializer savedGoodObjectSerializer,
-                                          ResourceCountSerializer resourceCountSerializer) {
+                                          GoodSampleSerializer goodSampleSerializer) {
       _savedGoodObjectSerializer = savedGoodObjectSerializer;
-      _resourceCountSerializer = resourceCountSerializer;
+      _goodSampleSerializer = goodSampleSerializer;
     }
 
     public void Serialize(ResourceCountHistory value, IObjectSaver objectSaver) {
       objectSaver.Set(GoodKey, SavedGood.Create(value.GoodId), _savedGoodObjectSerializer);
-      objectSaver.Set(ResourceCountsKey, value.ResourceCounts, _resourceCountSerializer);
+      objectSaver.Set(GoodSamplesKey, value.GoodSamples, _goodSampleSerializer);
     }
 
     public Obsoletable<ResourceCountHistory> Deserialize(IObjectLoader objectLoader) {
-      var resourceCounts = objectLoader.Get(ResourceCountsKey, _resourceCountSerializer);
+      var goodSamples = objectLoader.Get(GoodSamplesKey, _goodSampleSerializer);
       return objectLoader.GetObsoletable(GoodKey, _savedGoodObjectSerializer, out var savedGood)
-          ? ResourceCountHistory.CreateFromSave(savedGood.Id, resourceCounts)
+          ? ResourceCountHistory.CreateFromSave(savedGood.Id, goodSamples)
           : default(Obsoletable<ResourceCountHistory>);
     }
 

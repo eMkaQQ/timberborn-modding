@@ -15,7 +15,7 @@ namespace GoodStatistics.UI {
     }
 
     public void Update() {
-      var resourceCounts = _resourceCountHistory.ResourceCounts;
+      var resourceCounts = _resourceCountHistory.GoodSamples;
       var maxCapacity = (float) _resourceCountHistory.GetMaxCapacity();
       for (var index = 0; index < resourceCounts.Count; index++) {
         var elementIndex = resourceCounts.Count - index - 1;

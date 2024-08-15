@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Timberborn.Common;
-using Timberborn.ResourceCountingSystem;
 
 namespace GoodStatistics.Core {
   public class ResourceCountsRegistry {
 
+    public event EventHandler<ResourceCountHistory> SampleAdded;
     private readonly Dictionary<string, ResourceCountHistory> _resourceCountHistoriesMap = new();
     private readonly List<ResourceCountHistory> _resourceCountHistories = new();
 
@@ -30,8 +31,10 @@ namespace GoodStatistics.Core {
     public ReadOnlyList<ResourceCountHistory> ResourceCountHistories =>
         new(_resourceCountHistories);
 
-    public void AddSample(string goodId, ResourceCount resourceCount) {
-      _resourceCountHistoriesMap[goodId].Add(resourceCount);
+    public void AddSample(string goodId, GoodSample goodSample) {
+      var history = _resourceCountHistoriesMap[goodId];
+      history.Add(goodSample);
+      SampleAdded?.Invoke(this, history);
     }
 
     public bool HasGood(string goodId) {

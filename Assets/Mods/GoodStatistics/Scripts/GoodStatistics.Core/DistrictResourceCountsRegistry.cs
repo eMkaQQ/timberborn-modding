@@ -1,12 +1,14 @@
 ﻿using Bindito.Core;
 using Timberborn.BaseComponentSystem;
 using Timberborn.BlockSystem;
+using Timberborn.EntitySystem;
 using Timberborn.GameDistricts;
 using Timberborn.Goods;
 using Timberborn.Persistence;
 
 namespace GoodStatistics.Core {
   public class DistrictResourceCountsRegistry : BaseComponent,
+                                                IInitializableEntity,
                                                 IFinishedStateListener,
                                                 IPersistentEntity {
 
@@ -34,6 +36,10 @@ namespace GoodStatistics.Core {
       DistrictCenter = GetComponentFast<DistrictCenter>();
     }
 
+    public void InitializeEntity() {
+      ResourceCountsRegistry ??= ResourceCountsRegistry.CreateNew(_goodService.Goods);
+    }
+
     public void Save(IEntitySaver entitySaver) {
       var districtResourceCountsRegistry =
           entitySaver.GetComponent(DistrictResourceCountsRegistryKey);
@@ -51,7 +57,6 @@ namespace GoodStatistics.Core {
     }
 
     public void OnEnterFinishedState() {
-      ResourceCountsRegistry ??= ResourceCountsRegistry.CreateNew(_goodService.Goods);
       _goodStatisticsSampler.AddDistrictRegistry(this);
     }
 

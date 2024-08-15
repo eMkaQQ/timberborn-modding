@@ -3,7 +3,7 @@
 namespace GoodStatistics.Settings {
   [Context("Game")]
   [Context("MainMenu")]
-  public class GoodStatisticsCoreConfigurator : IConfigurator {
+  public class GoodStatisticsSettingsConfigurator : IConfigurator {
 
     public void Configure(IContainerDefinition containerDefinition) {
       containerDefinition.Bind<GoodStatisticsSettings>().AsSingleton();

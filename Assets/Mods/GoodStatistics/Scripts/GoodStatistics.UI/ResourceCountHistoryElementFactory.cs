@@ -1,4 +1,5 @@
 ﻿using GoodStatistics.Core;
+using GoodStatistics.Settings;
 using System.Collections.Generic;
 using Timberborn.CoreUI;
 using UnityEngine.UIElements;
@@ -21,7 +22,7 @@ namespace GoodStatistics.UI {
     }
 
     private IEnumerable<ResourceCountElement> CreateResourceCountElements(VisualElement parent) {
-      for (var index = 0; index < ResourceCountHistory.MaxSamples; index++) {
+      for (var index = 0; index < GoodStatisticsConstants.MaxSamples; index++) {
         var root = _visualElementLoader.LoadVisualElement("GoodStatistics/ResourceProgressBar");
         parent.Add(root);
         yield return new(root.Q<VisualElement>("Fill"));
