@@ -17,7 +17,7 @@ namespace GoodStatistics.Settings {
         settings, modSettingsOwnerRegistry, modRepository) {
     }
 
-    public override string HeaderLocKey => "eMka.GoodStatistics.CoreSettings";
+    public override string HeaderLocKey => "eMka.GoodStatistics.SamplingSettings";
 
     protected override string ModId => "eMka.GoodsStatistics";
 

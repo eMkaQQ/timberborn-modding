@@ -5,7 +5,7 @@ namespace GoodStatistics.UI {
   public class GoodStatisticsUIConfigurator : IConfigurator {
 
     public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<ResourceCountHistoryElementFactory>().AsSingleton();
+      containerDefinition.Bind<GoodSampleRecordsElementFactory>().AsSingleton();
     }
 
   }

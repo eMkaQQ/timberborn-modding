@@ -4,27 +4,26 @@ using System.Linq;
 using Timberborn.Common;
 using Timberborn.ResourceCountingSystem;
 
-namespace GoodStatistics.Core {
-  public class ResourceCountHistory {
+namespace GoodStatistics.Sampling {
+  public class GoodSampleRecords {
 
     public string GoodId { get; }
     private readonly List<GoodSample> _goodSamples;
 
-    private ResourceCountHistory(string goodId,
-                                 List<GoodSample> goodSamples) {
+    private GoodSampleRecords(string goodId,
+                              List<GoodSample> goodSamples) {
       GoodId = goodId;
       _goodSamples = goodSamples;
     }
 
-    public static ResourceCountHistory CreateNew(string goodId) {
-      var goodSamples = Enumerable
-          .Repeat(new GoodSample(ResourceCount.Create(0, 0, 0, 0), -1),
-                  GoodStatisticsConstants.MaxSamples).ToList();
+    public static GoodSampleRecords CreateNew(string goodId) {
+      var goodSamples = Enumerable.Repeat(new GoodSample(ResourceCount.Create(0, 0, 0, 0), -1),
+                                          GoodStatisticsConstants.MaxSamples).ToList();
       return new(goodId, goodSamples);
     }
 
-    public static ResourceCountHistory CreateFromSave(string goodId,
-                                                      List<GoodSample> goodSamples) {
+    public static GoodSampleRecords CreateFromSave(string goodId,
+                                                   List<GoodSample> goodSamples) {
       return new(goodId, goodSamples);
     }
 

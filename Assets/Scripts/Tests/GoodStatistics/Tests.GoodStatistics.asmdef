@@ -2,7 +2,7 @@
   "name": "Tests.GoodStatistics",
   "references": [
     "GoodStatistics.Analytics",
-    "GoodStatistics.Core",
+    "GoodStatistics.Sampling",
     "GoodStatistics.Settings",
     "ModSettings.Core"
   ],

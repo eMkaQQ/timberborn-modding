@@ -4,7 +4,7 @@ using Timberborn.Persistence;
 using Timberborn.ResourceCountingSystem;
 using Timberborn.SingletonSystem;
 
-namespace GoodStatistics.Core {
+namespace GoodStatistics.Sampling {
   public class ResourceCountSerializer : IObjectSerializer<ResourceCount>,
                                          ILoadableSingleton {
 

@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using Timberborn.BatchControl;
 using Timberborn.CoreUI;
 using Timberborn.EntitySystem;
@@ -28,14 +28,14 @@ namespace GoodStatistics.BatchControl {
       var elementName = "Game/BatchControl/BatchControlRow";
       var root = _visualElementLoader.LoadVisualElement(elementName);
 
-      var districtResourceCountsRegistry =
-          districtCenter.GetComponentFast<DistrictResourceCountsRegistry>();
+      var districtGoodSamplesRegistry =
+          districtCenter.GetComponentFast<DistrictGoodSamplesRegistry>();
       var districtCenterRowItem = _districtCenterRowItemFactory.Create(districtCenter);
       var row = new BatchControlRow(root, districtCenter.GetComponentFast<EntityComponent>(),
                                     districtCenterRowItem);
       var goodStatisticsRowGroup = _batchControlRowGroupFactory.CreateUnsorted(row);
       goodStatisticsRowGroup.AddRow(
-          _goodStatisticsRowItemFactory.Create(districtResourceCountsRegistry));
+          _goodStatisticsRowItemFactory.Create(districtGoodSamplesRegistry));
       return goodStatisticsRowGroup;
     }
 

@@ -1,11 +1,11 @@
 ﻿using Bindito.Core;
-using GoodStatistics.Core;
+using GoodStatistics.Sampling;
 using Timberborn.BaseComponentSystem;
 using Timberborn.EntitySystem;
 
 namespace GoodStatistics.Analytics {
-  internal class DistrictResourceTrendsRegistry : BaseComponent,
-                                                  IInitializableEntity {
+  internal class DistrictGoodTrendsRegistry : BaseComponent,
+                                              IInitializableEntity {
 
     public GoodTrendsRegistry GoodTrendsRegistry { get; private set; }
     private GoodTrendsRegistryFactory _goodTrendsRegistryFactory;
@@ -16,9 +16,9 @@ namespace GoodStatistics.Analytics {
     }
 
     public void InitializeEntity() {
-      var resourceCountsRegistry =
-          GetComponentFast<DistrictResourceCountsRegistry>().ResourceCountsRegistry;
-      GoodTrendsRegistry = _goodTrendsRegistryFactory.Create(resourceCountsRegistry);
+      var goodSamplesRegistry =
+          GetComponentFast<DistrictGoodSamplesRegistry>().GoodSamplesRegistry;
+      GoodTrendsRegistry = _goodTrendsRegistryFactory.Create(goodSamplesRegistry);
     }
 
   }

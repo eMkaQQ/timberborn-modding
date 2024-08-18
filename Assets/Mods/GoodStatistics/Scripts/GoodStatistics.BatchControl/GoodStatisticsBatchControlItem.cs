@@ -5,16 +5,16 @@ namespace GoodStatistics.BatchControl {
   internal class GoodStatisticsBatchControlItem {
 
     public VisualElement Root { get; }
-    private readonly ResourceCountHistoryElement _resourceCountHistoryElement;
+    private readonly GoodSampleRecordsElement _goodSampleRecordsElement;
 
     public GoodStatisticsBatchControlItem(VisualElement root,
-                                          ResourceCountHistoryElement resourceCountHistoryElement) {
+                                          GoodSampleRecordsElement goodSampleRecordsElement) {
       Root = root;
-      _resourceCountHistoryElement = resourceCountHistoryElement;
+      _goodSampleRecordsElement = goodSampleRecordsElement;
     }
 
     public void Update() {
-      _resourceCountHistoryElement.Update();
+      _goodSampleRecordsElement.Update();
     }
 
   }

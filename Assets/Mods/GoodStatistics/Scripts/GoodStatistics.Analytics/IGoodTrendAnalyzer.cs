@@ -1,9 +1,9 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 
 namespace GoodStatistics.Analytics {
   public interface IGoodTrendAnalyzer {
 
-    void Analyze(ResourceCountHistory resourceCountHistory, out TrendType trendType,
+    void Analyze(GoodSampleRecords goodSampleRecords, out TrendType trendType,
                  out float daysLeft);
 
   }

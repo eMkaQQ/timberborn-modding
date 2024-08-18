@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using GoodStatistics.Settings;
 using UnityEngine;
 
@@ -11,50 +11,50 @@ namespace GoodStatistics.Analytics {
       _emaAnalyzerSettings = emaAnalyzerSettings;
     }
 
-    public void Analyze(ResourceCountHistory resourceCountHistory, out TrendType trendType,
+    public void Analyze(GoodSampleRecords goodSampleRecords, out TrendType trendType,
                         out float daysLeft) {
-      if (WasAtFullOrZeroPreviously(resourceCountHistory)) {
+      if (WasAtFullOrZeroPreviously(goodSampleRecords)) {
         trendType = TrendType.Stable;
         daysLeft = -1;
         return;
       }
-      GetTrendAndChange(resourceCountHistory, 0, out trendType, out var change);
+      GetTrendAndChange(goodSampleRecords, 0, out trendType, out var change);
       if (trendType == TrendType.Stable
           && !Mathf.Approximately(change, 0)
-          && CheckConsecutiveMicroChanges(resourceCountHistory, change)) {
+          && CheckConsecutiveMicroChanges(goodSampleRecords, change)) {
         trendType = change > 0 ? TrendType.LowGrowth : TrendType.LowDepletion;
       }
       if (trendType.IsDepleting()) {
-        daysLeft = CountDaysLeftToZero(resourceCountHistory, change);
+        daysLeft = CountDaysLeftToZero(goodSampleRecords, change);
       } else if (trendType.IsGrowing()) {
-        daysLeft = CountDaysLeftToFull(resourceCountHistory, change);
+        daysLeft = CountDaysLeftToFull(goodSampleRecords, change);
       } else {
         daysLeft = -1;
       }
     }
 
-    private static bool WasAtFullOrZeroPreviously(ResourceCountHistory resourceCountHistory) {
-      return resourceCountHistory.GoodSamples[1].FillRate is > 0.99f or < 0.01f;
+    private static bool WasAtFullOrZeroPreviously(GoodSampleRecords goodSampleRecords) {
+      return goodSampleRecords.GoodSamples[1].FillRate is > 0.999f or < 0.001f;
     }
 
-    private void GetTrendAndChange(ResourceCountHistory resourceCountHistory, int index,
+    private void GetTrendAndChange(GoodSampleRecords goodSampleRecords, int index,
                                    out TrendType trendType, out float change) {
-      var indexChangeAverage = GetAverage(resourceCountHistory, index);
-      var previousAverage = GetAverage(resourceCountHistory, index + 1);
+      var indexChangeAverage = GetAverage(goodSampleRecords, index);
+      var previousAverage = GetAverage(goodSampleRecords, index + 1);
       change = indexChangeAverage - previousAverage;
-      var changePercentage = change / resourceCountHistory.GetMaxCapacity();
+      var changePercentage = change / goodSampleRecords.GetMaxCapacity();
       trendType = ChangeToTrendType(changePercentage);
     }
 
-    private float GetAverage(ResourceCountHistory resourceCountHistory, int index) {
+    private float GetAverage(GoodSampleRecords goodSampleRecords, int index) {
       var samplesToAnalyze = Mathf.Clamp(_emaAnalyzerSettings.SamplesToAnalyze.Value,
-                                         1, resourceCountHistory.GoodSamples.Count - index);
+                                         1, goodSampleRecords.GoodSamples.Count - index);
       var alpha = 2.0f / (_emaAnalyzerSettings.SamplesToAnalyze.Value + 1);
       float numerator = 0;
       float denominator = 0;
       for (var i = 0; i < samplesToAnalyze; i++) {
         var weight = Mathf.Pow(1 - alpha, i);
-        numerator += resourceCountHistory.GoodSamples[i + index].TotalStock * weight;
+        numerator += goodSampleRecords.GoodSamples[i + index].TotalStock * weight;
         denominator += weight;
       }
       return numerator / denominator;
@@ -85,12 +85,12 @@ namespace GoodStatistics.Analytics {
       return TrendType.Stable;
     }
 
-    private bool CheckConsecutiveMicroChanges(ResourceCountHistory resourceCountHistory,
+    private bool CheckConsecutiveMicroChanges(GoodSampleRecords goodSampleRecords,
                                               float changeToCheck) {
       for (var index = 0;
            index < _emaAnalyzerSettings.ConsecutiveMicroChangesThreshold.Value;
            index++) {
-        GetTrendAndChange(resourceCountHistory, index + 1, out _, out var change);
+        GetTrendAndChange(goodSampleRecords, index + 1, out _, out var change);
         if (!Mathf.Approximately(Mathf.Sign(change), Mathf.Sign(changeToCheck))) {
           return false;
         }
@@ -98,22 +98,22 @@ namespace GoodStatistics.Analytics {
       return true;
     }
 
-    private static float CountDaysLeftToZero(ResourceCountHistory resourceCountHistory,
+    private static float CountDaysLeftToZero(GoodSampleRecords goodSampleRecords,
                                              float change) {
-      var changeTime = resourceCountHistory.GoodSamples[0].DayTimestamp
-                       - resourceCountHistory.GoodSamples[1].DayTimestamp;
+      var changeTime = goodSampleRecords.GoodSamples[0].DayTimestamp
+                       - goodSampleRecords.GoodSamples[1].DayTimestamp;
       var dailyChange = -change / changeTime;
-      var stockLeft = resourceCountHistory.GoodSamples[0].TotalStock;
+      var stockLeft = goodSampleRecords.GoodSamples[0].TotalStock;
       return stockLeft / dailyChange;
     }
 
-    private static float CountDaysLeftToFull(ResourceCountHistory resourceCountHistory,
+    private static float CountDaysLeftToFull(GoodSampleRecords goodSampleRecords,
                                              float change) {
-      var changeTime = resourceCountHistory.GoodSamples[0].DayTimestamp
-                       - resourceCountHistory.GoodSamples[1].DayTimestamp;
+      var changeTime = goodSampleRecords.GoodSamples[0].DayTimestamp
+                       - goodSampleRecords.GoodSamples[1].DayTimestamp;
       var dailyChange = change / changeTime;
-      var stockLeft = resourceCountHistory.GoodSamples[0].InputOutputCapacity
-                      - resourceCountHistory.GoodSamples[0].TotalStock;
+      var stockLeft = goodSampleRecords.GoodSamples[0].InputOutputCapacity
+                      - goodSampleRecords.GoodSamples[0].TotalStock;
       return stockLeft / dailyChange;
     }
 

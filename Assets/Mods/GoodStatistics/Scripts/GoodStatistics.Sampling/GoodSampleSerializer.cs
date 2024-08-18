@@ -1,7 +1,7 @@
 ﻿using Timberborn.Persistence;
 using Timberborn.ResourceCountingSystem;
 
-namespace GoodStatistics.Core {
+namespace GoodStatistics.Sampling {
   public class GoodSampleSerializer : IObjectSerializer<GoodSample> {
 
     private static readonly PropertyKey<ResourceCount> ResourceCountKey = new("ResourceCount");

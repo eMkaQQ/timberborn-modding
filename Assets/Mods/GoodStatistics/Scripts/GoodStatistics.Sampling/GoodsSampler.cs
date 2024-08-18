@@ -5,25 +5,25 @@ using Timberborn.ResourceCountingSystem;
 using Timberborn.SingletonSystem;
 using Timberborn.TimeSystem;
 
-namespace GoodStatistics.Core {
-  public class GoodStatisticsSampler {
+namespace GoodStatistics.Sampling {
+  public class GoodsSampler {
 
-    private readonly GlobalResourceCountsRegistry _globalResourceCountsRegistry;
+    private readonly GlobalGoodSamplesRegistry _globalGoodSamplesRegistry;
     private readonly ResourceCountingService _resourceCountingService;
     private readonly DistrictContextService _districtContextService;
     private readonly IGoodService _goodService;
     private readonly EventBus _eventBus;
     private readonly IDayNightCycle _dayNightCycle;
-    private readonly List<DistrictResourceCountsRegistry> _districtResourceCountsRegistries = new();
+    private readonly List<DistrictGoodSamplesRegistry> _districtGoodSamplesRegistries = new();
     private float _nextSampleTime;
 
-    public GoodStatisticsSampler(GlobalResourceCountsRegistry globalResourceCountsRegistry,
-                                 ResourceCountingService resourceCountingService,
-                                 DistrictContextService districtContextService,
-                                 IGoodService goodService,
-                                 EventBus eventBus,
-                                 IDayNightCycle dayNightCycle) {
-      _globalResourceCountsRegistry = globalResourceCountsRegistry;
+    public GoodsSampler(GlobalGoodSamplesRegistry globalGoodSamplesRegistry,
+                        ResourceCountingService resourceCountingService,
+                        DistrictContextService districtContextService,
+                        IGoodService goodService,
+                        EventBus eventBus,
+                        IDayNightCycle dayNightCycle) {
+      _globalGoodSamplesRegistry = globalGoodSamplesRegistry;
       _resourceCountingService = resourceCountingService;
       _districtContextService = districtContextService;
       _goodService = goodService;
@@ -31,38 +31,38 @@ namespace GoodStatistics.Core {
       _dayNightCycle = dayNightCycle;
     }
 
-    public void AddDistrictRegistry(DistrictResourceCountsRegistry
-                                        districtResourceCountsRegistry) {
-      _districtResourceCountsRegistries.Add(districtResourceCountsRegistry);
+    public void AddDistrictRegistry(DistrictGoodSamplesRegistry
+                                        districtGoodSamplesRegistry) {
+      _districtGoodSamplesRegistries.Add(districtGoodSamplesRegistry);
     }
 
-    public void RemoveDistrictRegistry(DistrictResourceCountsRegistry
-                                           districtResourceCountsRegistry) {
-      _districtResourceCountsRegistries.Remove(districtResourceCountsRegistry);
+    public void RemoveDistrictRegistry(DistrictGoodSamplesRegistry
+                                           districtGoodSamplesRegistry) {
+      _districtGoodSamplesRegistries.Remove(districtGoodSamplesRegistry);
     }
 
     public void CollectGoodsSamples() {
       foreach (var goodId in _goodService.Goods) {
         CollectGoodSamples(goodId);
       }
-      _eventBus.Post(new ResourceCountSampledEvent());
+      _eventBus.Post(new GoodsSampledEvent());
     }
 
     private void CollectGoodSamples(string goodId) {
       var resourceCount = _resourceCountingService.GetGlobalResourceCount(goodId);
       var sample = new GoodSample(resourceCount, _dayNightCycle.PartialDayNumber);
-      _globalResourceCountsRegistry.ResourceCountsRegistry.AddSample(goodId, sample);
+      _globalGoodSamplesRegistry.GoodSamplesRegistry.AddSample(goodId, sample);
       CollectDistrictsSamples(goodId);
     }
 
     private void CollectDistrictsSamples(string goodId) {
-      DistrictResourceCountsRegistry selectedRegistry = null;
-      foreach (var districtRegistry in _districtResourceCountsRegistries) {
+      DistrictGoodSamplesRegistry selectedRegistry = null;
+      foreach (var districtRegistry in _districtGoodSamplesRegistries) {
         if (districtRegistry.DistrictCenter != _districtContextService.SelectedDistrict) {
           _resourceCountingService.SwitchDistrict(districtRegistry.DistrictCenter);
           var districtResource = _resourceCountingService.GetDistrictResourceCount(goodId);
           var districtSample = new GoodSample(districtResource, _dayNightCycle.PartialDayNumber);
-          districtRegistry.ResourceCountsRegistry.AddSample(goodId, districtSample);
+          districtRegistry.GoodSamplesRegistry.AddSample(goodId, districtSample);
         } else {
           selectedRegistry = districtRegistry;
         }
@@ -72,13 +72,13 @@ namespace GoodStatistics.Core {
     }
 
     private void CollectSelectedDistrictSample(string goodId,
-                                               DistrictResourceCountsRegistry
+                                               DistrictGoodSamplesRegistry
                                                    selectedRegistry) {
       if (selectedRegistry) {
         _resourceCountingService.SwitchDistrict(_districtContextService.SelectedDistrict);
         var districtResource = _resourceCountingService.GetDistrictResourceCount(goodId);
         var districtSample = new GoodSample(districtResource, _dayNightCycle.PartialDayNumber);
-        selectedRegistry.ResourceCountsRegistry.AddSample(goodId, districtSample);
+        selectedRegistry.GoodSamplesRegistry.AddSample(goodId, districtSample);
       }
     }
 

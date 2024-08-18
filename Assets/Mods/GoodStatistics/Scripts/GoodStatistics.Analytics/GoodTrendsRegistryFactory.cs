@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 
 namespace GoodStatistics.Analytics {
   internal class GoodTrendsRegistryFactory {
@@ -9,8 +9,8 @@ namespace GoodStatistics.Analytics {
       _goodTrendAnalyzer = goodTrendAnalyzer;
     }
 
-    public GoodTrendsRegistry Create(ResourceCountsRegistry resourceCountsRegistry) {
-      var registry = new GoodTrendsRegistry(_goodTrendAnalyzer, resourceCountsRegistry);
+    public GoodTrendsRegistry Create(GoodSamplesRegistry goodSamplesRegistry) {
+      var registry = new GoodTrendsRegistry(_goodTrendAnalyzer, goodSamplesRegistry);
       registry.Initialize();
       return registry;
     }

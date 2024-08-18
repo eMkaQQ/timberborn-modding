@@ -1,34 +1,34 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using System.Collections.Generic;
 
 namespace GoodStatistics.Analytics {
   internal class GoodTrendsRegistry {
 
     private readonly IGoodTrendAnalyzer _goodTrendAnalyzer;
-    private readonly ResourceCountsRegistry _resourceCountsRegistry;
+    private readonly GoodSamplesRegistry _goodSamplesRegistry;
     private readonly Dictionary<string, GoodTrend> _goodTrends = new();
 
     public GoodTrendsRegistry(IGoodTrendAnalyzer goodTrendAnalyzer,
-                              ResourceCountsRegistry resourceCountsRegistry) {
+                              GoodSamplesRegistry goodSamplesRegistry) {
       _goodTrendAnalyzer = goodTrendAnalyzer;
-      _resourceCountsRegistry = resourceCountsRegistry;
+      _goodSamplesRegistry = goodSamplesRegistry;
     }
 
     public void Initialize() {
-      _resourceCountsRegistry.SampleAdded += OnResourceCountSampled;
-      foreach (var resourceCountHistory in _resourceCountsRegistry.ResourceCountHistories) {
-        _goodTrends[resourceCountHistory.GoodId] = new();
-        Update(resourceCountHistory);
+      _goodSamplesRegistry.SampleAdded += OnGoodSampleSampled;
+      foreach (var goodSampleRecords in _goodSamplesRegistry.GoodSampleRecords) {
+        _goodTrends[goodSampleRecords.GoodId] = new();
+        Update(goodSampleRecords);
       }
     }
 
-    private void OnResourceCountSampled(object sender, ResourceCountHistory countHistory) {
-      Update(countHistory);
+    private void OnGoodSampleSampled(object sender, GoodSampleRecords countRecords) {
+      Update(countRecords);
     }
 
-    private void Update(ResourceCountHistory countHistory) {
-      _goodTrendAnalyzer.Analyze(countHistory, out var trendType, out var daysLeft);
-      _goodTrends[countHistory.GoodId].Update(trendType, daysLeft);
+    private void Update(GoodSampleRecords countRecords) {
+      _goodTrendAnalyzer.Analyze(countRecords, out var trendType, out var daysLeft);
+      _goodTrends[countRecords.GoodId].Update(trendType, daysLeft);
     }
 
   }

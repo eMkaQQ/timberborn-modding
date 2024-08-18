@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using System.Collections.Generic;
 using Timberborn.CoreUI;
 using Timberborn.Goods;
@@ -25,13 +25,13 @@ namespace GoodStatistics.BatchControl {
     }
 
     public GoodStatisticsGroup Create(GoodGroupSpecification groupSpecification,
-                                      ResourceCountsRegistry resourceCountsRegistry) {
+                                      GoodSamplesRegistry goodSamplesRegistry) {
       var elementName = "GoodStatistics/GoodStatisticsGroup";
       var groupElement = _visualElementLoader.LoadVisualElement(elementName);
       groupElement.Q<Image>("Icon").sprite = groupSpecification.Icon;
       var items = CreateItems(groupSpecification.Id,
                               groupElement.Q<VisualElement>("Items"),
-                              resourceCountsRegistry);
+                              goodSamplesRegistry);
       var group = new GoodStatisticsGroup(_eventBus, groupElement, items);
       group.Initialize();
       return group;
@@ -39,11 +39,11 @@ namespace GoodStatistics.BatchControl {
 
     private IEnumerable<GoodStatisticsBatchControlItem> CreateItems(string groupId,
                                                                     VisualElement parent,
-                                                                    ResourceCountsRegistry
-                                                                        resourceCountsRegistry) {
+                                                                    GoodSamplesRegistry
+                                                                        goodSamplesRegistry) {
       foreach (var goodId in _goodService.GetGoodsForGroup(groupId)) {
-        var resourceCountHistory = resourceCountsRegistry.GetGoodHistory(goodId);
-        var item = _goodStatisticsBatchControlItemFactory.Create(resourceCountHistory);
+        var goodSampleRecords = goodSamplesRegistry.GetGoodSampleRecords(goodId);
+        var item = _goodStatisticsBatchControlItemFactory.Create(goodSampleRecords);
         parent.Add(item.Root);
         yield return item;
       }

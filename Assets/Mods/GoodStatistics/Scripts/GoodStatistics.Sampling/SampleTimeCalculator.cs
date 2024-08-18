@@ -2,14 +2,14 @@
 using Timberborn.TimeSystem;
 using UnityEngine;
 
-namespace GoodStatistics.Core {
-  internal class StatisticsSampleTimeCalculator {
+namespace GoodStatistics.Sampling {
+  internal class SampleTimeCalculator {
 
     private readonly GoodStatisticsSettings _goodStatisticsSettings;
     private readonly IDayNightCycle _dayNightCycle;
 
-    public StatisticsSampleTimeCalculator(GoodStatisticsSettings goodStatisticsSettings,
-                                          IDayNightCycle dayNightCycle) {
+    public SampleTimeCalculator(GoodStatisticsSettings goodStatisticsSettings,
+                                IDayNightCycle dayNightCycle) {
       _goodStatisticsSettings = goodStatisticsSettings;
       _dayNightCycle = dayNightCycle;
     }

@@ -1,22 +1,22 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using GoodStatistics.Settings;
 using System.Collections.Generic;
 using Timberborn.CoreUI;
 using UnityEngine.UIElements;
 
 namespace GoodStatistics.UI {
-  public class ResourceCountHistoryElementFactory {
+  public class GoodSampleRecordsElementFactory {
 
     private readonly VisualElementLoader _visualElementLoader;
 
-    public ResourceCountHistoryElementFactory(VisualElementLoader visualElementLoader) {
+    public GoodSampleRecordsElementFactory(VisualElementLoader visualElementLoader) {
       _visualElementLoader = visualElementLoader;
     }
 
-    public ResourceCountHistoryElement Create(ResourceCountHistory resourceCountHistory,
-                                              VisualElement parent) {
-      var element = new ResourceCountHistoryElement(resourceCountHistory,
-                                                    CreateResourceCountElements(parent));
+    public GoodSampleRecordsElement Create(GoodSampleRecords goodSampleRecords,
+                                           VisualElement parent) {
+      var element = new GoodSampleRecordsElement(goodSampleRecords,
+                                                 CreateResourceCountElements(parent));
       element.Update();
       return element;
     }

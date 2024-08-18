@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using GoodStatistics.Settings;
 using NUnit.Framework;
 using System;
@@ -15,7 +15,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Tests.GoodStatistics {
-  public class GoodStatisticsSamplerTest {
+  public class GoodsSamplerTest {
 
     private static readonly string Bread = "Bread";
     private static readonly string Log = "Log";
@@ -51,7 +51,7 @@ namespace Tests.GoodStatistics {
       CreateServices(out var inventoryService,
                      out var resourceCountingService,
                      out var goodStatisticsSampler,
-                     out var globalResourceCountsRegistry);
+                     out var globalGoodSamplesRegistry);
 
       _inventory1.Initialize("test", 100,
                              new[] {
@@ -66,7 +66,7 @@ namespace Tests.GoodStatistics {
       goodStatisticsSampler.CollectGoodsSamples();
 
       // Then
-      var sample = globalResourceCountsRegistry.ResourceCountsRegistry.ResourceCountHistories
+      var sample = globalGoodSamplesRegistry.GoodSamplesRegistry.GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[0];
       Assert.AreEqual(1, sample.InputOutputStock);
       Assert.AreEqual(100, sample.InputOutputCapacity);
@@ -79,7 +79,7 @@ namespace Tests.GoodStatistics {
       CreateServices(out var inventoryService,
                      out var resourceCountingService,
                      out var goodStatisticsSampler,
-                     out var globalResourceCountsRegistry);
+                     out var globalGoodSamplesRegistry);
 
       _inventory1.Initialize("test", 100,
                              new[] {
@@ -97,9 +97,9 @@ namespace Tests.GoodStatistics {
       goodStatisticsSampler.CollectGoodsSamples();
 
       // Then
-      var sample0 = globalResourceCountsRegistry.ResourceCountsRegistry.ResourceCountHistories
+      var sample0 = globalGoodSamplesRegistry.GoodSamplesRegistry.GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[0];
-      var sample1 = globalResourceCountsRegistry.ResourceCountsRegistry.ResourceCountHistories
+      var sample1 = globalGoodSamplesRegistry.GoodSamplesRegistry.GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[1];
       Assert.AreEqual(0, sample0.InputOutputStock);
       Assert.AreEqual(100, sample0.InputOutputCapacity);
@@ -115,7 +115,7 @@ namespace Tests.GoodStatistics {
       CreateServices(out var inventoryService,
                      out var resourceCountingService,
                      out var goodStatisticsSampler,
-                     out var globalResourceCountsRegistry);
+                     out var globalGoodSamplesRegistry);
 
       _inventory1.Initialize("test", 100,
                              new[] {
@@ -132,7 +132,7 @@ namespace Tests.GoodStatistics {
       }
 
       // Then
-      var sample = globalResourceCountsRegistry.ResourceCountsRegistry.ResourceCountHistories
+      var sample = globalGoodSamplesRegistry.GoodSamplesRegistry.GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples;
       Assert.AreEqual(GoodStatisticsConstants.MaxSamples, sample.Count);
       Assert.AreEqual(GoodStatisticsConstants.MaxSamples + 1, sample[0].InputOutputStock);
@@ -145,7 +145,7 @@ namespace Tests.GoodStatistics {
       CreateServices(out var inventoryService,
                      out var resourceCountingService,
                      out var goodStatisticsSampler,
-                     out var globalResourceCountsRegistry);
+                     out var globalGoodSamplesRegistry);
 
       _inventory1.Initialize("test", 100,
                              new[] {
@@ -166,11 +166,11 @@ namespace Tests.GoodStatistics {
       goodStatisticsSampler.CollectGoodsSamples();
 
       // Then
-      var sampleBread = globalResourceCountsRegistry.ResourceCountsRegistry.ResourceCountHistories
+      var sampleBread = globalGoodSamplesRegistry.GoodSamplesRegistry.GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[0];
-      var sampleLog = globalResourceCountsRegistry.ResourceCountsRegistry.ResourceCountHistories
+      var sampleLog = globalGoodSamplesRegistry.GoodSamplesRegistry.GoodSampleRecords
           .Single(history => history.GoodId == Log).GoodSamples[0];
-      var sampleWater = globalResourceCountsRegistry.ResourceCountsRegistry.ResourceCountHistories
+      var sampleWater = globalGoodSamplesRegistry.GoodSamplesRegistry.GoodSampleRecords
           .Single(history => history.GoodId == Water).GoodSamples[0];
       Assert.AreEqual(1, sampleBread.InputOutputStock);
       Assert.AreEqual(1, sampleLog.InputOutputStock);
@@ -183,7 +183,7 @@ namespace Tests.GoodStatistics {
       CreateServices(out var inventoryService,
                      out var resourceCountingService,
                      out var goodStatisticsSampler,
-                     out var globalResourceCountsRegistry);
+                     out var globalGoodSamplesRegistry);
 
       _inventory1.Initialize("test", 100,
                              new[] {
@@ -201,15 +201,15 @@ namespace Tests.GoodStatistics {
       districtBuilding.AssignInstantDistrict(_districtCenter1);
       _inventory2.GameObjectFast.AddComponent<DistrictBuilding>();
 
-      var districtResourceCountsRegistry =
-          _districtCenter1.GameObjectFast.AddComponent<DistrictResourceCountsRegistry>();
+      var districtGoodSamplesRegistry =
+          _districtCenter1.GameObjectFast.AddComponent<DistrictGoodSamplesRegistry>();
       var goodService = new DummyGoodService();
-      districtResourceCountsRegistry.InjectDependencies(goodStatisticsSampler,
-                                                        new(new(new(goodService), new(new())),
-                                                            goodService), goodService);
-      districtResourceCountsRegistry.Awake();
-      districtResourceCountsRegistry.InitializeEntity();
-      districtResourceCountsRegistry.OnEnterFinishedState();
+      districtGoodSamplesRegistry.InjectDependencies(goodStatisticsSampler,
+                                                     new(new(new(goodService), new(new())),
+                                                         goodService), goodService);
+      districtGoodSamplesRegistry.Awake();
+      districtGoodSamplesRegistry.InitializeEntity();
+      districtGoodSamplesRegistry.OnEnterFinishedState();
 
       // When
       _inventory1.Give(new(Bread, 1));
@@ -218,17 +218,17 @@ namespace Tests.GoodStatistics {
       goodStatisticsSampler.CollectGoodsSamples();
 
       // Then
-      var breadDistrictSample = districtResourceCountsRegistry.ResourceCountsRegistry
-          .ResourceCountHistories
+      var breadDistrictSample = districtGoodSamplesRegistry.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[0];
-      var logDistrictSample = districtResourceCountsRegistry.ResourceCountsRegistry
-          .ResourceCountHistories
+      var logDistrictSample = districtGoodSamplesRegistry.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Log).GoodSamples[0];
-      var breadGlobalSample = globalResourceCountsRegistry.ResourceCountsRegistry
-          .ResourceCountHistories
+      var breadGlobalSample = globalGoodSamplesRegistry.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[0];
-      var logGlobalSample = globalResourceCountsRegistry.ResourceCountsRegistry
-          .ResourceCountHistories
+      var logGlobalSample = globalGoodSamplesRegistry.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Log).GoodSamples[0];
       Assert.AreEqual(1, breadDistrictSample.InputOutputStock);
       Assert.AreEqual(0, logDistrictSample.InputOutputStock);
@@ -242,7 +242,7 @@ namespace Tests.GoodStatistics {
       CreateServices(out var inventoryService,
                      out var resourceCountingService,
                      out var goodStatisticsSampler,
-                     out var globalResourceCountsRegistry);
+                     out var globalGoodSamplesRegistry);
 
       _inventory1.Initialize("test", 100,
                              new[] {
@@ -261,24 +261,24 @@ namespace Tests.GoodStatistics {
       var districtBuilding2 = _inventory2.GameObjectFast.AddComponent<DistrictBuilding>();
       districtBuilding2.AssignInstantDistrict(_districtCenter2);
 
-      var districtResourceCountsRegistry1 =
-          _districtCenter1.GameObjectFast.AddComponent<DistrictResourceCountsRegistry>();
+      var districtGoodSamplesRegistry1 =
+          _districtCenter1.GameObjectFast.AddComponent<DistrictGoodSamplesRegistry>();
       var goodService = new DummyGoodService();
-      districtResourceCountsRegistry1.InjectDependencies(goodStatisticsSampler,
-                                                         new(new(new(goodService), new(new())),
-                                                             goodService), goodService);
-      districtResourceCountsRegistry1.Awake();
-      districtResourceCountsRegistry1.InitializeEntity();
-      districtResourceCountsRegistry1.OnEnterFinishedState();
+      districtGoodSamplesRegistry1.InjectDependencies(goodStatisticsSampler,
+                                                      new(new(new(goodService), new(new())),
+                                                          goodService), goodService);
+      districtGoodSamplesRegistry1.Awake();
+      districtGoodSamplesRegistry1.InitializeEntity();
+      districtGoodSamplesRegistry1.OnEnterFinishedState();
 
-      var districtResourceCountsRegistry2 =
-          _districtCenter2.GameObjectFast.AddComponent<DistrictResourceCountsRegistry>();
-      districtResourceCountsRegistry2.InjectDependencies(goodStatisticsSampler,
-                                                         new(new(new(goodService), new(new())),
-                                                             goodService), goodService);
-      districtResourceCountsRegistry2.Awake();
-      districtResourceCountsRegistry2.InitializeEntity();
-      districtResourceCountsRegistry2.OnEnterFinishedState();
+      var districtGoodSamplesRegistry2 =
+          _districtCenter2.GameObjectFast.AddComponent<DistrictGoodSamplesRegistry>();
+      districtGoodSamplesRegistry2.InjectDependencies(goodStatisticsSampler,
+                                                      new(new(new(goodService), new(new())),
+                                                          goodService), goodService);
+      districtGoodSamplesRegistry2.Awake();
+      districtGoodSamplesRegistry2.InitializeEntity();
+      districtGoodSamplesRegistry2.OnEnterFinishedState();
 
       // When
       _inventory1.Give(new(Bread, 1));
@@ -287,17 +287,17 @@ namespace Tests.GoodStatistics {
       goodStatisticsSampler.CollectGoodsSamples();
 
       // Then
-      var breadDistrictSample1 = districtResourceCountsRegistry1.ResourceCountsRegistry
-          .ResourceCountHistories
+      var breadDistrictSample1 = districtGoodSamplesRegistry1.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[0];
-      var logDistrictSample2 = districtResourceCountsRegistry2.ResourceCountsRegistry
-          .ResourceCountHistories
+      var logDistrictSample2 = districtGoodSamplesRegistry2.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Log).GoodSamples[0];
-      var breadGlobal = globalResourceCountsRegistry.ResourceCountsRegistry
-          .ResourceCountHistories
+      var breadGlobal = globalGoodSamplesRegistry.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples[0];
-      var logGlobal = globalResourceCountsRegistry.ResourceCountsRegistry
-          .ResourceCountHistories
+      var logGlobal = globalGoodSamplesRegistry.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Log).GoodSamples[0];
       Assert.AreEqual(1, breadDistrictSample1.InputOutputStock);
       Assert.AreEqual(1, logDistrictSample2.InputOutputStock);
@@ -311,7 +311,7 @@ namespace Tests.GoodStatistics {
       CreateServices(out var inventoryService,
                      out var resourceCountingService,
                      out var goodStatisticsSampler,
-                     out var globalResourceCountsRegistry);
+                     out var globalGoodSamplesRegistry);
 
       _inventory1.Initialize("test", 100,
                              new[] {
@@ -321,24 +321,24 @@ namespace Tests.GoodStatistics {
       inventoryService.Add(_inventory1);
       var districtBuilding = _inventory1.GameObjectFast.AddComponent<DistrictBuilding>();
 
-      var districtResourceCountsRegistry1 =
-          _districtCenter1.GameObjectFast.AddComponent<DistrictResourceCountsRegistry>();
+      var districtGoodSamplesRegistry1 =
+          _districtCenter1.GameObjectFast.AddComponent<DistrictGoodSamplesRegistry>();
       var goodService = new DummyGoodService();
-      districtResourceCountsRegistry1.InjectDependencies(goodStatisticsSampler,
-                                                         new(new(new(goodService), new(new())),
-                                                             goodService), goodService);
-      districtResourceCountsRegistry1.Awake();
-      districtResourceCountsRegistry1.InitializeEntity();
-      districtResourceCountsRegistry1.OnEnterFinishedState();
+      districtGoodSamplesRegistry1.InjectDependencies(goodStatisticsSampler,
+                                                      new(new(new(goodService), new(new())),
+                                                          goodService), goodService);
+      districtGoodSamplesRegistry1.Awake();
+      districtGoodSamplesRegistry1.InitializeEntity();
+      districtGoodSamplesRegistry1.OnEnterFinishedState();
 
-      var districtResourceCountsRegistry2 =
-          _districtCenter2.GameObjectFast.AddComponent<DistrictResourceCountsRegistry>();
-      districtResourceCountsRegistry2.InjectDependencies(goodStatisticsSampler,
-                                                         new(new(new(goodService), new(new())),
-                                                             goodService), goodService);
-      districtResourceCountsRegistry2.Awake();
-      districtResourceCountsRegistry2.InitializeEntity();
-      districtResourceCountsRegistry2.OnEnterFinishedState();
+      var districtGoodSamplesRegistry2 =
+          _districtCenter2.GameObjectFast.AddComponent<DistrictGoodSamplesRegistry>();
+      districtGoodSamplesRegistry2.InjectDependencies(goodStatisticsSampler,
+                                                      new(new(new(goodService), new(new())),
+                                                          goodService), goodService);
+      districtGoodSamplesRegistry2.Awake();
+      districtGoodSamplesRegistry2.InitializeEntity();
+      districtGoodSamplesRegistry2.OnEnterFinishedState();
 
       // When
       _inventory1.Give(new(Bread, 1));
@@ -352,14 +352,14 @@ namespace Tests.GoodStatistics {
       goodStatisticsSampler.CollectGoodsSamples();
 
       // Then
-      var district1Samples = districtResourceCountsRegistry1.ResourceCountsRegistry
-          .ResourceCountHistories
+      var district1Samples = districtGoodSamplesRegistry1.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples;
-      var district2Samples = districtResourceCountsRegistry2.ResourceCountsRegistry
-          .ResourceCountHistories
+      var district2Samples = districtGoodSamplesRegistry2.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples;
-      var globalSamples = globalResourceCountsRegistry.ResourceCountsRegistry
-          .ResourceCountHistories
+      var globalSamples = globalGoodSamplesRegistry.GoodSamplesRegistry
+          .GoodSampleRecords
           .Single(history => history.GoodId == Bread).GoodSamples;
       Assert.AreEqual(0, district1Samples[0].InputOutputStock);
       Assert.AreEqual(1, district1Samples[1].InputOutputStock);
@@ -374,21 +374,20 @@ namespace Tests.GoodStatistics {
 
     private static void CreateServices(out InventoryService inventoryService,
                                        out ResourceCountingService resourceCountingService,
-                                       out GoodStatisticsSampler goodStatisticsSampler,
-                                       out GlobalResourceCountsRegistry
-                                           globalResourceCountsRegistry) {
+                                       out GoodsSampler goodsSampler,
+                                       out GlobalGoodSamplesRegistry globalGoodSamplesRegistry) {
       var goodService = new DummyGoodService();
-      globalResourceCountsRegistry = new(goodService, new DummySingletonLoader(),
-                                         new(new(new(goodService), new(new())), goodService));
-      globalResourceCountsRegistry.Load();
+      globalGoodSamplesRegistry = new(goodService, new DummySingletonLoader(),
+                                      new(new(new(goodService), new(new())), goodService));
+      globalGoodSamplesRegistry.Load();
       inventoryService = new();
       resourceCountingService = new();
       resourceCountingService.InjectDependencies(inventoryService, new());
       var districtContextService = new DistrictContextService(new());
-      goodStatisticsSampler = new(globalResourceCountsRegistry,
-                                  resourceCountingService,
-                                  districtContextService,
-                                  goodService, new(), new DayNightCycleMock());
+      goodsSampler = new(globalGoodSamplesRegistry,
+                         resourceCountingService,
+                         districtContextService,
+                         goodService, new(), new DayNightCycleMock());
     }
 
     private class DummyGoodService : IGoodService {

@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Timberborn.BatchControl;
@@ -31,7 +31,7 @@ namespace GoodStatistics.BatchControl {
     }
 
     [OnEvent]
-    public void OnResourceCountSampled(ResourceCountSampledEvent resourceCountSampledEvent) {
+    public void OnGoodsSampled(GoodsSampledEvent goodsSampledEvent) {
       foreach (var goodStatisticsBatchControlItem in _goodStatisticsBatchControlItems) {
         goodStatisticsBatchControlItem.Update();
       }

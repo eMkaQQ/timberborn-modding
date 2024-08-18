@@ -2,6 +2,6 @@
     <Style src="/Assets/Mods/GoodStatistics/AssetBundles/Resources/UI/Views/GoodStatistics/GoodStatisticsStyle.uss" />
     <Timberborn.CoreUI.NineSliceVisualElement name="GoodStatisticsBatchControlItem" class="good-statistics-batch-control-item bg-box--green">
         <ui:Image name="GoodIcon" class="good-statistics-batch-control-item__good-icon" />
-        <ui:VisualElement name="ResourceCountHistoryWrapper" class="good-statistics-batch-control-item__resource-count-history-wrapper" />
+        <ui:VisualElement name="GoodSampleRecordsWrapper" class="good-statistics-batch-control-item__good-sample-records-wrapper" />
     </Timberborn.CoreUI.NineSliceVisualElement>
 </ui:UXML>

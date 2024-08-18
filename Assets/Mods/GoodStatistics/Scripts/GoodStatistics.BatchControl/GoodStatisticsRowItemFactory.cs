@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using Timberborn.BatchControl;
 using Timberborn.Common;
 using Timberborn.CoreUI;
@@ -12,46 +12,45 @@ namespace GoodStatistics.BatchControl {
     private readonly GoodsGroupSpecificationService _goodsGroupSpecificationService;
     private readonly VisualElementLoader _visualElementLoader;
     private readonly BatchControlDistrict _batchControlDistrict;
-    private readonly GlobalResourceCountsRegistry _globalResourceCountsRegistry;
+    private readonly GlobalGoodSamplesRegistry _globalGoodSamplesRegistry;
 
     public GoodStatisticsRowItemFactory(GoodStatisticsGroupFactory goodStatisticsGroupFactory,
                                         GoodsGroupSpecificationService
                                             goodsGroupSpecificationService,
                                         VisualElementLoader visualElementLoader,
                                         BatchControlDistrict batchControlDistrict,
-                                        GlobalResourceCountsRegistry
-                                            globalResourceCountsRegistry) {
+                                        GlobalGoodSamplesRegistry
+                                            globalGoodSamplesRegistry) {
       _goodStatisticsGroupFactory = goodStatisticsGroupFactory;
       _goodsGroupSpecificationService = goodsGroupSpecificationService;
       _visualElementLoader = visualElementLoader;
       _batchControlDistrict = batchControlDistrict;
-      _globalResourceCountsRegistry = globalResourceCountsRegistry;
+      _globalGoodSamplesRegistry = globalGoodSamplesRegistry;
     }
 
-    public BatchControlRow Create(DistrictResourceCountsRegistry districtResourceCountsRegistry) {
+    public BatchControlRow Create(DistrictGoodSamplesRegistry districtGoodSamplesRegistry) {
       var elementName = "Game/BatchControl/DistributionSettingsRowItem";
       var root = _visualElementLoader.LoadVisualElement(elementName);
-      return new(root, districtResourceCountsRegistry.GetComponentFast<EntityComponent>(),
+      return new(root, districtGoodSamplesRegistry.GetComponentFast<EntityComponent>(),
                  () => _batchControlDistrict.SelectedDistrict,
-                 CreateResourceGroups(districtResourceCountsRegistry.ResourceCountsRegistry));
+                 CreateGoodGroups(districtGoodSamplesRegistry.GoodSamplesRegistry));
     }
 
     public BatchControlRow CreateGlobal() {
       var elementName = "Game/BatchControl/DistributionSettingsRowItem";
       var root = _visualElementLoader.LoadVisualElement(elementName);
       return new(root, null, () => !_batchControlDistrict.SelectedDistrict,
-                 CreateResourceGroups(_globalResourceCountsRegistry.ResourceCountsRegistry));
+                 CreateGoodGroups(_globalGoodSamplesRegistry.GoodSamplesRegistry));
     }
 
     private ReadOnlyList<GoodGroupSpecification> GoodGroupSpecifications =>
         _goodsGroupSpecificationService.GoodGroupSpecifications;
 
-    private IBatchControlRowItem[] CreateResourceGroups(ResourceCountsRegistry
-                                                            resourceCountsRegistry) {
+    private IBatchControlRowItem[] CreateGoodGroups(GoodSamplesRegistry goodSamplesRegistry) {
       var result = new IBatchControlRowItem[GoodGroupSpecifications.Count];
       for (var i = 0; i < GoodGroupSpecifications.Count; i++) {
         var groupSpecification = GoodGroupSpecifications[i];
-        result[i] = _goodStatisticsGroupFactory.Create(groupSpecification, resourceCountsRegistry);
+        result[i] = _goodStatisticsGroupFactory.Create(groupSpecification, goodSamplesRegistry);
       }
       return result;
     }

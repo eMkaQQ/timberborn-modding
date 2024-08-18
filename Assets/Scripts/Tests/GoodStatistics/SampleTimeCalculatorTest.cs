@@ -1,11 +1,11 @@
-﻿using GoodStatistics.Core;
+﻿using GoodStatistics.Sampling;
 using GoodStatistics.Settings;
 using NUnit.Framework;
 using System;
 using Timberborn.TimeSystem;
 
 namespace Tests.GoodStatistics {
-  public class StatisticsSampleTimeCalculatorTest {
+  public class SampleTimeCalculatorTest {
 
     [Test]
     public void ShouldCorrectlyCalculateNextSampleTime() {
@@ -13,47 +13,46 @@ namespace Tests.GoodStatistics {
       var goodStatisticsSettings = new GoodStatisticsSettings(null, null, null);
       var samplesPerDay = goodStatisticsSettings.SamplesPerDay;
       var dayNightCycle = new DayNightCycleMock();
-      var statisticsSampleTimeCalculator =
-          new StatisticsSampleTimeCalculator(goodStatisticsSettings, dayNightCycle);
+      var sampleTimeCalculator = new SampleTimeCalculator(goodStatisticsSettings, dayNightCycle);
 
       samplesPerDay.SetValue(1);
       dayNightCycle.PartialDayNumber = 0;
-      Assert.AreEqual(0, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(0, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.5f;
-      Assert.AreEqual(1, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(1, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 1;
-      Assert.AreEqual(1, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(1, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 25.2f;
-      Assert.AreEqual(26, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(26, sampleTimeCalculator.CalculateNextSampleTime());
 
       samplesPerDay.SetValue(2);
       dayNightCycle.PartialDayNumber = 0;
-      Assert.AreEqual(0, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(0, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.25f;
-      Assert.AreEqual(0.5f, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(0.5f, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.5f;
-      Assert.AreEqual(0.5f, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(0.5f, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.75f;
-      Assert.AreEqual(1, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(1, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 1;
-      Assert.AreEqual(1, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(1, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 25.2f;
-      Assert.AreEqual(25.5f, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(25.5f, sampleTimeCalculator.CalculateNextSampleTime());
 
       samplesPerDay.SetValue(24);
       dayNightCycle.PartialDayNumber = 0;
-      Assert.AreEqual(0, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(0, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.2f;
-      Assert.AreEqual(5 * (1 / 24f), statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(5 * (1 / 24f), sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.6f;
-      Assert.AreEqual(15 * (1 / 24f), statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(15 * (1 / 24f), sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 1;
-      Assert.AreEqual(1, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(1, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 25.7f;
       Assert.AreEqual(25 + 17 * (1 / 24f),
-                      statisticsSampleTimeCalculator.CalculateNextSampleTime());
+                      sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 25.99f;
-      Assert.AreEqual(26, statisticsSampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(26, sampleTimeCalculator.CalculateNextSampleTime());
     }
 
     private class DayNightCycleMock : IDayNightCycle {

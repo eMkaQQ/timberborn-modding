@@ -1,5 +1,5 @@
 ﻿{
-  "name": "GoodStatistics.Core",
+  "name": "GoodStatistics.Sampling",
   "references": [
     "GoodStatistics.Settings",
     "ModSettings.Common",

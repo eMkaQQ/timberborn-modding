@@ -1,5 +1,5 @@
 ﻿using Bindito.Core;
-using GoodStatistics.Core;
+using GoodStatistics.Sampling;
 using Timberborn.TemplateSystem;
 
 namespace GoodStatistics.Analytics {
@@ -8,7 +8,7 @@ namespace GoodStatistics.Analytics {
 
     public void Configure(IContainerDefinition containerDefinition) {
       containerDefinition.Bind<IGoodTrendAnalyzer>().To<EMAAnalyzer>().AsSingleton();
-      containerDefinition.Bind<GlobalResourceTrendsRegistry>().AsSingleton();
+      containerDefinition.Bind<GlobalGoodTrendsRegistry>().AsSingleton();
       containerDefinition.Bind<GoodTrendsRegistryFactory>().AsSingleton();
       containerDefinition.MultiBind<TemplateModule>()
           .ToProvider(ProvideTemplateModule)
@@ -17,7 +17,7 @@ namespace GoodStatistics.Analytics {
 
     private static TemplateModule ProvideTemplateModule() {
       var builder = new TemplateModule.Builder();
-      builder.AddDecorator<DistrictResourceCountsRegistry, DistrictResourceTrendsRegistry>();
+      builder.AddDecorator<DistrictGoodSamplesRegistry, DistrictGoodTrendsRegistry>();
       return builder.Build();
     }
 

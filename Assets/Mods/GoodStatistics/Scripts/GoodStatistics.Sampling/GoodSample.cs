@@ -1,6 +1,6 @@
 ﻿using Timberborn.ResourceCountingSystem;
 
-namespace GoodStatistics.Core {
+namespace GoodStatistics.Sampling {
   public readonly struct GoodSample {
 
     public ResourceCount ResourceCount { get; }
