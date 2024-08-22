@@ -7,6 +7,7 @@ namespace GoodStatistics.Settings {
 
     public void Configure(IContainerDefinition containerDefinition) {
       containerDefinition.Bind<GoodStatisticsSettings>().AsSingleton();
+      containerDefinition.Bind<EMAAnalyzerSettings>().AsSingleton();
     }
 
   }

@@ -1,0 +1,9 @@
+﻿{
+  "name": "GoodStatistics.AnalyticsUI",
+  "references": [
+    "GoodStatistics.Analytics",
+    "GoodStatistics.Sampling",
+    "GoodStatistics.Settings",
+    "ModSettings.Core"
+  ]
+}

@@ -37,7 +37,7 @@ namespace GoodStatistics.Sampling {
     }
 
     public int GetMaxCapacity() {
-      return _goodSamples.Max(sample => sample.InputOutputCapacity);
+      return _goodSamples.Max(sample => sample.TotalCapacity);
     }
 
   }

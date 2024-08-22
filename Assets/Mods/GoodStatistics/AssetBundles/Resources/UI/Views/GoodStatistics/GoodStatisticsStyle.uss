@@ -57,3 +57,9 @@
 .good-statistics-progress-bar__fill:hover {
     background-color: rgb(187, 165, 119);
 }
+
+.good-trend-element {
+    width: 30px;
+    height: 20px;
+    align-self: center;
+}

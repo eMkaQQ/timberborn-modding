@@ -1,6 +1,8 @@
 ﻿{
   "name": "GoodStatistics.BatchControl",
   "references": [
+    "GoodStatistics.Analytics",
+    "GoodStatistics.AnalyticsUI",
     "GoodStatistics.Sampling",
     "GoodStatistics.UI"
   ],

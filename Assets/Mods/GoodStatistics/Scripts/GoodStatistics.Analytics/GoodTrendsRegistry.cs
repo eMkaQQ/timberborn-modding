@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace GoodStatistics.Analytics {
-  internal class GoodTrendsRegistry {
+  public class GoodTrendsRegistry {
 
     private readonly IGoodTrendAnalyzer _goodTrendAnalyzer;
     private readonly GoodSamplesRegistry _goodSamplesRegistry;
@@ -20,6 +20,10 @@ namespace GoodStatistics.Analytics {
         _goodTrends[goodSampleRecords.GoodId] = new();
         Update(goodSampleRecords);
       }
+    }
+
+    public GoodTrend GetTrend(string goodId) {
+      return _goodTrends[goodId];
     }
 
     private void OnGoodSampleSampled(object sender, GoodSampleRecords countRecords) {

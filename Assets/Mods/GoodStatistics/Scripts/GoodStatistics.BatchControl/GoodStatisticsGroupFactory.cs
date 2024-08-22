@@ -1,4 +1,5 @@
-﻿using GoodStatistics.Sampling;
+﻿using GoodStatistics.Analytics;
+using GoodStatistics.Sampling;
 using System.Collections.Generic;
 using Timberborn.CoreUI;
 using Timberborn.Goods;
@@ -25,25 +26,27 @@ namespace GoodStatistics.BatchControl {
     }
 
     public GoodStatisticsGroup Create(GoodGroupSpecification groupSpecification,
-                                      GoodSamplesRegistry goodSamplesRegistry) {
+                                      GoodSamplesRegistry goodSamplesRegistry,
+                                      GoodTrendsRegistry goodTrendsRegistry) {
       var elementName = "GoodStatistics/GoodStatisticsGroup";
       var groupElement = _visualElementLoader.LoadVisualElement(elementName);
       groupElement.Q<Image>("Icon").sprite = groupSpecification.Icon;
       var items = CreateItems(groupSpecification.Id,
                               groupElement.Q<VisualElement>("Items"),
-                              goodSamplesRegistry);
+                              goodSamplesRegistry,
+                              goodTrendsRegistry);
       var group = new GoodStatisticsGroup(_eventBus, groupElement, items);
       group.Initialize();
       return group;
     }
 
-    private IEnumerable<GoodStatisticsBatchControlItem> CreateItems(string groupId,
-                                                                    VisualElement parent,
-                                                                    GoodSamplesRegistry
-                                                                        goodSamplesRegistry) {
+    private IEnumerable<GoodStatisticsBatchControlItem> CreateItems(
+        string groupId, VisualElement parent, GoodSamplesRegistry goodSamplesRegistry,
+        GoodTrendsRegistry goodTrendsRegistry) {
       foreach (var goodId in _goodService.GetGoodsForGroup(groupId)) {
         var goodSampleRecords = goodSamplesRegistry.GetGoodSampleRecords(goodId);
-        var item = _goodStatisticsBatchControlItemFactory.Create(goodSampleRecords);
+        var goodTrend = goodTrendsRegistry.GetTrend(goodId);
+        var item = _goodStatisticsBatchControlItemFactory.Create(goodSampleRecords, goodTrend);
         parent.Add(item.Root);
         yield return item;
       }

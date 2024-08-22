@@ -23,6 +23,7 @@ namespace GoodStatistics.BatchControl {
     }
 
     public void Initialize() {
+      UpdateItems();
       _eventBus.Register(this);
     }
 
@@ -32,6 +33,10 @@ namespace GoodStatistics.BatchControl {
 
     [OnEvent]
     public void OnGoodsSampled(GoodsSampledEvent goodsSampledEvent) {
+      UpdateItems();
+    }
+
+    private void UpdateItems() {
       foreach (var goodStatisticsBatchControlItem in _goodStatisticsBatchControlItems) {
         goodStatisticsBatchControlItem.Update();
       }

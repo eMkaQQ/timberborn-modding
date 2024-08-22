@@ -4,8 +4,8 @@ using Timberborn.BaseComponentSystem;
 using Timberborn.EntitySystem;
 
 namespace GoodStatistics.Analytics {
-  internal class DistrictGoodTrendsRegistry : BaseComponent,
-                                              IInitializableEntity {
+  public class DistrictGoodTrendsRegistry : BaseComponent,
+                                            IInitializableEntity {
 
     public GoodTrendsRegistry GoodTrendsRegistry { get; private set; }
     private GoodTrendsRegistryFactory _goodTrendsRegistryFactory;

@@ -2,7 +2,7 @@
 using Timberborn.SingletonSystem;
 
 namespace GoodStatistics.Analytics {
-  internal class GlobalGoodTrendsRegistry : ILoadableSingleton {
+  public class GlobalGoodTrendsRegistry : ILoadableSingleton {
 
     public GoodTrendsRegistry GoodTrendsRegistry { get; private set; }
     private readonly GlobalGoodSamplesRegistry _globalGoodSamplesRegistry;

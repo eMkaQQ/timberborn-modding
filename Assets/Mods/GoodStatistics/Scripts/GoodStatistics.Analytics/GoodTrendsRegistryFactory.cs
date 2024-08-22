@@ -1,7 +1,7 @@
 ﻿using GoodStatistics.Sampling;
 
 namespace GoodStatistics.Analytics {
-  internal class GoodTrendsRegistryFactory {
+  public class GoodTrendsRegistryFactory {
 
     private readonly IGoodTrendAnalyzer _goodTrendAnalyzer;
 
