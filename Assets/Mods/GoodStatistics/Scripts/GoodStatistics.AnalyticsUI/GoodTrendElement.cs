@@ -6,6 +6,7 @@ namespace GoodStatistics.AnalyticsUI {
 
     public VisualElement Root { get; }
     public string GoodId { get; }
+    public GoodTrend GoodTrend { get; private set; }
     private readonly TrendIconProvider _trendIconProvider;
     private readonly Image _image;
 
@@ -19,8 +20,9 @@ namespace GoodStatistics.AnalyticsUI {
       _image = image;
     }
 
-    public void SetTrendType(TrendType trendType) {
-      _image.sprite = _trendIconProvider.GetIcon(trendType);
+    public void Update(GoodTrend goodTrend) {
+      GoodTrend = goodTrend;
+      _image.sprite = _trendIconProvider.GetIcon(goodTrend.TrendType);
     }
 
   }

@@ -15,9 +15,9 @@ namespace GoodStatistics.AnalyticsUI {
     private readonly List<GoodTrendElement> _goodTrendElements = new();
 
     public TopBarTrendElementsUpdater(EventBus eventBus,
-                            DistrictContextService districtContextService,
-                            GlobalGoodTrendsRegistry globalGoodTrendsRegistry,
-                            TopBarPanelTrendDecorator topBarPanelTrendDecorator) {
+                                      DistrictContextService districtContextService,
+                                      GlobalGoodTrendsRegistry globalGoodTrendsRegistry,
+                                      TopBarPanelTrendDecorator topBarPanelTrendDecorator) {
       _eventBus = eventBus;
       _districtContextService = districtContextService;
       _globalGoodTrendsRegistry = globalGoodTrendsRegistry;
@@ -55,7 +55,7 @@ namespace GoodStatistics.AnalyticsUI {
               .GoodTrendsRegistry
           : _globalGoodTrendsRegistry.GoodTrendsRegistry;
       foreach (var goodTrendElement in _goodTrendElements) {
-        goodTrendElement.SetTrendType(trendRegistry.GetTrend(goodTrendElement.GoodId).TrendType);
+        goodTrendElement.Update(trendRegistry.GetTrend(goodTrendElement.GoodId));
       }
     }
 

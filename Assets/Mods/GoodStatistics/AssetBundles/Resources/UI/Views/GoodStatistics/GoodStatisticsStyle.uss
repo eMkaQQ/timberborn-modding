@@ -26,6 +26,7 @@
     height: 42px;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
 .good-statistics-batch-control-item__good-icon {
@@ -36,9 +37,16 @@
 }
 
 .good-statistics-batch-control-item__good-sample-records-wrapper {
-    flex-grow: 1;
+    flex-grow: 0;
     margin-left: 8px;
     flex-direction: row;
+}
+
+.good-statistics-batch-control-item__days-left-label {
+    width: 36px;
+    margin-right: 6px;
+    flex-grow: 0;
+    -unity-text-align: middle-center;
 }
 
 .good-statistics-progress-bar {
@@ -62,4 +70,11 @@
     width: 30px;
     height: 20px;
     align-self: center;
+}
+
+.good-trend-tooltip {
+    max-width: 200px;
+    align-self: center;
+    -unity-text-align: middle-center;
+    margin: 3px;
 }

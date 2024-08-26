@@ -15,18 +15,25 @@ namespace GoodStatistics.BatchControl {
     private readonly GoodDescriber _goodDescriber;
     private readonly GoodSampleRecordsElementFactory _goodSampleRecordsElementFactory;
     private readonly GoodTrendElementFactory _goodTrendElementFactory;
+    private readonly GoodTrendDaysLeftDescriber _goodTrendDaysLeftDescriber;
+    private readonly GoodTrendTooltipFactory _goodTrendTooltipFactory;
 
     public GoodStatisticsBatchControlItemFactory(ITooltipRegistrar tooltipRegistrar,
                                                  VisualElementLoader visualElementLoader,
                                                  GoodDescriber goodDescriber,
                                                  GoodSampleRecordsElementFactory
                                                      goodSampleRecordsElementFactory,
-                                                 GoodTrendElementFactory goodTrendElementFactory) {
+                                                 GoodTrendElementFactory goodTrendElementFactory,
+                                                 GoodTrendDaysLeftDescriber
+                                                     goodTrendDaysLeftDescriber,
+                                                 GoodTrendTooltipFactory goodTrendTooltipFactory) {
       _tooltipRegistrar = tooltipRegistrar;
       _visualElementLoader = visualElementLoader;
       _goodDescriber = goodDescriber;
       _goodSampleRecordsElementFactory = goodSampleRecordsElementFactory;
       _goodTrendElementFactory = goodTrendElementFactory;
+      _goodTrendDaysLeftDescriber = goodTrendDaysLeftDescriber;
+      _goodTrendTooltipFactory = goodTrendTooltipFactory;
     }
 
     public GoodStatisticsBatchControlItem Create(GoodSampleRecords goodSampleRecords,
@@ -37,13 +44,14 @@ namespace GoodStatistics.BatchControl {
       var goodIcon = item.Q<Image>("GoodIcon");
       var describedGood = _goodDescriber.GetDescribedGood(goodSampleRecords.GoodId);
       goodIcon.sprite = describedGood.Icon;
-      var trendElement = _goodTrendElementFactory.Create(goodSampleRecords.GoodId);
+      var trendElement = _goodTrendElementFactory.Create(goodSampleRecords.GoodId, goodIcon);
       goodIcon.Add(trendElement.Root);
-
       var records = _goodSampleRecordsElementFactory.Create(
           goodSampleRecords, item.Q<VisualElement>("GoodSampleRecordsWrapper"));
-
-      return new(item, records, trendElement, goodTrend);
+      var daysLeftLabel = item.Q<Label>("DaysLeftLabel");
+      _tooltipRegistrar.Register(daysLeftLabel, () => _goodTrendTooltipFactory.Create(goodTrend));
+      return new(_goodTrendDaysLeftDescriber, item, records,
+                 trendElement, goodTrend, daysLeftLabel);
     }
 
   }

@@ -2,3 +2,5 @@ ID,Text,Comment
 eMka.GoodStatistics.SamplePerDaySetting,Samples per day,
 eMka.GoodStatistics.BatchControlKeyBinding,Open Goods Statistics tab,
 eMka.GoodStatistics.BatchControlTabName,Goods Statistics,
+eMka.GoodStatistics.GrowingDaysLeft,Estimated time to fill: {0},
+eMka.GoodStatistics.DepletionDaysLeft,Estimated time to deplete: {0},

@@ -22,7 +22,7 @@ namespace GoodStatistics.BatchControl {
     }
 
     public override string TabNameLocKey => "eMka.GoodStatistics.BatchControlTabName";
-    public override string TabImage => "Distribution";
+    public override string TabImage => "GoodStatistics";
     public override string BindingKey => "GoodStatisticsTab";
     protected override bool RemoveEmptyRowGroups => true;
 

@@ -1,0 +1,7 @@
+﻿<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="/Assets/Mods/GoodStatistics/AssetBundles/Resources/UI/Views/GoodStatistics/GoodStatisticsStyle.uss" />
+    <ui:VisualElement name="GoodTrendTooltip">
+        <Style src="/Assets/Mods/GoodStatistics/AssetBundles/Resources/UI/Views/GoodStatistics/GoodStatisticsStyle.uss" />
+        <ui:Label name="TooltipLabel" text="Estimated time" class="game-text-normal good-trend-tooltip" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -34,10 +34,21 @@ namespace GoodStatistics.Sampling {
       if (_goodSamples.Count > GoodStatisticsConstants.MaxSamples) {
         _goodSamples.RemoveAt(_goodSamples.Count - 1);
       }
+      ReplaceMissingSamples(goodSample);
     }
 
     public int GetMaxCapacity() {
       return _goodSamples.Max(sample => sample.TotalCapacity);
+    }
+    
+    private void ReplaceMissingSamples(GoodSample goodSample) {
+      for (var i = 1; i < _goodSamples.Count; i++) {
+        if (_goodSamples[i].DayTimestamp < 0) {
+          _goodSamples[i] = goodSample;
+        } else {
+          break;
+        }
+      }
     }
 
   }

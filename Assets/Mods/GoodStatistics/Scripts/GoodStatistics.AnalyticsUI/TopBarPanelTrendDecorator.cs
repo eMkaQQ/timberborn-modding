@@ -65,7 +65,7 @@ namespace GoodStatistics.AnalyticsUI {
       var root = (VisualElement) rootField.GetValue(counter);
       var goodIdField = GetPrivateField(counter, "_goodId");
       var goodId = (string) goodIdField.GetValue(counter);
-      var trendElement = _goodTrendElementFactory.Create(goodId);
+      var trendElement = _goodTrendElementFactory.Create(goodId, root);
       root.Q<VisualElement>("Icon").Add(trendElement.Root);
       return trendElement;
     }

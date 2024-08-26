@@ -9,6 +9,8 @@ namespace GoodStatistics.AnalyticsUI {
       containerDefinition.Bind<GoodTrendElementFactory>().AsSingleton();
       containerDefinition.Bind<TrendIconProvider>().AsSingleton();
       containerDefinition.Bind<TopBarPanelTrendDecorator>().AsSingleton();
+      containerDefinition.Bind<GoodTrendDaysLeftDescriber>().AsSingleton();
+      containerDefinition.Bind<GoodTrendTooltipFactory>().AsSingleton();
     }
 
   }
