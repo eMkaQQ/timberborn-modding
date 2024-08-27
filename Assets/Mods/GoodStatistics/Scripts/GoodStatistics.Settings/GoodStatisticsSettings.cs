@@ -9,7 +9,19 @@ namespace GoodStatistics.Settings {
     public ModSetting<int> SamplesPerDay { get; } =
       new RangeIntModSetting(
           1, 1, 48,
-          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.SamplePerDaySetting"));
+          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.Settings.SamplePerDay"));
+
+    public ModSetting<bool> ShowTrendsOnTopBar { get; } =
+      new(true,
+          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.Settings.ShowTrendsOnTopBar"));
+
+    public ModSetting<bool> AnalyzeGoodsWithoutStockpiles { get; } =
+      new(false, ModSettingDescriptor.CreateLocalized(
+              "eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles"));
+
+    public ModSetting<int> IgnoreGoodsWithStorageLessThan { get; } =
+      new(50, ModSettingDescriptor.CreateLocalized(
+              "eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan"));
 
     public GoodStatisticsSettings(ISettings settings,
                                   ModSettingsOwnerRegistry modSettingsOwnerRegistry,

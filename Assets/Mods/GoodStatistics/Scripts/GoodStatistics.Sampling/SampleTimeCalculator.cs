@@ -18,7 +18,11 @@ namespace GoodStatistics.Sampling {
       var partialDayNumber = _dayNightCycle.PartialDayNumber;
       var samplesPerDay = _goodStatisticsSettings.SamplesPerDay.Value;
       var sampleInterval = 1f / samplesPerDay;
-      return Mathf.Ceil(partialDayNumber / sampleInterval) * sampleInterval;
+      var nextSample = Mathf.Ceil(partialDayNumber / sampleInterval) * sampleInterval;
+      if (Mathf.Approximately(nextSample, partialDayNumber)) {
+        return nextSample + sampleInterval;
+      }
+      return nextSample;
     }
 
   }

@@ -7,12 +7,12 @@ namespace GoodStatistics.UI {
   public class GoodSampleRecordsElement {
 
     private readonly GoodSampleRecords _goodSampleRecords;
-    private readonly ImmutableArray<ResourceCountElement> _resourceCountElements;
+    private readonly ImmutableArray<GoodSampleElement> _goodSampleElements;
 
     public GoodSampleRecordsElement(GoodSampleRecords goodSampleRecords,
-                                    IEnumerable<ResourceCountElement> resourceCountElements) {
+                                    IEnumerable<GoodSampleElement> goodSampleElements) {
       _goodSampleRecords = goodSampleRecords;
-      _resourceCountElements = resourceCountElements.ToImmutableArray();
+      _goodSampleElements = goodSampleElements.ToImmutableArray();
     }
 
     public void Update() {
@@ -21,7 +21,7 @@ namespace GoodStatistics.UI {
       for (var index = 0; index < goodSamples.Count; index++) {
         var elementIndex = goodSamples.Count - index - 1;
         var fillRate = GetFillRate(goodSamples[index].TotalStock, maxCapacity);
-        _resourceCountElements[elementIndex].SetFillRate(fillRate);
+        _goodSampleElements[elementIndex].Update(goodSamples[index], fillRate);
       }
     }
 

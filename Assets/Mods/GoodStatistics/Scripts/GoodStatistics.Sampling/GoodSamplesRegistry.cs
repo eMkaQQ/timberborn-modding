@@ -9,6 +9,9 @@ namespace GoodStatistics.Sampling {
     private readonly Dictionary<string, GoodSampleRecords> _goodSamplesRecordsMap = new();
     private readonly List<GoodSampleRecords> _goodSamplesRecords = new();
 
+    private GoodSamplesRegistry() {
+    }
+
     public static GoodSamplesRegistry CreateNew(IReadOnlyList<string> goodIds) {
       var goodSamplesRegistry = new GoodSamplesRegistry();
       foreach (var goodId in goodIds) {

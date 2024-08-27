@@ -49,20 +49,20 @@
     -unity-text-align: middle-center;
 }
 
-.good-statistics-progress-bar {
+.good-sample-element {
     height: 28px;
     width: 9px;
 }
 
-.good-statistics-progress-bar__fill {
+.good-sample-element__fill {
     width: 100%;
 }
 
-.good-statistics-progress-bar:hover {
+.good-sample-element:hover {
     background-color: rgba(187, 165, 119, 0.35);
 }
 
-.good-statistics-progress-bar__fill:hover {
+.good-sample-element__fill:hover {
     background-color: rgb(187, 165, 119);
 }
 
@@ -72,7 +72,7 @@
     align-self: center;
 }
 
-.good-trend-tooltip {
+.good-statistics-tooltip {
     max-width: 200px;
     align-self: center;
     -unity-text-align: middle-center;

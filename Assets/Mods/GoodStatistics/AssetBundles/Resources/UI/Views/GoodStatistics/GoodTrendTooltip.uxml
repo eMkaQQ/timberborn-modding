@@ -2,6 +2,6 @@
     <Style src="/Assets/Mods/GoodStatistics/AssetBundles/Resources/UI/Views/GoodStatistics/GoodStatisticsStyle.uss" />
     <ui:VisualElement name="GoodTrendTooltip">
         <Style src="/Assets/Mods/GoodStatistics/AssetBundles/Resources/UI/Views/GoodStatistics/GoodStatisticsStyle.uss" />
-        <ui:Label name="TooltipLabel" text="Estimated time" class="game-text-normal good-trend-tooltip" />
+        <ui:Label name="TooltipLabel" text="Estimated time" class="game-text-normal good-statistics-tooltip" />
     </ui:VisualElement>
 </ui:UXML>

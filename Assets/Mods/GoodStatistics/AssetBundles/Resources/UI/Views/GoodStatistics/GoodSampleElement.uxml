@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="ResourceProgressBar" class="stockpile-capacity__progress-bar good-statistics-progress-bar">
-        <ui:VisualElement name="Fill" class="stockpile-capacity__progress-bar-progress good-statistics-progress-bar__fill" />
+    <ui:VisualElement name="GoodSampleElement" class="stockpile-capacity__progress-bar good-sample-element">
+        <ui:VisualElement name="Fill" class="stockpile-capacity__progress-bar-progress good-sample-element__fill" />
     </ui:VisualElement>
 </ui:UXML>

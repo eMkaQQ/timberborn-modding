@@ -1,5 +1,6 @@
 ﻿using GoodStatistics.Analytics;
 using GoodStatistics.Sampling;
+using GoodStatistics.Settings;
 using System.Collections.Generic;
 using Timberborn.GameDistricts;
 using Timberborn.SingletonSystem;
@@ -12,20 +13,25 @@ namespace GoodStatistics.AnalyticsUI {
     private readonly DistrictContextService _districtContextService;
     private readonly GlobalGoodTrendsRegistry _globalGoodTrendsRegistry;
     private readonly TopBarPanelTrendDecorator _topBarPanelTrendDecorator;
+    private readonly GoodStatisticsSettings _goodStatisticsSettings;
     private readonly List<GoodTrendElement> _goodTrendElements = new();
 
     public TopBarTrendElementsUpdater(EventBus eventBus,
                                       DistrictContextService districtContextService,
                                       GlobalGoodTrendsRegistry globalGoodTrendsRegistry,
-                                      TopBarPanelTrendDecorator topBarPanelTrendDecorator) {
+                                      TopBarPanelTrendDecorator topBarPanelTrendDecorator,
+                                      GoodStatisticsSettings goodStatisticsSettings) {
       _eventBus = eventBus;
       _districtContextService = districtContextService;
       _globalGoodTrendsRegistry = globalGoodTrendsRegistry;
       _topBarPanelTrendDecorator = topBarPanelTrendDecorator;
+      _goodStatisticsSettings = goodStatisticsSettings;
     }
 
     public void Load() {
-      _eventBus.Register(this);
+      if (_goodStatisticsSettings.ShowTrendsOnTopBar.Value) {
+        _eventBus.Register(this);
+      }
     }
 
     [OnEvent]

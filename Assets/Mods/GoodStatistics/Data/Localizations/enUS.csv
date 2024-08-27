@@ -4,3 +4,4 @@ eMka.GoodStatistics.BatchControlKeyBinding,Open Goods Statistics tab,
 eMka.GoodStatistics.BatchControlTabName,Goods Statistics,
 eMka.GoodStatistics.GrowingDaysLeft,Estimated time to fill: {0},
 eMka.GoodStatistics.DepletionDaysLeft,Estimated time to deplete: {0},
+eMka.GoodStatistics.GoodSampleTime,Sampled {0} ago,"{0} stands for formatted Time.HoursShort, e.g. ""1h"" for 1 hour"
