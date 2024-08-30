@@ -8,8 +8,8 @@ namespace GoodStatistics.Settings {
 
     public ModSetting<int> SamplesPerDay { get; } =
       new RangeIntModSetting(
-          1, 1, 48,
-          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.Settings.SamplePerDay"));
+          3, 1, 12,
+          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.Settings.SamplesPerDay"));
 
     public ModSetting<bool> ShowTrendsOnTopBar { get; } =
       new(true,
@@ -29,7 +29,7 @@ namespace GoodStatistics.Settings {
         settings, modSettingsOwnerRegistry, modRepository) {
     }
 
-    public override string HeaderLocKey => "eMka.GoodStatistics.SamplingSettings";
+    public override string HeaderLocKey => "eMka.GoodStatistics.Settings.BaseSettings";
 
     protected override string ModId => "eMka.GoodsStatistics";
 

@@ -70,6 +70,11 @@
     width: 30px;
     height: 20px;
     align-self: center;
+    right: -1px;
+}
+
+.good-trend-element--large {
+    right: -3px;
 }
 
 .good-statistics-tooltip {

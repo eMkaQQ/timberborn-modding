@@ -6,64 +6,42 @@ using Timberborn.SettingsSystem;
 namespace GoodStatistics.Settings {
   public class EMAAnalyzerSettings : ModSettingsOwner {
 
-    public ModSetting<int> ConsecutiveMicroChangesThreshold { get; } =
+    public ModSetting<int> SamplesToAnalyze { get; } =
       new RangeIntModSetting(
-          4, 1, GoodStatisticsConstants.MaxSamples,
-          ModSettingDescriptor.CreateLocalized(
-              "eMka.GoodStatistics.ConsecutiveMicroChangesThreshold"));
+          10, 5, GoodStatisticsConstants.MaxSamples,
+          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.Settings.SamplesToAnalyze"));
 
     public ModSetting<int> LowChangeThreshold { get; } =
       new RangeIntModSetting(
           1, 1, 100,
-          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.LowChangeThreshold"));
+          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.Settings.SlowChangeThreshold"));
 
     public ModSetting<int> MediumChangeThreshold { get; } =
       new RangeIntModSetting(
           5, 1, 100,
-          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.MediumChangeThreshold"));
+          ModSettingDescriptor.CreateLocalized(
+              "eMka.GoodStatistics.Settings.ModerateChangeThreshold"));
 
     public ModSetting<int> HighChangeThreshold { get; } =
       new RangeIntModSetting(
           10, 1, 100,
-          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.HighChangeThreshold"));
+          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.Settings.FastChangeThreshold"));
 
-    public ModSetting<int> SamplesToAnalyze { get; } =
+    public ModSetting<int> ConsecutiveMicroChangesThreshold { get; } =
       new RangeIntModSetting(
-          10, 5, GoodStatisticsConstants.MaxSamples,
-          ModSettingDescriptor.CreateLocalized("eMka.GoodStatistics.SamplesToAnalyze"));
+          5, 1, GoodStatisticsConstants.MaxSamples,
+          ModSettingDescriptor.CreateLocalized(
+              "eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold"));
 
     public EMAAnalyzerSettings(ISettings settings,
-                               ModSettingsOwnerRegistry
-                                   modSettingsOwnerRegistry,
+                               ModSettingsOwnerRegistry modSettingsOwnerRegistry,
                                ModRepository modRepository) : base(
         settings, modSettingsOwnerRegistry, modRepository) {
     }
 
     public override int Order => 5;
-    public override string HeaderLocKey => "eMka.GoodStatistics.EMAAnalyzerSettings";
-
+    public override string HeaderLocKey => "eMka.GoodStatistics.Settings.EMAAnalyzerHeader";
     protected override string ModId => "eMka.GoodsStatistics";
-
-    protected override void OnAfterLoad() {
-      LowChangeThreshold.ValueChanged += (_, i) => {
-        if (i > MediumChangeThreshold.Value) {
-          MediumChangeThreshold.SetValue(i);
-        }
-      };
-      MediumChangeThreshold.ValueChanged += (_, i) => {
-        if (i < LowChangeThreshold.Value) {
-          LowChangeThreshold.SetValue(i);
-        }
-        if (i > HighChangeThreshold.Value) {
-          HighChangeThreshold.SetValue(i);
-        }
-      };
-      HighChangeThreshold.ValueChanged += (_, i) => {
-        if (i < MediumChangeThreshold.Value) {
-          MediumChangeThreshold.SetValue(i);
-        }
-      };
-    }
 
   }
 }

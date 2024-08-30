@@ -1,7 +1,17 @@
 ID,Text,Comment
-eMka.GoodStatistics.SamplePerDaySetting,Samples per day,
-eMka.GoodStatistics.BatchControlKeyBinding,Open Goods Statistics tab,
-eMka.GoodStatistics.BatchControlTabName,Goods Statistics,
-eMka.GoodStatistics.GrowingDaysLeft,Estimated time to fill: {0},
-eMka.GoodStatistics.DepletionDaysLeft,Estimated time to deplete: {0},
+eMka.GoodStatistics.BatchControlKeyBinding,Open Goods Statistics tab,KeyBinding label
+eMka.GoodStatistics.BatchControlTabName,Goods Statistics,Name of the tab in settlement panel
+eMka.GoodStatistics.DepletionDaysLeft,Estimated time to deplete: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
 eMka.GoodStatistics.GoodSampleTime,Sampled {0} ago,"{0} stands for formatted Time.HoursShort, e.g. ""1h"" for 1 hour"
+eMka.GoodStatistics.GrowingDaysLeft,Estimated time to fill: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Analyze goods without storage,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold,Consecutive micro changes threshold,
+eMka.GoodStatistics.Settings.EMAAnalyzerHeader,Exponential Moving Average Analyzer,
+eMka.GoodStatistics.Settings.FastChangeThreshold,Fast daily change threshold,
+eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan,Ignore goods with storage less than,
+eMka.GoodStatistics.Settings.ModerateChangeThreshold,Moderate daily change threshold,
+eMka.GoodStatistics.Settings.SamplesPerDay,Samples per day,
+eMka.GoodStatistics.Settings.SamplesToAnalyze,Samples to analyze,
+eMka.GoodStatistics.Settings.BaseSettings,Base settings,
+eMka.GoodStatistics.Settings.ShowTrendsOnTopBar,Show trends on top bar,
+eMka.GoodStatistics.Settings.SlowChangeThreshold,Slow daily change threshold,

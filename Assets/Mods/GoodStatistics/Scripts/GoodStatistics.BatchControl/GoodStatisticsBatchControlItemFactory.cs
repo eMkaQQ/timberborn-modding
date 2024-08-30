@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 namespace GoodStatistics.BatchControl {
   internal class GoodStatisticsBatchControlItemFactory {
 
+    private static readonly string LargeIconClass = "good-trend-element--large";
     private readonly ITooltipRegistrar _tooltipRegistrar;
     private readonly VisualElementLoader _visualElementLoader;
     private readonly GoodDescriber _goodDescriber;
@@ -45,6 +46,7 @@ namespace GoodStatistics.BatchControl {
       var describedGood = _goodDescriber.GetDescribedGood(goodSampleRecords.GoodId);
       goodIcon.sprite = describedGood.Icon;
       var trendElement = _goodTrendElementFactory.Create(goodSampleRecords.GoodId, goodIcon);
+      trendElement.Root.AddToClassList(LargeIconClass);
       goodIcon.Add(trendElement.Root);
       var records = _goodSampleRecordsElementFactory.Create(
           goodSampleRecords, item.Q<VisualElement>("GoodSampleRecordsWrapper"));

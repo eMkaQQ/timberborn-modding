@@ -18,16 +18,15 @@ namespace GoodStatistics.Analytics {
         daysLeft = -1;
         return;
       }
-      GetTrendAndChange(goodSampleRecords, 0, out trendType, out var change);
+      GetTrendAndDailyChange(goodSampleRecords, 0, out trendType, out var dailyChange);
       if (trendType == TrendType.Stable
-          && !Mathf.Approximately(change, 0)
-          && CheckConsecutiveMicroChanges(goodSampleRecords, change)) {
-        trendType = change > 0 ? TrendType.LowGrowth : TrendType.LowDepletion;
+          && CheckConsecutiveMicroChanges(goodSampleRecords, dailyChange)) {
+        trendType = dailyChange > 0 ? TrendType.LowGrowth : TrendType.LowDepletion;
       }
       if (trendType.IsDepleting()) {
-        daysLeft = CountDaysLeftToZero(goodSampleRecords, change);
+        daysLeft = CountDaysLeftToZero(goodSampleRecords, dailyChange);
       } else if (trendType.IsGrowing()) {
-        daysLeft = CountDaysLeftToFull(goodSampleRecords, change);
+        daysLeft = CountDaysLeftToFull(goodSampleRecords, dailyChange);
       } else {
         daysLeft = -1;
       }
@@ -37,12 +36,17 @@ namespace GoodStatistics.Analytics {
       return goodSampleRecords.GoodSamples[1].FillRate is > 0.999f or < 0.001f;
     }
 
-    private void GetTrendAndChange(GoodSampleRecords goodSampleRecords, int index,
-                                   out TrendType trendType, out float change) {
+    private void GetTrendAndDailyChange(GoodSampleRecords goodSampleRecords, int index,
+                                        out TrendType trendType, out float dailyChange) {
       var indexChangeAverage = GetAverage(goodSampleRecords, index);
       var previousAverage = GetAverage(goodSampleRecords, index + 1);
-      change = indexChangeAverage - previousAverage;
-      var changePercentage = change / goodSampleRecords.GetMaxCapacity();
+      var change = indexChangeAverage - previousAverage;
+      var changeTime = goodSampleRecords.GoodSamples[0].DayTimestamp
+                       - goodSampleRecords.GoodSamples[1].DayTimestamp;
+      dailyChange = changeTime == 0 || goodSampleRecords.GoodSamples[1].DayTimestamp < 0
+          ? 0
+          : change / changeTime;
+      var changePercentage = dailyChange / goodSampleRecords.GetMaxCapacity();
       trendType = ChangeToTrendType(changePercentage);
     }
 
@@ -87,34 +91,33 @@ namespace GoodStatistics.Analytics {
 
     private bool CheckConsecutiveMicroChanges(GoodSampleRecords goodSampleRecords,
                                               float changeToCheck) {
-      for (var index = 0;
-           index < _emaAnalyzerSettings.ConsecutiveMicroChangesThreshold.Value;
-           index++) {
-        GetTrendAndChange(goodSampleRecords, index + 1, out _, out var change);
-        if (!Mathf.Approximately(Mathf.Sign(change), Mathf.Sign(changeToCheck))) {
+      var samplesToCheck = _emaAnalyzerSettings.ConsecutiveMicroChangesThreshold.Value;
+      var maxIndex = goodSampleRecords.GoodSamples.Count - 1;
+      var sameSignCounter = 0;
+      for (var index = 0; index < samplesToCheck && index < maxIndex; index++) {
+        GetTrendAndDailyChange(goodSampleRecords, index + 1, out _, out var dailyChange);
+        if (Mathf.Approximately(dailyChange, 0)) {
+          samplesToCheck++;
+        } else if (!Mathf.Approximately(Mathf.Sign(dailyChange), Mathf.Sign(changeToCheck))) {
           return false;
+        } else {
+          sameSignCounter++;
         }
       }
-      return true;
+      return sameSignCounter >= _emaAnalyzerSettings.ConsecutiveMicroChangesThreshold.Value;
     }
 
     private static float CountDaysLeftToZero(GoodSampleRecords goodSampleRecords,
-                                             float change) {
-      var changeTime = goodSampleRecords.GoodSamples[0].DayTimestamp
-                       - goodSampleRecords.GoodSamples[1].DayTimestamp;
-      var dailyChange = -change / changeTime;
+                                             float dailyChange) {
       var stockLeft = goodSampleRecords.GoodSamples[0].TotalStock;
-      return stockLeft / dailyChange;
+      return stockLeft / -dailyChange;
     }
 
     private static float CountDaysLeftToFull(GoodSampleRecords goodSampleRecords,
-                                             float change) {
-      var changeTime = goodSampleRecords.GoodSamples[0].DayTimestamp
-                       - goodSampleRecords.GoodSamples[1].DayTimestamp;
-      var dailyChange = change / changeTime;
-      var stockLeft = goodSampleRecords.GoodSamples[0].InputOutputCapacity
-                      - goodSampleRecords.GoodSamples[0].TotalStock;
-      return stockLeft / dailyChange;
+                                             float dailyChange) {
+      var capacityLeft = goodSampleRecords.GoodSamples[0].TotalCapacity
+                         - goodSampleRecords.GoodSamples[0].TotalStock;
+      return capacityLeft / dailyChange;
     }
 
   }
