@@ -1,5 +1,5 @@
 ﻿namespace GoodStatistics.Settings {
-  public class GoodStatisticsConstants {
+  public static class GoodStatisticsConstants {
 
     public static readonly int MaxSamples = 16;
 
