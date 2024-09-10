@@ -1,0 +1,17 @@
+ID,Text,Comment
+eMka.GoodStatistics.BatchControlKeyBinding,Bereich „Güterstatistiken“ öffnen,KeyBinding label
+eMka.GoodStatistics.BatchControlTabName,Güterstatistiken,Name of the tab in settlement panel
+eMka.GoodStatistics.DepletionDaysLeft,Geschätzte Aufbrauchzeit: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.GoodSampleTime,Abgefragt vor {0},"{0} stands for formatted Time.HoursShort, e.g. ""1h"" for 1 hour"
+eMka.GoodStatistics.GrowingDaysLeft,Geschätzte Auffüllzeit: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Analyse von Gütern ohne Lagerplätze,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold,Schwellenwert für aufeinanderfolgende Mikroveränderungen,
+eMka.GoodStatistics.Settings.EMAAnalyzerHeader,Exponentielle Durchschnitts-Analyse,
+eMka.GoodStatistics.Settings.FastChangeThreshold,Schneller Tagesschwellenwert,
+eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan,Güter ignorieren mit Lagerplatzkapazität weniger als,
+eMka.GoodStatistics.Settings.ModerateChangeThreshold,Mittlerer Tagesschwellenwert,
+eMka.GoodStatistics.Settings.SamplesPerDay,Abfragen pro Tag,
+eMka.GoodStatistics.Settings.SamplesToAnalyze,Anzahl Abfrageanalysen,
+eMka.GoodStatistics.Settings.BaseSettings,Allgemeine Einstellungen,
+eMka.GoodStatistics.Settings.ShowTrendsOnTopBar,Trends in der Kopfleiste anzeigen,
+eMka.GoodStatistics.Settings.SlowChangeThreshold,Langsamer Tagesschwellenwert,

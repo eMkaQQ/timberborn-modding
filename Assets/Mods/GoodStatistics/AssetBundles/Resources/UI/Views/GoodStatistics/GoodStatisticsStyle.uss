@@ -38,13 +38,13 @@
 
 .good-statistics-batch-control-item__good-sample-records-wrapper {
     flex-grow: 0;
-    margin-left: 8px;
+    margin-right: 10px;
     flex-direction: row;
 }
 
 .good-statistics-batch-control-item__days-left-label {
     width: 36px;
-    margin-right: 6px;
+    margin-left: 4px;
     flex-grow: 0;
     -unity-text-align: middle-center;
 }

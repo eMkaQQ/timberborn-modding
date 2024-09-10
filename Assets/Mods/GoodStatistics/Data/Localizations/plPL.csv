@@ -1,0 +1,18 @@
+ID,Text,Comment
+eMka.GoodStatistics.BatchControlKeyBinding,Otwórz zakładkę Statystyki dóbr,KeyBinding label
+eMka.GoodStatistics.BatchControlTabName,Statystyki dóbr,Name of the tab in settlement panel
+eMka.GoodStatistics.DepletionDaysLeft,Szacunkowy czas do wyczerpania: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.GoodSampleTime,Zmierzono {0} temu,"{0} stands for formatted Time.HoursShort, e.g. ""1h"" for 1 hour"
+eMka.GoodStatistics.GrowingDaysLeft,Szacunkowy czas do wypełnienia: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Analizuj dobra bez magazynów,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold,Minimalna liczba kolejnych mikrozmian,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThresholdTooltip,Ile postępujących po sobie mikrozmian (zmian poniżej progu wolnej dziennej zmiany) musi wystąpić żeby zostały uznane jako trend,"Tooltip for ConsecutiveMicroChangesThreshold setting, text in the brackets should be the same as eMka.GoodStatistics.Settings.SlowChangeThreshold key"
+eMka.GoodStatistics.Settings.EMAAnalyzerHeader,Wykładnicza Średnia Ruchoma,
+eMka.GoodStatistics.Settings.FastChangeThreshold,Próg szybkiej dziennej zmiany,
+eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan,Ignoruj dobra z pojemnością magazynową mniejszą niż,
+eMka.GoodStatistics.Settings.ModerateChangeThreshold,Próg umiarkowanej dziennej zmiany,
+eMka.GoodStatistics.Settings.SamplesPerDay,Dzienna liczba pomiarów,
+eMka.GoodStatistics.Settings.SamplesToAnalyze,Liczba analizowanych pomiarów,
+eMka.GoodStatistics.Settings.BaseSettings,Ustawienia podstawowe,
+eMka.GoodStatistics.Settings.ShowTrendsOnTopBar,Pokazuj ikony trendów na interfejsie,
+eMka.GoodStatistics.Settings.SlowChangeThreshold,Próg wolnej dziennej zmiany,

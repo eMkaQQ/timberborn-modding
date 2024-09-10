@@ -31,7 +31,9 @@ namespace GoodStatistics.Settings {
       new RangeIntModSetting(
           5, 1, GoodStatisticsConstants.MaxSamples,
           ModSettingDescriptor.CreateLocalized(
-              "eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold"));
+                  "eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold")
+              .SetLocalizedTooltip(
+                  "eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThresholdTooltip"));
 
     public EMAAnalyzerSettings(ISettings settings,
                                ModSettingsOwnerRegistry modSettingsOwnerRegistry,

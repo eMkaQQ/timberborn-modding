@@ -2,5 +2,5 @@
   "Id": "GoodStatisticsTab",
   "GroupId": "SettlementPanel",
   "LocKey": "eMka.GoodStatistics.BatchControlKeyBinding",
-  "Order": 90
+  "Order": 85
 }

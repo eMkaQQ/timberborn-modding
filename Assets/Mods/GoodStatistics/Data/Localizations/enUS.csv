@@ -6,6 +6,7 @@ eMka.GoodStatistics.GoodSampleTime,Sampled {0} ago,"{0} stands for formatted Tim
 eMka.GoodStatistics.GrowingDaysLeft,Estimated time to fill: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
 eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Analyze goods without storage,
 eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold,Consecutive micro changes threshold,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThresholdTooltip,Number of consecutive micro changes (below Slow daily change threshold) to consider as a trend,"Tooltip for ConsecutiveMicroChangesThreshold setting, text in the brackets should be the same as eMka.GoodStatistics.Settings.SlowChangeThreshold key"
 eMka.GoodStatistics.Settings.EMAAnalyzerHeader,Exponential Moving Average Analyzer,
 eMka.GoodStatistics.Settings.FastChangeThreshold,Fast daily change threshold,
 eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan,Ignore goods with storage less than,

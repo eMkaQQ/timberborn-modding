@@ -2,7 +2,7 @@
     <Style src="/Assets/Mods/GoodStatistics/AssetBundles/Resources/UI/Views/GoodStatistics/GoodStatisticsStyle.uss" />
     <Timberborn.CoreUI.NineSliceVisualElement name="GoodStatisticsBatchControlItem" class="good-statistics-batch-control-item bg-box--green">
         <ui:Image name="GoodIcon" class="good-statistics-batch-control-item__good-icon" />
-        <ui:VisualElement name="GoodSampleRecordsWrapper" class="good-statistics-batch-control-item__good-sample-records-wrapper" />
         <ui:Label name="DaysLeftLabel" text="3d" class="game-text-normal good-statistics-batch-control-item__days-left-label" />
+        <ui:VisualElement name="GoodSampleRecordsWrapper" class="good-statistics-batch-control-item__good-sample-records-wrapper" />
     </Timberborn.CoreUI.NineSliceVisualElement>
 </ui:UXML>
