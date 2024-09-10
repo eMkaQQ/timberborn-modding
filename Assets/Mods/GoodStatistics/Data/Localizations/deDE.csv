@@ -6,6 +6,7 @@ eMka.GoodStatistics.GoodSampleTime,Abgefragt vor {0},"{0} stands for formatted T
 eMka.GoodStatistics.GrowingDaysLeft,Geschätzte Auffüllzeit: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
 eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Analyse von Gütern ohne Lagerplätze,
 eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold,Schwellenwert für aufeinanderfolgende Mikroveränderungen,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThresholdTooltip,"Anzahl der aufeinanderfolgenden Mikroveränderungen (weniger als Langsamer Tagesschwellenwert), die als Trend zu betrachten sind","Tooltip for ConsecutiveMicroChangesThreshold setting, text in the brackets should be the same as eMka.GoodStatistics.Settings.SlowChangeThreshold key"
 eMka.GoodStatistics.Settings.EMAAnalyzerHeader,Exponentielle Durchschnitts-Analyse,
 eMka.GoodStatistics.Settings.FastChangeThreshold,Schneller Tagesschwellenwert,
 eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan,Güter ignorieren mit Lagerplatzkapazität weniger als,
