@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 
 namespace ModSettings.CoreUI {
   public class ModSettingsBox : IPanelController,
+                                IUpdatableSingleton,
                                 ILoadableSingleton {
 
     private static readonly string ResetMessageLocKey = "ModSettingsBox.ResetMessage";
@@ -55,6 +56,14 @@ namespace ModSettings.CoreUI {
 
     public VisualElement GetPanel() {
       return _root;
+    }
+
+    public void UpdateSingleton() {
+      if(_currentMod != null) {
+        foreach (var modSettingElement in _modSettingElements) {
+          modSettingElement.Root.SetEnabled(modSettingElement.ModSetting.Descriptor.IsEnabled());
+        }
+      }
     }
 
     public bool OnUIConfirmed() {

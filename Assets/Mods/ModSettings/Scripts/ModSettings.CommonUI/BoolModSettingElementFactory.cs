@@ -26,7 +26,7 @@ namespace ModSettings.CommonUI {
         var toggle = root.Q<Toggle>();
         toggle.value = boolModSetting.Value;
         toggle.RegisterValueChangedCallback(evt => boolModSetting.SetValue(evt.newValue));
-        element = new ModSettingElement(root);
+        element = new ModSettingElement(root, modSetting);
         return true;
       }
       element = null;

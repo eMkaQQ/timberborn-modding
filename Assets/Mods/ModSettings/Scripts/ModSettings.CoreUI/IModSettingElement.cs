@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using ModSettings.Core;
+using UnityEngine.UIElements;
 
 namespace ModSettings.CoreUI {
   public interface IModSettingElement {
@@ -6,6 +7,8 @@ namespace ModSettings.CoreUI {
     VisualElement Root { get; }
 
     bool ShouldBlockInput { get; }
+
+    ModSetting ModSetting { get; }
 
   }
 }

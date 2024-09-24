@@ -10,6 +10,7 @@ namespace ModSettingsExamples {
       containerDefinition.Bind<SimpleSettingsExample>().AsSingleton();
       containerDefinition.Bind<SettingsLogger>().AsSingleton();
       containerDefinition.Bind<FileStoredSettingsExample>().AsSingleton();
+      containerDefinition.Bind<ValueChangeListenerExample>().AsSingleton();
     }
 
   }

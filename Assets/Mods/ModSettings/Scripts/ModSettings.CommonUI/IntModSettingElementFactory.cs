@@ -26,7 +26,7 @@ namespace ModSettings.CommonUI {
         var intField = root.Q<IntegerField>();
         intField.value = intSetting.Value;
         intField.RegisterCallback<FocusOutEvent>(_ => intSetting.SetValue(intField.value));
-        element = new TextInputBaseFieldModSettingElement<int>(root, intField);
+        element = new TextInputBaseFieldModSettingElement<int>(root, modSetting, intField);
         return true;
       }
       element = null;

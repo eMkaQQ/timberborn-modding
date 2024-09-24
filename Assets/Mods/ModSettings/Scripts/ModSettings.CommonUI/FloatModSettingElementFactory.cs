@@ -26,7 +26,7 @@ namespace ModSettings.CommonUI {
         var floatField = root.Q<FloatField>();
         floatField.value = floatModSetting.Value;
         floatField.RegisterCallback<FocusOutEvent>(_ => floatModSetting.SetValue(floatField.value));
-        element = new TextInputBaseFieldModSettingElement<float>(root, floatField);
+        element = new TextInputBaseFieldModSettingElement<float>(root, modSetting, floatField);
         return true;
       }
       element = null;

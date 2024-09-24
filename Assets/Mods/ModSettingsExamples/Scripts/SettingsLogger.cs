@@ -17,10 +17,12 @@ namespace ModSettingsExamples {
     }
 
     public void Load() {
-      Debug.Log($"{nameof(_advancedSettingsExample.SmallIntRangeSetting)} value:"
-                + $" {_advancedSettingsExample.SmallIntRangeSetting.Value}");
       Debug.Log($"{nameof(_advancedSettingsExample.NegativeRangeSetting)} value:"
                 + $" {_advancedSettingsExample.NegativeRangeSetting}");
+      Debug.Log($"{nameof(_advancedSettingsExample.SmallIntRangeSetting)} value:"
+                + $" {_advancedSettingsExample.SmallIntRangeSetting.Value}");
+      Debug.Log($"{nameof(_advancedSettingsExample.SliderDisablerSetting)} value:"
+                + $" {_advancedSettingsExample.SliderDisablerSetting.Value}");
       Debug.Log($"{nameof(_advancedSettingsExample.DropdownSetting)} value:"
                 + $" {_advancedSettingsExample.DropdownSetting.Value}");
       Debug.Log($"{nameof(_advancedSettingsExample.NonLocalizedDropdownSetting)} value:"

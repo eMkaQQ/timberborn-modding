@@ -27,7 +27,7 @@ namespace ModSettings.CommonUI {
         _modSettingDescriptorInitializer.Initialize(root.Q<VisualElement>("Descriptor"),
                                                     rangeIntModSetting);
         InitializeSlider(root, rangeIntModSetting);
-        element = new ModSettingElement(root);
+        element = new ModSettingElement(root, modSetting);
         return true;
       }
       element = null;

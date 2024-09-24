@@ -29,7 +29,7 @@ namespace ModSettings.CommonUI {
         textField.value = longStringModSetting.Value;
         textField.RegisterCallback<FocusOutEvent>(
             _ => longStringModSetting.SetValue(textField.value));
-        element = new TextInputBaseFieldModSettingElement<string>(root, textField);
+        element = new TextInputBaseFieldModSettingElement<string>(root, modSetting, textField);
         return true;
       }
       element = null;

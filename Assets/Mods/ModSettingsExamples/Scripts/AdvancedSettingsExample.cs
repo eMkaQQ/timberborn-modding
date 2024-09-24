@@ -6,8 +6,13 @@ using Timberborn.SettingsSystem;
 namespace ModSettingsExamples {
   internal class AdvancedSettingsExample : ModSettingsOwner {
 
-    public ModSetting<int> SmallIntRangeSetting { get; } = new RangeIntModSetting(
-        5, 0, 10, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.SmallIntRange"));
+    public ModSetting<int> SmallIntRangeSetting { get; private set; }
+
+    public ModSetting<bool> SliderDisablerSetting { get; } = new(
+        false, ModSettingDescriptor.Create("Disable slider above"));
+
+    public ModSetting<bool> BackgroundTintSetting { get; } = new(
+        false, ModSettingDescriptor.Create("Tint background color"));
 
     public ModSetting<string> DropdownSetting { get; } = new LimitedStringModSetting(
         0, new[] {
@@ -44,6 +49,9 @@ namespace ModSettingsExamples {
                                                      ModSettingDescriptor.Create("Custom label")
                                                          .SetTooltip("With custom tooltip"));
       AddCustomModSetting(_negativeRangeSetting, "NegativeRangeSetting");
+      SmallIntRangeSetting = new RangeIntModSetting(
+          5, 0, 10, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.SmallIntRange")
+              .SetEnableCondition(() => !SliderDisablerSetting.Value));
     }
 
   }
