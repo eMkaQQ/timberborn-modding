@@ -1,0 +1,8 @@
+{
+  "name": "ModSettings.MainMenuUI",
+  "references": [
+    "ModSettings.Core",
+    "ModSettings.CoreUI"
+  ],
+  "autoReferenced": false
+}
