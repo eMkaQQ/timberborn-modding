@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Timberborn.CoreUI;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace ModSettings.ColorPicker {
@@ -41,7 +42,7 @@ namespace ModSettings.ColorPicker {
     }
 
     public bool UpdateInput() {
-      return _hsvElement.UpdateInput() || _rgbElement.UpdateInput();
+      return _hsvElement.UpdateInput() || _rgbElement.UpdateInput() || _hexField.IsFocused();
     }
 
     public void Clear() {
