@@ -30,6 +30,9 @@ namespace ModSettings.CommonUI {
       containerDefinition.MultiBind<IModSettingElementFactory>()
           .To<LongStringModSettingElementFactory>()
           .AsSingleton();
+      containerDefinition.MultiBind<IModSettingElementFactory>()
+          .To<ColorModSettingElementFactory>()
+          .AsSingleton();
     }
 
   }

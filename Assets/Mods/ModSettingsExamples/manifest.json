@@ -1,13 +1,13 @@
 {
   "Name": "Mod Settings Examples",
-  "Version": "0.6.7.0",
+  "Version": "0.6.8.5",
   "Id": "eMka.ModSettingsExamples",
   "MinimumGameVersion": "0.6.1.0",
   "Description": "",
   "RequiredMods": [
     {
       "Id": "eMka.ModSettings",
-      "MinimumVersion": "0.6.7.0"
+      "MinimumVersion": "0.6.8.5"
     }
   ]
 }

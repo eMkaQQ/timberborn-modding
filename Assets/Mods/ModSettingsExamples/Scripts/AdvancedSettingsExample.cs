@@ -14,6 +14,12 @@ namespace ModSettingsExamples {
     public ModSetting<bool> BackgroundTintSetting { get; } = new(
         false, ModSettingDescriptor.Create("Tint background color"));
 
+    public ModSetting<string> ColorSetting { get; } = new ColorModSetting(
+        "00FFFF", ModSettingDescriptor.Create("Color setting"), false);
+
+    public ModSetting<string> TransparentColorSetting { get; } = new ColorModSetting(
+        "FF00FF88", ModSettingDescriptor.Create("Transparent color"), true);
+
     public ModSetting<string> DropdownSetting { get; } = new LimitedStringModSetting(
         0, new[] {
             new LimitedStringModSettingValue("value1", "eMka.ModSettingsExamples.Dropdown1"),
@@ -27,6 +33,9 @@ namespace ModSettingsExamples {
           new NonLocalizedLimitedStringModSettingValue("Custom value2"),
           new NonLocalizedLimitedStringModSettingValue("Custom value3")
       }, ModSettingDescriptor.Create("Non-localized dropdown"));
+
+    public ModSetting<bool> LogValuesSetting { get; } = new(
+        true, ModSettingDescriptor.Create("Log these values"));
 
     private ModSetting<int> _negativeRangeSetting;
 
