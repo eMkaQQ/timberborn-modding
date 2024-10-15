@@ -1,7 +1,7 @@
 ID,Text,Comment
 eMka.GoodStatistics.BatchControlKeyBinding,Open Goods Statistics tab,KeyBinding label
 eMka.GoodStatistics.BatchControlTabName,Goods Statistics,Name of the tab in settlement panel
-eMka.GoodStatistics.DepletionDaysLeft,Estimated time to deplete: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.DepletionDaysLeft,Estimated time to depletion: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
 eMka.GoodStatistics.GoodSampleTime,Sampled {0} ago,"{0} stands for formatted Time.HoursShort, e.g. ""1h"" for 1 hour"
 eMka.GoodStatistics.GrowingDaysLeft,Estimated time to fill: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
 eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Analyze goods without storage,
