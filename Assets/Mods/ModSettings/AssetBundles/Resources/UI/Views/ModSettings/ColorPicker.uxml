@@ -1,0 +1,42 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="ColorPicker">
+        <Style src="/Assets/Mods/ModSettings/AssetBundles/Resources/UI/Views/ModSettings/ModSettingsStyle.uss" />
+        <ui:VisualElement name="HSV" class="color-picker__hsv">
+            <ui:Image name="SaturationAndValue" class="color-picker__saturation-and-value">
+                <ui:Image name="SaturationAndValuePicker" picking-mode="Ignore" class="color-picker__saturation-and-value-picker" />
+            </ui:Image>
+            <ui:Image name="HueTexture" class="color-picker__hue-texture">
+                <ui:Slider name="HueSlider" high-value="360" direction="Vertical" class="color-picker__hue-slider" />
+            </ui:Image>
+        </ui:VisualElement>
+        <ui:VisualElement name="ChosenColor" class="color-picker__chosen-color">
+            <ui:VisualElement name="AlphaBackground" class="color-picker__alpha-background">
+                <ui:VisualElement name="InitialColorImage" class="color-picker__initial-color-image" />
+                <ui:VisualElement name="ChosenColorImage" class="color-picker__chosen-color-image" />
+            </ui:VisualElement>
+            <Timberborn.CoreUI.NineSliceTextField name="HexField" max-length="10" class="color-picker__hex-field text-field" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RGBSliders">
+            <ui:VisualElement name="Red" class="color-picker__slider-wrapper">
+                <ui:Label name="RedLabel" text="R" class="settings-text" />
+                <ui:SliderInt name="RedSlider" high-value="255" class="color-picker__rgb-slider settings-slider__slider" />
+                <Timberborn.CoreUI.NineSliceIntegerField name="RedField" class="color-picker__rgb-text-field text-field" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Green" class="color-picker__slider-wrapper">
+                <ui:Label name="GreenLabel" text="G" class="settings-text" />
+                <ui:SliderInt name="GreenSlider" high-value="255" class="color-picker__rgb-slider settings-slider__slider" />
+                <Timberborn.CoreUI.NineSliceIntegerField name="GreenField" class="color-picker__rgb-text-field text-field" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Blue" class="color-picker__slider-wrapper">
+                <ui:Label name="BlueLabel" text="B" class="settings-text" />
+                <ui:SliderInt name="BlueSlider" high-value="255" class="color-picker__rgb-slider settings-slider__slider" />
+                <Timberborn.CoreUI.NineSliceIntegerField name="BlueField" class="color-picker__rgb-text-field text-field" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Alpha" class="color-picker__slider-wrapper">
+                <ui:Label name="AlphaLabel" text="A" class="settings-text" />
+                <ui:SliderInt name="AlphaSlider" high-value="255" class="color-picker__rgb-slider settings-slider__slider" />
+                <Timberborn.CoreUI.NineSliceIntegerField name="AlphaField" class="color-picker__rgb-text-field text-field" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -3,6 +3,8 @@ using ModSettings.CoreUI;
 
 namespace ModSettings.CommonUI {
   [Context("MainMenu")]
+  [Context("Game")]
+  [Context("MapEditor")]
   internal class ModSettingsCommonUIConfigurator : IConfigurator {
 
     public void Configure(IContainerDefinition containerDefinition) {
@@ -27,6 +29,9 @@ namespace ModSettings.CommonUI {
           .AsSingleton();
       containerDefinition.MultiBind<IModSettingElementFactory>()
           .To<LongStringModSettingElementFactory>()
+          .AsSingleton();
+      containerDefinition.MultiBind<IModSettingElementFactory>()
+          .To<ColorModSettingElementFactory>()
           .AsSingleton();
     }
 

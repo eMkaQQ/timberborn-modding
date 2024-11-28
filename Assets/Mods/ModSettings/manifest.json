@@ -1,9 +1,9 @@
 {
   "Name": "Mod Settings",
-  "Version": "0.6.7.0",
+  "Version": "0.6.9.3",
   "Id": "eMka.ModSettings",
   "MinimumGameVersion": "0.6.1.0",
-  "Description": "Helper mod for other mods to provide settings for the player. It doesn't do anything on its own, but may be required by some mods.\n\nIf you are a modder, check out source code and examples on GitHub: https://github.com/eMkaQQ/timberborn-modding\n\nDisclaimer: although I work for Mechanistry and I'm one of the developers of Timberborn, this mod is my personal creation, made independently of my job. It shouldn't be considered official game content nor associated with Mechanistry in any way.\n\nSpecial thanks to:\n@juf0816 for the German localization",
+  "Description": "Helper mod that allows other mods to provide settings for the player. It doesn't do anything on its own, but may be required by some mods.\n\nIf you are a modder, check out source code and examples on GitHub: https://github.com/eMkaQQ/timberborn-modding\n\nDisclaimer: although I work for Mechanistry and I'm one of the developers of Timberborn, this mod is my personal creation, made independently of my job. It shouldn't be considered official game content nor associated with Mechanistry in any way.\n\nSpecial thanks to:\n@juf0816 for the German localization",
   "RequiredMods": [
   ]
 }

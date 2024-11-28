@@ -1,0 +1,18 @@
+ID,Text,Comment
+eMka.GoodStatistics.BatchControlKeyBinding,Ouvrir l'onglet Statistiques des marchandises,KeyBinding label
+eMka.GoodStatistics.BatchControlTabName,Statistiques des marchandises,Name of the tab in settlement panel
+eMka.GoodStatistics.DepletionDaysLeft,Durée estimée avant l'épuisement : {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.GoodSampleTime,Échantillonné il y a {0},"{0} stands for formatted Time.HoursShort, e.g. ""1h"" for 1 hour"
+eMka.GoodStatistics.GrowingDaysLeft,Durée estimée du remplissage : {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Analyser les biens sans stockage,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold,Seuil de microchangements consécutifs,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThresholdTooltip,Nombre de micro changements consécutifs (sous le seuil de changement quotidien lent) à considérer comme une tendance,"Tooltip for ConsecutiveMicroChangesThreshold setting, text in the brackets should be the same as eMka.GoodStatistics.Settings.SlowChangeThreshold key"
+eMka.GoodStatistics.Settings.EMAAnalyzerHeader,Analyseur de moyenne mobile exponentielle,
+eMka.GoodStatistics.Settings.FastChangeThreshold,Seuil de changement journalier rapide,
+eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan,Ignorer les biens dont le stockage est inférieur à,
+eMka.GoodStatistics.Settings.ModerateChangeThreshold,Seuil de changement quotidien modéré,
+eMka.GoodStatistics.Settings.SamplesPerDay,Échantillons par jour,
+eMka.GoodStatistics.Settings.SamplesToAnalyze,Échantillons à analyser,
+eMka.GoodStatistics.Settings.BaseSettings,Réglages de base,
+eMka.GoodStatistics.Settings.ShowTrendsOnTopBar,Afficher les tendances en haut de la page,
+eMka.GoodStatistics.Settings.SlowChangeThreshold,Seuil de changement quotidien lent,

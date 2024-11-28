@@ -1,4 +1,5 @@
 using ModSettings.Core;
+using ModSettings.CoreUI;
 using System.Collections.Generic;
 using System.Reflection;
 using Timberborn.CoreUI;
@@ -8,7 +9,7 @@ using Timberborn.ModdingUI;
 using Timberborn.SingletonSystem;
 using UnityEngine.UIElements;
 
-namespace ModSettings.CoreUI {
+namespace ModSettings.MainMenuUI {
   internal class ModItemSettingsInitializer : ILoadableSingleton {
 
     private static readonly string ModListViewFieldName = "_modListView";

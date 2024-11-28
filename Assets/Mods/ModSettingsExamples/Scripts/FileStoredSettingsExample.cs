@@ -8,10 +8,9 @@ namespace ModSettingsExamples {
     private static readonly string NameKey = "eMka.ModSettingsExamples.LongStringSetting";
     private static readonly string TooltipKey = "eMka.ModSettingsExamples.LongStringTooltip";
 
-    public ModSetting<string> LongStringSetting { get; } =
-      new LongStringModSetting("Type your long string here...",
-                               ModSettingDescriptor.CreateLocalized(NameKey)
-                                   .SetLocalizedTooltip(TooltipKey));
+    public LongStringModSetting LongStringSetting { get; } =
+      new("Type your long string here...",
+          ModSettingDescriptor.CreateLocalized(NameKey).SetLocalizedTooltip(TooltipKey));
 
     public FileStoredSettingsExample(DefaultModFileStoredSettings defaultModFileStoredSettings,
                                      ModSettingsOwnerRegistry modSettingsOwnerRegistry,

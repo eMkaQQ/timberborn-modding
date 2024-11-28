@@ -1,8 +1,6 @@
 {
-  "name": "ModSettings.CommonUI",
+  "name": "ModSettings.MainMenuUI",
   "references": [
-    "ModSettings.ColorPicker",
-    "ModSettings.Common",
     "ModSettings.Core",
     "ModSettings.CoreUI"
   ],
