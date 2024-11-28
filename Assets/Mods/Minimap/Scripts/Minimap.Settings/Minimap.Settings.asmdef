@@ -1,0 +1,8 @@
+﻿{
+  "name": "Minimap.Settings",
+  "autoReferenced": false,
+  "references": [
+    "ModSettings.Core",
+    "ModSettings.Common"
+  ]
+}

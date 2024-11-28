@@ -1,0 +1,9 @@
+﻿{
+  "name": "Minimap.Core",
+  "autoReferenced": false,
+  "references": [
+    "GUID:e58b1aee80294d95bad064535f1078f9",
+    "GUID:61ba77d551ba40aeb4b579b38e90458c",
+    "GUID:122382bd239b45dda2ffdec954f88db7"
+  ]
+}

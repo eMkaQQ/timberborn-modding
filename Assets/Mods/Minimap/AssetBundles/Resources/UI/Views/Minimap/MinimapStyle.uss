@@ -1,0 +1,11 @@
+﻿.minimap {
+    padding: 4px;
+}
+
+.minimap-image {
+    overflow: hidden;
+}
+
+.minimap__camera-frustum {
+    position: absolute;
+}

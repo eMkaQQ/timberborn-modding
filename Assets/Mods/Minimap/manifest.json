@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Minimap",
+  "Version": "0.6.8.0",
+  "Id": "eMka.Minimap",
+  "MinimumGameVersion": "0.6.8.0",
+  "Description": "",
+  "RequiredMods": [
+    {
+      "Id": "eMka.ModSettings",
+      "MinimumVersion": "0.6.7.0"
+    }
+  ]
+}

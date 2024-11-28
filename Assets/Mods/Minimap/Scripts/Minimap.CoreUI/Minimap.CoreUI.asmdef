@@ -1,0 +1,8 @@
+﻿{
+  "name": "Minimap.CoreUI",
+  "autoReferenced": false,
+  "references": [
+    "Minimap.Core",
+    "ModSettings.CoreUI"
+  ]
+}

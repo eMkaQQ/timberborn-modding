@@ -1,0 +1,9 @@
+﻿{
+  "name": "Minimap.Renderers",
+  "autoReferenced": false,
+  "references": [
+    "Minimap.Core",
+    "Minimap.Settings",
+    "ModSettings.Common"
+  ]
+}
