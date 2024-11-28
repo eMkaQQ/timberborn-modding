@@ -5,11 +5,11 @@
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.unity.inputsystem": "1.8.2",
+        "com.unity.inputsystem": "1.9.0",
         "com.unity.render-pipelines.universal": "17.0.3",
-        "com.unity.services.analytics": "5.1.1"
+        "com.unity.services.analytics": "6.0.1"
       },
-      "hash": "24fae8c64be5e3139f7deb4d0b44909716ee576e"
+      "hash": "9e4baa9e5276aa8fd26db99706719950d33afbd5"
     },
     "com.unity.burst": {
       "version": "1.8.17",
@@ -139,12 +139,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.services.analytics": {
-      "version": "5.1.1",
-      "depth": 0,
+      "version": "6.0.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.ugui": "1.0.0",
-        "com.unity.services.core": "1.12.5",
+        "com.unity.services.core": "1.12.4",
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"

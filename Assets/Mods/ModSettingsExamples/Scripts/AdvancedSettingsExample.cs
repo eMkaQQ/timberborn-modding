@@ -14,21 +14,21 @@ namespace ModSettingsExamples {
     public ModSetting<bool> BackgroundTintSetting { get; } = new(
         false, ModSettingDescriptor.Create("Tint background color"));
 
-    public ModSetting<string> ColorSetting { get; } = new ColorModSetting(
+    public ColorModSetting ColorSetting { get; } = new(
         "00FFFF", ModSettingDescriptor.Create("Color setting"), false);
 
-    public ModSetting<string> TransparentColorSetting { get; } = new ColorModSetting(
+    public ColorModSetting TransparentColorSetting { get; } = new(
         "FF00FF88", ModSettingDescriptor.Create("Transparent color"), true);
 
-    public ModSetting<string> DropdownSetting { get; } = new LimitedStringModSetting(
+    public LimitedStringModSetting DropdownSetting { get; } = new(
         0, new[] {
             new LimitedStringModSettingValue("value1", "eMka.ModSettingsExamples.Dropdown1"),
             new LimitedStringModSettingValue("value2", "eMka.ModSettingsExamples.Dropdown2"),
             new LimitedStringModSettingValue("value3", "eMka.ModSettingsExamples.Dropdown3")
         }, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.Dropdown"));
 
-    public ModSetting<string> NonLocalizedDropdownSetting { get; } =
-      new LimitedStringModSetting(0, new[] {
+    public LimitedStringModSetting NonLocalizedDropdownSetting { get; } =
+      new(0, new[] {
           new NonLocalizedLimitedStringModSettingValue("Custom value1"),
           new NonLocalizedLimitedStringModSettingValue("Custom value2"),
           new NonLocalizedLimitedStringModSettingValue("Custom value3")
@@ -37,7 +37,7 @@ namespace ModSettingsExamples {
     public ModSetting<bool> LogValuesSetting { get; } = new(
         true, ModSettingDescriptor.Create("Log these values"));
 
-    private ModSetting<int> _negativeRangeSetting;
+    private RangeIntModSetting _negativeRangeSetting;
 
     public AdvancedSettingsExample(ISettings settings,
                                    ModSettingsOwnerRegistry modSettingsOwnerRegistry,
@@ -54,9 +54,9 @@ namespace ModSettingsExamples {
     protected override string ModId => "eMka.ModSettingsExamples";
 
     protected override void OnBeforeLoad() {
-      _negativeRangeSetting = new RangeIntModSetting(50, -100, 100,
-                                                     ModSettingDescriptor.Create("Custom label")
-                                                         .SetTooltip("With custom tooltip"));
+      _negativeRangeSetting = new(50, -100, 100,
+                                  ModSettingDescriptor.Create("Custom label")
+                                      .SetTooltip("With custom tooltip"));
       AddCustomModSetting(_negativeRangeSetting, "NegativeRangeSetting");
       SmallIntRangeSetting = new RangeIntModSetting(
           5, 0, 10, ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.SmallIntRange")

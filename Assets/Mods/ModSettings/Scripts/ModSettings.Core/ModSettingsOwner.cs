@@ -59,8 +59,7 @@ namespace ModSettings.Core {
           type.GetMembers(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
       foreach (var memberInfo in properties) {
         if (memberInfo is PropertyInfo propertyInfo) {
-          if (propertyInfo.PropertyType.IsGenericType
-              && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(ModSetting<>)) {
+          if (typeof(ModSetting).IsAssignableFrom(propertyInfo.PropertyType)) {
             InitializePropertyModSetting(type, propertyInfo);
           }
         }
@@ -69,9 +68,22 @@ namespace ModSettings.Core {
 
     private void InitializePropertyModSetting(Type type, PropertyInfo propertyInfo) {
       var key = $"ModSetting.{ModId}.{type.Name}.{propertyInfo.Name}";
-      var genericType = propertyInfo.PropertyType.GetGenericArguments()[0];
+      var genericType = GetGenericType(propertyInfo.PropertyType);
       var settingObject = propertyInfo.GetValue(this);
       InitializeModSetting(settingObject, genericType, key);
+    }
+
+    private static Type GetGenericType(Type originalType) {
+      while (true) {
+        if (originalType.IsGenericType) {
+          return originalType.GetGenericArguments()[0];
+        }
+        if (originalType.BaseType != null) {
+          originalType = originalType.BaseType;
+        } else {
+          throw new($"Could not find generic type for {originalType}");
+        }
+      }
     }
 
     private void InitializeModSetting(object settingObject, Type genericType, string key) {
