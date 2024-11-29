@@ -51,7 +51,7 @@ namespace Minimap.CoreUI {
     public void Load() {
       if (_minimapTexture.MinimapEnabled) {
         CreateVisualElements();
-        _minimapMod = _modRepository.Mods.Single(mod => mod.Manifest.Id == "eMka.Minimap");
+        _minimapMod = _modRepository.EnabledMods.Single(mod => mod.Manifest.Id == "eMka.Minimap");
         var mapSize = _mapSize.TerrainSize.x > _mapSize.TerrainSize.y
             ? _mapSize.TerrainSize.x
             : _mapSize.TerrainSize.y;
