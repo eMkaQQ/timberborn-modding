@@ -2,7 +2,8 @@ ID,Text,Comment
 eMka.Minimap.Settings.BlockObjectColor,Obiekt,
 eMka.Minimap.Settings.BuildingColor,Budynek,
 eMka.Minimap.Settings.ChunkSize,Rozmiar wycinka,
-eMka.Minimap.Settings.ChunkSizeTooltip,"Rozmiar wycinków, na które podzielona jest minimapa podczas renderowania.\nMniejsze wartości spowodują wolniejsze renderowanie minimapy, ale mogą pomóc w problemach z wydajnością.",
+eMka.Minimap.Settings.ChunkSizeTooltip,"Rozmiar wycinków, na które podzielona jest minimapa podczas renderowania.
+Mniejsze wartości spowodują wolniejsze renderowanie minimapy, ale mogą pomóc w problemach z wydajnością.",
 eMka.Minimap.Settings.Colors,Kolory,
 eMka.Minimap.Settings.DeadPlantColor,Martwa roślina,
 eMka.Minimap.Settings.DeadTreeColor,Martwe drzewo,

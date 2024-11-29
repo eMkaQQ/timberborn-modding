@@ -95,7 +95,18 @@ namespace Minimap.Core {
       }
       _chunkTexture = _textureFactory.CreateTexture(textureSettings);
     }
-
+    
+    private void RenderFull() {
+      var minimapPixels = new Color32[_mapSize.x * _mapSize.y];
+      for (var y = 0; y < _mapSize.y; y++) {
+        for (var x = 0; x < _mapSize.x; x++) {
+          minimapPixels[y * _mapSize.x + x] = GetColor(new(x, y));
+        }
+      }
+      _minimapTexture.Texture.SetPixels32(minimapPixels);
+      _minimapTexture.Texture.Apply(false);
+    }
+    
     private void RenderChunk() {
       var chunkX = _lastChunkX;
       var chunkY = _lastChunkY;
@@ -124,17 +135,6 @@ namespace Minimap.Core {
       _chunkTexture.Apply(false);
       Graphics.CopyTexture(_chunkTexture, 0, 0, 0, 0, width, height,
                            _minimapTexture.Texture, 0, 0, chunkX, chunkY);
-    }
-
-    private void RenderFull() {
-      var minimapPixels = new Color32[_mapSize.x * _mapSize.y];
-      for (var y = 0; y < _mapSize.y; y++) {
-        for (var x = 0; x < _mapSize.x; x++) {
-          minimapPixels[y * _mapSize.x + x] = GetColor(new(x, y));
-        }
-      }
-      _minimapTexture.Texture.SetPixels32(minimapPixels);
-      _minimapTexture.Texture.Apply(false);
     }
 
     private Color GetColor(Vector2Int coordinates) {

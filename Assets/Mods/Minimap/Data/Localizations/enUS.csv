@@ -2,7 +2,8 @@ ID,Text,Comment
 eMka.Minimap.Settings.BlockObjectColor,Object,
 eMka.Minimap.Settings.BuildingColor,Building,
 eMka.Minimap.Settings.ChunkSize,Chunk size,
-eMka.Minimap.Settings.ChunkSizeTooltip,"The size of the chunks that the minimap is divided into for rendering.\nLower values will cause the minimap to render slower, but may help with performance issues.",
+eMka.Minimap.Settings.ChunkSizeTooltip,"The size of the chunks that the minimap is divided into for rendering.
+Lower values will cause the minimap to render slower, but may help with performance issues.",
 eMka.Minimap.Settings.Colors,Colors,
 eMka.Minimap.Settings.DeadPlantColor,Dead plant,
 eMka.Minimap.Settings.DeadTreeColor,Dead tree,
