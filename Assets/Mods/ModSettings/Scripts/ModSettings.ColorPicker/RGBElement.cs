@@ -1,5 +1,4 @@
 ﻿using System;
-using Timberborn.CoreUI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -57,13 +56,6 @@ namespace ModSettings.ColorPicker {
       var alphaValue = Mathf.RoundToInt(color.a * RGBMax);
       _alphaSlider.SetValueWithoutNotify(alphaValue);
       _alphaField.SetValueWithoutNotify(alphaValue);
-    }
-
-    public bool UpdateInput() {
-      return _redField.IsFocused()
-             || _greenField.IsFocused()
-             || _blueField.IsFocused()
-             || _alphaField.IsFocused();
     }
 
     private void InitializeSlider(SliderInt slider, IntegerField field) {

@@ -6,6 +6,7 @@ using Timberborn.Common;
 using Timberborn.Modding;
 using Timberborn.SettingsSystem;
 using Timberborn.SingletonSystem;
+using UnityEngine;
 
 namespace ModSettings.Core {
   public abstract class ModSettingsOwner : ILoadableSingleton {
@@ -115,8 +116,11 @@ namespace ModSettings.Core {
     }
 
     private void RegisterModSettingOwner() {
-      foreach (var mod in _modRepository.Mods.Where(m => m.Manifest.Id == ModId)) {
+      var mod = _modRepository.EnabledMods.FirstOrDefault(m => m.Manifest.Id == ModId);
+      if (mod != null) {
         _modSettingsOwnerRegistry.RegisterModSettingOwner(mod, this);
+      } else {
+        Debug.LogWarning($"Could not find mod with id {ModId} for {this}");
       }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Timberborn.Common;
@@ -8,9 +9,12 @@ namespace ModSettings.Core {
 
     private readonly Dictionary<Mod, List<ModSettingsOwner>> _modSettingOwners = new();
 
-    public void RegisterModSettingOwner(Mod mod, 
+    public void RegisterModSettingOwner(Mod mod,
                                         ModSettingsOwner modSettingsOwner) {
-      _modSettingOwners.GetOrAdd(mod).Add(modSettingsOwner);
+      var list = _modSettingOwners.GetOrAdd(mod);
+      list.Add(modSettingsOwner);
+      list.Sort((a, b) => string.Compare(a.GetType().Name, b.GetType().Name,
+                                         StringComparison.Ordinal));
     }
 
     public bool HasModSettings(Mod mod) {

@@ -37,7 +37,7 @@ namespace ModSettings.ColorPicker {
       SetColor(initialColor);
     }
 
-    public bool UpdateInput() {
+    public void Update() {
       if (_isMouseDown) {
         if (_inputService.MainMouseButtonHeld) {
           UpdateSaturationAndValue();
@@ -45,7 +45,6 @@ namespace ModSettings.ColorPicker {
           _isMouseDown = false;
         }
       }
-      return false;
     }
 
     public void SetColor(Color color) {
@@ -79,8 +78,8 @@ namespace ModSettings.ColorPicker {
     }
 
     private void SetPickerPosition(float saturation, float value) {
-      _svPicker.style.left = Length.Percent(saturation * 100);
-      _svPicker.style.top = Length.Percent((1 - value) * 100);
+      _svPicker.style.left = saturation * _svTexture.width / 2;
+      _svPicker.style.top = (1 - value) * _svTexture.height / 2;
     }
 
     private void OnMouseDown(MouseDownEvent evt) {

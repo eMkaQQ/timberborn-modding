@@ -1,5 +1,4 @@
-﻿using Timberborn.CoreUI;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace ModSettings.ColorPicker {
@@ -41,8 +40,8 @@ namespace ModSettings.ColorPicker {
       _hexField.RegisterCallback<FocusOutEvent>(OnHexFieldChanged);
     }
 
-    public bool UpdateInput() {
-      return _hsvElement.UpdateInput() || _rgbElement.UpdateInput() || _hexField.IsFocused();
+    public void Update() {
+      _hsvElement.Update();
     }
 
     public void Clear() {
