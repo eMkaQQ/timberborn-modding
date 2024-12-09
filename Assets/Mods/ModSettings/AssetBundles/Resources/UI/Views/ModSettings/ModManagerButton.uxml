@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Timberborn.CoreUI.LocalizableButton text="Mods" name="ModManagerButton" text-loc-key="Menu.ModManager" focusable="false" class="menu-button menu-button--stretched" />
+</ui:UXML>

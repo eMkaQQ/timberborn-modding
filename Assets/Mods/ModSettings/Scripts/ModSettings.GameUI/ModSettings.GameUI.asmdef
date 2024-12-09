@@ -1,5 +1,5 @@
 {
-  "name": "ModSettings.CoreUI",
+  "name": "ModSettings.GameUI",
   "references": [
     "ModSettings.Core"
   ],

@@ -25,6 +25,8 @@ namespace ModSettingsExamples {
     }
 
     public override string HeaderLocKey => "eMka.ModSettingsExamples.SimpleSettingsHeader";
+    
+    public override ModSettingsContext ChangeableOn => ModSettingsContext.All;
 
     protected override string ModId => "eMka.ModSettingsExamples";
 

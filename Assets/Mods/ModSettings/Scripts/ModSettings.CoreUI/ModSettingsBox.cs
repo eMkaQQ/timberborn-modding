@@ -6,6 +6,7 @@ using Timberborn.CoreUI;
 using Timberborn.Localization;
 using Timberborn.Modding;
 using Timberborn.SingletonSystem;
+using Timberborn.TooltipSystem;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,6 +22,8 @@ namespace ModSettings.CoreUI {
     private readonly ImmutableArray<IModSettingElementFactory> _modSettingElementFactories;
     private readonly ILoc _loc;
     private readonly DialogBoxShower _dialogBoxShower;
+    private readonly IModSettingsContextProvider _modSettingsContextProvider;
+    private readonly ITooltipRegistrar _tooltipRegistrar;
     private VisualElement _root;
     private ScrollView _scrollView;
     private Mod _currentMod;
@@ -31,7 +34,9 @@ namespace ModSettings.CoreUI {
                           ModSettingsOwnerRegistry modSettingsOwnerRegistry,
                           IEnumerable<IModSettingElementFactory> modSettingElementFactories,
                           ILoc loc,
-                          DialogBoxShower dialogBoxShower) {
+                          DialogBoxShower dialogBoxShower,
+                          IModSettingsContextProvider modSettingsContextProvider,
+                          ITooltipRegistrar tooltipRegistrar) {
       _visualElementLoader = visualElementLoader;
       _panelStack = panelStack;
       _modSettingsOwnerRegistry = modSettingsOwnerRegistry;
@@ -39,6 +44,8 @@ namespace ModSettings.CoreUI {
           .OrderByDescending(factory => factory.Priority).ToImmutableArray();
       _loc = loc;
       _dialogBoxShower = dialogBoxShower;
+      _modSettingsContextProvider = modSettingsContextProvider;
+      _tooltipRegistrar = tooltipRegistrar;
     }
 
     public void Load() {
@@ -59,7 +66,7 @@ namespace ModSettings.CoreUI {
     }
 
     public void UpdateSingleton() {
-      if(_currentMod != null) {
+      if (_currentMod != null) {
         foreach (var modSettingElement in _modSettingElements) {
           modSettingElement.Root.SetEnabled(modSettingElement.ModSetting.Descriptor.IsEnabled());
         }
@@ -94,9 +101,12 @@ namespace ModSettings.CoreUI {
 
     private void CreateSettingOwnerSection(ModSettingsOwner settingsOwner) {
       CreateHeader(settingsOwner);
+      var parent = new VisualElement();
+      _scrollView.Add(parent);
       foreach (var modSetting in settingsOwner.ModSettings) {
-        CreateSettingElement(modSetting);
+        CreateSettingElement(modSetting, parent);
       }
+      SetSettingOwnerEnabledState(parent, settingsOwner);
     }
 
     private void CreateHeader(ModSettingsOwner settingsOwner) {
@@ -107,15 +117,28 @@ namespace ModSettings.CoreUI {
       }
     }
 
-    private void CreateSettingElement(ModSetting modSetting) {
+    private void CreateSettingElement(ModSetting modSetting, VisualElement parent) {
       foreach (var factory in _modSettingElementFactories) {
         if (factory.TryCreateElement(modSetting, out var element)) {
-          _scrollView.Add(element.Root);
+          parent.Add(element.Root);
           _modSettingElements.Add(element);
           return;
         }
       }
       Debug.LogWarning($"No factory found for mod setting {modSetting}");
+    }
+
+    private void SetSettingOwnerEnabledState(VisualElement parent,
+                                             ModSettingsOwner modSettingsOwner) {
+      var enabled = IsModSettingsOwnerEnabled(modSettingsOwner);
+      parent.SetEnabled(enabled);
+      if (!enabled) {
+        _tooltipRegistrar.RegisterLocalizable(parent, _modSettingsContextProvider.WarningLocKey);
+      }
+    }
+
+    private bool IsModSettingsOwnerEnabled(ModSettingsOwner modSettingsOwner) {
+      return modSettingsOwner.ChangeableOn.HasFlag(_modSettingsContextProvider.Context);
     }
 
     private void ShowResetDialog() {
@@ -130,7 +153,9 @@ namespace ModSettings.CoreUI {
       var currentMod = _currentMod;
       Close();
       foreach (var settingOwner in _modSettingsOwnerRegistry.GetModSettingOwners(currentMod)) {
-        settingOwner.ResetModSettings();
+        if (IsModSettingsOwnerEnabled(settingOwner)) {
+          settingOwner.ResetModSettings();
+        }
       }
       Open(currentMod);
     }

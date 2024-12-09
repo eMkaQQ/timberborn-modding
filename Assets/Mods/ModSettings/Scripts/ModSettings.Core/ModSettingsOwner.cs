@@ -27,6 +27,7 @@ namespace ModSettings.Core {
     public ReadOnlyList<ModSetting> ModSettings => new(_modSettings);
     public virtual int Order => 0;
     public virtual string HeaderLocKey => null;
+    public virtual ModSettingsContext ChangeableOn => ModSettingsContext.MainMenu;
 
     public void Load() {
       OnBeforeLoad();

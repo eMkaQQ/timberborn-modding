@@ -22,6 +22,9 @@ namespace ModSettingsExamples {
 
     public override int Order => 20;
 
+    public override ModSettingsContext ChangeableOn =>
+        ModSettingsContext.MainMenu | ModSettingsContext.Game;
+
     protected override string ModId => "eMka.ModSettingsExamples";
 
   }

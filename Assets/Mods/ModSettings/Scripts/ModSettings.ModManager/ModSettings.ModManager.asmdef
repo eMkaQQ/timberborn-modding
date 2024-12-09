@@ -1,0 +1,7 @@
+{
+  "name": "ModSettings.ModManager",
+  "references": [
+    "ModSettings.Core"
+  ],
+  "autoReferenced": false
+}
