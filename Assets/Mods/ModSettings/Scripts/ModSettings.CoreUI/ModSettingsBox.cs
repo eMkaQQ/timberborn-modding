@@ -88,6 +88,7 @@ namespace ModSettings.CoreUI {
       _panelStack.Pop(this);
       _modSettingElements.Clear();
       _scrollView.Clear();
+      _scrollView.scrollOffset = Vector2.zero;
     }
 
     private void CreateSettingOwnerSections(Mod mod) {

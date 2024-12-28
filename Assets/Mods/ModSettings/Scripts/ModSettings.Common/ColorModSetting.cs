@@ -30,13 +30,11 @@ namespace ModSettings.Common {
     }
 
     public override void SetValue(string value) {
-      if (TryParseColor(value, out var color)) {
-        Color = color;
-      } else {
-        value = DefaultValue;
+      if (!TrySetColor(value)) {
         Debug.LogWarning($"Failed to parse color value: {value}");
+        TrySetColor(DefaultValue);
       }
-      base.SetValue(value);
+      base.SetValue(ToHtmlString(Color, UseAlpha));
     }
 
     public void SetValue(Color color) {
@@ -49,6 +47,17 @@ namespace ModSettings.Common {
 
     private static bool TryParseColor(string value, out Color color) {
       return ColorUtility.TryParseHtmlString($"#{value}", out color);
+    }
+
+    private bool TrySetColor(string value) {
+      if (TryParseColor(value, out var color)) {
+        if (!UseAlpha) {
+          color.a = 1;
+        }
+        Color = color;
+        return true;
+      }
+      return false;
     }
 
   }

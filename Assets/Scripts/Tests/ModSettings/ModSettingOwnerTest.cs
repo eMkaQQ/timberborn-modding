@@ -278,6 +278,22 @@ namespace Tests.ModSettings {
       Assert.IsTrue(settings.GetString(key, null) == null);
     }
 
+    [Test]
+    public void ShouldAddNonPersistentModSetting() {
+      // given
+      var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
+      var modSettingOwner = new NoSettingsModSettingOwner(new SettingsMock(), new(), modRepository);
+      var nonPersistentSetting =
+          new NonPeristentDummy(ModSettingDescriptor.Create("nonPersistent"));
+
+      // when
+      modSettingOwner.Load();
+      modSettingOwner.AddNonPersistentModSetting(nonPersistentSetting);
+
+      // then
+      Assert.AreEqual(1, modSettingOwner.ModSettings.Count);
+    }
+
     private static string GetModSettingKey(string modId, string modSettingOwnerName,
                                            string settingName) {
       return $"ModSetting.{modId}.{modSettingOwnerName}.{settingName}";
@@ -529,6 +545,13 @@ namespace Tests.ModSettings {
       public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings,
                                    string key) {
         return false;
+      }
+
+    }
+
+    private class NonPeristentDummy : NonPersistentSetting {
+
+      public NonPeristentDummy(ModSettingDescriptor descriptor) : base(descriptor) {
       }
 
     }
