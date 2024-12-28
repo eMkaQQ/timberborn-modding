@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.mechanistry.timberborn-modding": {
-      "version": "https://github.com/mechanistry/timberborn-modding.git?path=/Assets/Tools",
+      "version": "https://github.com/mechanistry/timberborn-modding.git?path=/Assets/Tools#staging",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -9,7 +9,7 @@
         "com.unity.render-pipelines.universal": "17.0.3",
         "com.unity.services.analytics": "6.0.1"
       },
-      "hash": "9e4baa9e5276aa8fd26db99706719950d33afbd5"
+      "hash": "b00143bb6db002fa651e193ff596f188a63a3dae"
     },
     "com.unity.burst": {
       "version": "1.8.17",

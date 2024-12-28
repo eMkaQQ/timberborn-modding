@@ -25,6 +25,10 @@ namespace Minimap.Settings {
       _eventBus = eventBus;
     }
 
+    public override ModSettingsContext ChangeableOn => ModSettingsContext.All;
+
+    public override string HeaderLocKey => "eMka.Minimap.Settings.GeneralSettings";
+
     protected override string ModId => "eMka.Minimap";
 
     protected override void OnAfterLoad() {

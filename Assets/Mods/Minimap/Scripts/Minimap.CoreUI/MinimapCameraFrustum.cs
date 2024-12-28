@@ -20,7 +20,7 @@ namespace Minimap.CoreUI {
     }
 
     public void SetScale(float scale) {
-      var clampedScale = Mathf.Clamp(scale, 0.2f, 1);
+      var clampedScale = Mathf.Clamp(scale, 0.05f, 1);
       if (!Mathf.Approximately(clampedScale, _scale)) {
         _scale = clampedScale;
         MarkDirtyRepaint();

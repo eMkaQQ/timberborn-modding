@@ -85,6 +85,8 @@ namespace Minimap.Settings {
 
     public override string HeaderLocKey => "eMka.Minimap.Settings.Colors";
 
+    public override ModSettingsContext ChangeableOn => ModSettingsContext.All;
+
     protected override string ModId => "eMka.Minimap";
 
     protected override void OnAfterLoad() {

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.mechanistry.timberborn-modding": "https://github.com/mechanistry/timberborn-modding.git?path=/Assets/Tools",
+    "com.mechanistry.timberborn-modding": "https://github.com/mechanistry/timberborn-modding.git?path=/Assets/Tools#staging",
     "com.unity.ide.rider": "3.0.31",
     "com.unity.ide.visualstudio": "2.0.22",
     "com.unity.inputsystem": "1.9.0",

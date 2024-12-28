@@ -100,20 +100,19 @@ namespace ModSettings.CoreUI {
     }
 
     private void CreateSettingOwnerSection(ModSettingsOwner settingsOwner) {
-      CreateHeader(settingsOwner);
-      var parent = new VisualElement();
+      var parent = CreateSettingOwnerParent(settingsOwner);
+      CreateHeader(settingsOwner, parent);
       _scrollView.Add(parent);
       foreach (var modSetting in settingsOwner.ModSettings) {
         CreateSettingElement(modSetting, parent);
       }
-      SetSettingOwnerEnabledState(parent, settingsOwner);
     }
 
-    private void CreateHeader(ModSettingsOwner settingsOwner) {
+    private void CreateHeader(ModSettingsOwner settingsOwner, VisualElement parent) {
       if (!string.IsNullOrEmpty(settingsOwner.HeaderLocKey)) {
         var header = _visualElementLoader.LoadVisualElement("ModSettings/ModSettingsHeader");
         ((Label) header).text = _loc.T(settingsOwner.HeaderLocKey);
-        _scrollView.Add(header);
+        parent.Add(header);
       }
     }
 
@@ -122,19 +121,23 @@ namespace ModSettings.CoreUI {
         if (factory.TryCreateElement(modSetting, out var element)) {
           parent.Add(element.Root);
           _modSettingElements.Add(element);
+          if (!parent.enabledSelf) {
+            element.Root.Q<VisualElement>("SettingTooltip")?.ToggleDisplayStyle(false);
+          }
           return;
         }
       }
       Debug.LogWarning($"No factory found for mod setting {modSetting}");
     }
 
-    private void SetSettingOwnerEnabledState(VisualElement parent,
-                                             ModSettingsOwner modSettingsOwner) {
+    private VisualElement CreateSettingOwnerParent(ModSettingsOwner modSettingsOwner) {
+      var parent = new VisualElement();
       var enabled = IsModSettingsOwnerEnabled(modSettingsOwner);
       parent.SetEnabled(enabled);
       if (!enabled) {
         _tooltipRegistrar.RegisterLocalizable(parent, _modSettingsContextProvider.WarningLocKey);
       }
+      return parent;
     }
 
     private bool IsModSettingsOwnerEnabled(ModSettingsOwner modSettingsOwner) {

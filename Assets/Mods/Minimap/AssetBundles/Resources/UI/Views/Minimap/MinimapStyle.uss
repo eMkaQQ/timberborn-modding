@@ -1,5 +1,11 @@
 ﻿.minimap {
-    padding: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.minimap-background {
+    justify-content: center;
+    align-items: center;
 }
 
 .minimap-image {
@@ -8,4 +14,29 @@
 
 .minimap__camera-frustum {
     position: absolute;
+}
+
+.minimap-settings__rotate-buttons {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.minimap-settings__rotate-button {
+    min-width: auto;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.minimap-settings__button-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.minimap-settings__counter-clockwise-button {
+    background-image: resource('UI/Images/Game/placement-rotate-counterclockwise');
+}
+
+.minimap-settings__clockwise-button {
+    background-image: resource('UI/Images/Game/placement-rotate-clockwise');
 }

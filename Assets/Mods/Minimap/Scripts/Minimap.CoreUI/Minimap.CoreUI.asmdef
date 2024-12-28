@@ -3,6 +3,8 @@
   "autoReferenced": false,
   "references": [
     "Minimap.Core",
+    "ModSettings.CommonUI",
+    "ModSettings.Core",
     "ModSettings.CoreUI"
   ]
 }

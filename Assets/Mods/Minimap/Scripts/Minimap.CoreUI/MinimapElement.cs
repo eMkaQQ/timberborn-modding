@@ -8,6 +8,7 @@ using Timberborn.MapStateSystem;
 using Timberborn.Modding;
 using Timberborn.SingletonSystem;
 using Timberborn.UILayoutSystem;
+using Timberborn.UISound;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,6 +17,8 @@ namespace Minimap.CoreUI {
                                   IUpdatableSingleton,
                                   IPostLoadableSingleton {
 
+    private static readonly int BackgroundMargin = 7;
+    private static readonly int BugTrackerOffset = 6;
     private readonly UILayout _uiLayout;
     private readonly VisualElementLoader _visualElementLoader;
     private readonly MinimapTexture _minimapTexture;
@@ -24,11 +27,15 @@ namespace Minimap.CoreUI {
     private readonly CameraComponent _cameraComponent;
     private readonly MapSize _mapSize;
     private readonly InputService _inputService;
+    private readonly UISoundController _uiSoundController;
     private float _mapScale;
     private MinimapCameraFrustum _cameraFrustum;
+    private VisualElement _root;
+    private VisualElement _background;
     private Image _minimapImage;
     private bool _isDragging;
     private Mod _minimapMod;
+    private VisualElement _bugTracker;
 
     public MinimapElement(UILayout uiLayout,
                           VisualElementLoader visualElementLoader,
@@ -37,7 +44,8 @@ namespace Minimap.CoreUI {
                           ModRepository modRepository,
                           CameraComponent cameraComponent,
                           MapSize mapSize,
-                          InputService inputService) {
+                          InputService inputService,
+                          UISoundController uiSoundController) {
       _uiLayout = uiLayout;
       _visualElementLoader = visualElementLoader;
       _minimapTexture = minimapTexture;
@@ -46,6 +54,7 @@ namespace Minimap.CoreUI {
       _cameraComponent = cameraComponent;
       _mapSize = mapSize;
       _inputService = inputService;
+      _uiSoundController = uiSoundController;
     }
 
     public void Load() {
@@ -63,8 +72,7 @@ namespace Minimap.CoreUI {
     public void PostLoad() {
       if (_minimapTexture.MinimapEnabled) {
         var minimap = _minimapImage.parent;
-        var bugTracker = minimap.parent.Q<VisualElement>("BugTracker");
-        bugTracker.style.bottom = _minimapImage.style.height.value.value + 12;
+        _bugTracker = minimap.parent.parent.Q<VisualElement>("BugTracker");
       }
     }
 
@@ -81,14 +89,27 @@ namespace Minimap.CoreUI {
       }
     }
 
+    public void SetMinimapRotation(int rotation) {
+      var isPerpendicular = rotation is 90 or 270;
+      _background.transform.rotation = Quaternion.Euler(0, 0, rotation);
+      _root.style.height = isPerpendicular
+          ? new(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel)
+          : new Length(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel);
+      _root.style.width = isPerpendicular
+          ? new(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel)
+          : new Length(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel);
+      _bugTracker.style.bottom = _root.style.height.value.value + BugTrackerOffset;
+    }
+
     private void CreateVisualElements() {
-      var minimap = _visualElementLoader.LoadVisualElement("Minimap/Minimap");
-      _minimapImage = minimap.Q<Image>("MinimapImage");
+      _root = _visualElementLoader.LoadVisualElement("Minimap/Minimap");
+      _background = _root.Q<VisualElement>("MinimapBackground");
+      _minimapImage = _root.Q<Image>("MinimapImage");
       _minimapImage.image = _minimapTexture.Texture;
-      _uiLayout.AddBottomRight(minimap, 100);
-      minimap.RegisterCallback<MouseDownEvent>(OnMouseDown);
-      _cameraFrustum = MinimapCameraFrustum.Create(3);
-      minimap.Q<Image>("MinimapImage").Add(_cameraFrustum);
+      _uiLayout.AddBottomRight(_root, 100);
+      _root.RegisterCallback<MouseDownEvent>(OnMouseDown);
+      _cameraFrustum = MinimapCameraFrustum.Create(2);
+      _root.Q<Image>("MinimapImage").Add(_cameraFrustum);
     }
 
     private void OnMouseDown(MouseDownEvent evt) {
@@ -96,6 +117,7 @@ namespace Minimap.CoreUI {
         _isDragging = true;
       } else if (evt.button == 1) {
         _modSettingsBox.Open(_minimapMod);
+        _uiSoundController.PlayClickSound();
       }
     }
 
@@ -112,6 +134,10 @@ namespace Minimap.CoreUI {
                        LengthUnit.Pixel);
         _minimapImage.style.height = new Length(baseMinimapSize, LengthUnit.Pixel);
       }
+      _background.style.width =
+          new Length(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel);
+      _background.style.height =
+          new Length(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel);
     }
 
     private void DragCamera() {

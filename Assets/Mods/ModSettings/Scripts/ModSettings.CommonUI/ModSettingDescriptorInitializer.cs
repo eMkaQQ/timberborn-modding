@@ -5,7 +5,7 @@ using Timberborn.TooltipSystem;
 using UnityEngine.UIElements;
 
 namespace ModSettings.CommonUI {
-  internal class ModSettingDescriptorInitializer {
+  public class ModSettingDescriptorInitializer {
 
     private readonly ILoc _loc;
     private readonly ITooltipRegistrar _tooltipRegistrar;

@@ -14,6 +14,12 @@ namespace ModSettings.Common {
       UseAlpha = useAlpha;
     }
 
+    public ColorModSetting(Color defaultValue,
+                           ModSettingDescriptor descriptor,
+                           bool useAlpha) : base(ToHtmlString(defaultValue, useAlpha), descriptor) {
+      UseAlpha = useAlpha;
+    }
+
     public override bool IsValid(ModSettingsOwner modSettingsOwner, ISettings settings,
                                  string key) {
       var value = settings.GetString(key, null);
@@ -34,11 +40,11 @@ namespace ModSettings.Common {
     }
 
     public void SetValue(Color color) {
-      if (UseAlpha) {
-        SetValue($"{ColorUtility.ToHtmlStringRGBA(color)}");
-      } else {
-        SetValue($"{ColorUtility.ToHtmlStringRGB(color)}");
-      }
+      SetValue(ToHtmlString(color, UseAlpha));
+    }
+
+    private static string ToHtmlString(Color color, bool useAlpha) {
+      return useAlpha ? ColorUtility.ToHtmlStringRGBA(color) : ColorUtility.ToHtmlStringRGB(color);
     }
 
     private static bool TryParseColor(string value, out Color color) {

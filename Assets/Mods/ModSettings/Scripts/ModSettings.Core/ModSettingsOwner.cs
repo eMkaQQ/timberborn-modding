@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,9 +37,15 @@ namespace ModSettings.Core {
       OnAfterLoad();
     }
 
+    [UsedImplicitly]
     public void AddCustomModSetting<T>(ModSetting<T> modSetting, string id) {
       var key = $"ModSetting.{ModId}.{id}";
       InitializeModSetting(modSetting, typeof(T), key);
+    }
+
+    [UsedImplicitly]
+    public void AddNonPersistentModSetting(NonPersistentSetting nonPersistentSetting) {
+      _modSettings.Add(nonPersistentSetting);
     }
 
     public void ResetModSettings() {
@@ -70,18 +77,23 @@ namespace ModSettings.Core {
 
     private void InitializePropertyModSetting(Type type, PropertyInfo propertyInfo) {
       var key = $"ModSetting.{ModId}.{type.Name}.{propertyInfo.Name}";
-      var genericType = GetGenericType(propertyInfo.PropertyType);
       var settingObject = propertyInfo.GetValue(this);
-      InitializeModSetting(settingObject, genericType, key);
+      if (typeof(NonPersistentSetting).IsAssignableFrom(propertyInfo.PropertyType)) {
+        _modSettings.Add((ModSetting) settingObject);
+      } else {
+        var genericType = GetGenericType(propertyInfo.PropertyType);
+        InitializeModSetting(settingObject, genericType, key);
+      }
     }
 
-    private static Type GetGenericType(Type originalType) {
+    private static Type GetGenericType(Type type) {
+      var originalType = type;
       while (true) {
-        if (originalType.IsGenericType) {
-          return originalType.GetGenericArguments()[0];
+        if (type.IsGenericType) {
+          return type.GetGenericArguments()[0];
         }
-        if (originalType.BaseType != null) {
-          originalType = originalType.BaseType;
+        if (type.BaseType != null) {
+          type = type.BaseType;
         } else {
           throw new($"Could not find generic type for {originalType}");
         }

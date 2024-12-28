@@ -1,4 +1,5 @@
 ﻿using Bindito.Core;
+using ModSettings.CoreUI;
 
 namespace Minimap.CoreUI {
   [Context("Game")]
@@ -7,6 +8,12 @@ namespace Minimap.CoreUI {
 
     public void Configure(IContainerDefinition containerDefinition) {
       containerDefinition.Bind<MinimapElement>().AsSingleton();
+      containerDefinition.Bind<MinimapElementRotator>().AsSingleton();
+      containerDefinition.Bind<MinimapRotationSettingOwner>().AsSingleton();
+      containerDefinition.MultiBind<IModSettingElementFactory>()
+          .To<MinimapRotationSettingElementFactory>()
+          .AsSingleton();
+      containerDefinition.Bind<MinimapRotationSettingElementFactory>().AsSingleton();
     }
 
   }

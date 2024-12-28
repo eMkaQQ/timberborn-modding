@@ -95,7 +95,7 @@ namespace Minimap.Core {
       }
       _chunkTexture = _textureFactory.CreateTexture(textureSettings);
     }
-    
+
     private void RenderFull() {
       var minimapPixels = new Color32[_mapSize.x * _mapSize.y];
       for (var y = 0; y < _mapSize.y; y++) {
@@ -106,7 +106,7 @@ namespace Minimap.Core {
       _minimapTexture.Texture.SetPixels32(minimapPixels);
       _minimapTexture.Texture.Apply(false);
     }
-    
+
     private void RenderChunk() {
       var chunkX = _lastChunkX;
       var chunkY = _lastChunkY;
@@ -139,23 +139,23 @@ namespace Minimap.Core {
 
     private Color GetColor(Vector2Int coordinates) {
       var index2D = _mapIndexService.CoordinatesToIndex(coordinates);
-      var waterHeight = GetWaterHeight(index2D);
+      var waterHeight = GetWaterHeight(index2D, out var waterIndex3D);
       if (_topBlockObjectsRegistry.TryGetTopBlock(index2D, out var topBlock)
           && (!waterHeight.HasValue || topBlock.Block.Coordinates.z >= waterHeight)) {
         var color = topBlock.Renderer.GetColor();
         return color;
       }
       if (waterHeight.HasValue) {
-        var color = GetWaterColor(index2D);
+        var color = GetWaterColor(waterIndex3D);
         return color;
       }
       var color2 = GetTerrainColor(index2D);
       return color2;
     }
 
-    private int? GetWaterHeight(int index2D) {
-      if (_threadSafeWaterMap.TryGetTopWateredColumn(int.MaxValue, index2D, out var index3D)) {
-        return _threadSafeWaterMap.CeiledWaterHeight(index3D);
+    private int? GetWaterHeight(int index2D, out int waterIndex3D) {
+      if (_threadSafeWaterMap.TryGetTopWateredColumn(int.MaxValue, index2D, out waterIndex3D)) {
+        return _threadSafeWaterMap.CeiledWaterHeight(waterIndex3D);
       }
       return null;
     }
