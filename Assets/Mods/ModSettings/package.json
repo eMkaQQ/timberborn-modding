@@ -1,0 +1,13 @@
+{
+  "name": "com.emka.modsettings",
+  "version": "6.9.5",
+  "displayName": "Mod Settings",
+  "description": "Source code of ModSettings.",
+  "author": {
+    "name": "eMkaQQ",
+    "url": "https://github.com/eMkaQQ/timberborn-modding"
+  },
+  "license": "MIT",
+  "licensesUrl": "https://raw.githubusercontent.com/eMkaQQ/timberborn-modding/main/LICENSE",
+  "documentationUrl": "https://github.com/mechanistry/timberborn-modding"
+}
