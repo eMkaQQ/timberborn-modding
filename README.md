@@ -39,4 +39,4 @@ It should result in a gear icon appearing in the main menu near your mod on the 
 
 ## Examples
 You can find more examples of various features of the ModSettings [here](https://github.com/eMkaQQ/timberborn-modding/tree/main/Assets/Mods/ModSettingsExamples).
-The built mod of these examples can downloaded from [here](https://github.com/eMkaQQ/timberborn-modding/blob/main/Assets/Mods/ModSettingsExamples/ModSettingsExamples.zip).
+The built mod of these examples can be downloaded from [here](https://github.com/eMkaQQ/timberborn-modding/blob/main/Assets/Mods/ModSettingsExamples/ModSettingsExamples.zip).
