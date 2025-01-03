@@ -1,7 +1,9 @@
+using JetBrains.Annotations;
 using ModSettings.Common;
 using ModSettings.Core;
 using Timberborn.Modding;
 using Timberborn.SettingsSystem;
+using UnityEngine;
 
 namespace ModSettingsExamples {
   internal class AdvancedSettingsExample : ModSettingsOwner {
@@ -15,7 +17,7 @@ namespace ModSettingsExamples {
         false, ModSettingDescriptor.Create("Tint background color"));
 
     public ColorModSetting ColorSetting { get; } = new(
-        "00FFFF", ModSettingDescriptor.Create("Color setting"), false);
+        new Color(0, 1, 1), ModSettingDescriptor.Create("Color setting"), false);
 
     public ColorModSetting TransparentColorSetting { get; } = new(
         "FF00FF88", ModSettingDescriptor.Create("Transparent color"), true);
@@ -35,7 +37,10 @@ namespace ModSettingsExamples {
       }, ModSettingDescriptor.Create("Non-localized dropdown"));
 
     public ModSetting<bool> LogValuesSetting { get; } = new(
-        true, ModSettingDescriptor.Create("Log these values"));
+        true, ModSettingDescriptor.Create("Log all these values"));
+
+    [UsedImplicitly]
+    public DummyButton DummyButton { get; } = new(ModSettingDescriptor.Create("Dummy button"));
 
     private RangeIntModSetting _negativeRangeSetting;
 

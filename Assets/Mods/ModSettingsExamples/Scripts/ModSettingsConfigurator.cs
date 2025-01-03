@@ -1,4 +1,5 @@
 using Bindito.Core;
+using ModSettings.CoreUI;
 
 namespace ModSettingsExamples {
   [Context("MainMenu")]
@@ -10,10 +11,13 @@ namespace ModSettingsExamples {
       containerDefinition.Bind<SimpleSettingsExample>().AsSingleton();
       containerDefinition.Bind<SettingsLogger>().AsSingleton();
       containerDefinition.Bind<FileStoredSettingsExample>().AsSingleton();
+      containerDefinition.MultiBind<IModSettingElementFactory>()
+          .To<DummyButtonElementFactory>()
+          .AsSingleton();
     }
 
   }
-  
+
   [Context("MainMenu")]
   internal class MainMenuConfigurator : IConfigurator {
 

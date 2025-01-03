@@ -1,8 +1,10 @@
 ﻿{
-  "name": "ModSettingsExamples",  
+  "name": "ModSettingsExamples",
   "references": [
     "ModSettings.Common",
-    "ModSettings.Core"
+    "ModSettings.CommonUI",
+    "ModSettings.Core",
+    "ModSettings.CoreUI"
   ],
   "autoReferenced": false
 }
