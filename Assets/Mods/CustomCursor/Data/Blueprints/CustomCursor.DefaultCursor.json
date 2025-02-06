@@ -1,0 +1,14 @@
+{
+  "CustomCursorSpec": {
+    "Id": "DefaultCursor",
+    "LargeCursor": "UI/Cursors/DefaultCursorTexture",
+    "Hotspot": {
+      "X": 0,
+      "Y": 0
+    },
+    "LargeCursorOffset": {
+      "X": 20,
+      "Y": 20
+    }
+  }
+}

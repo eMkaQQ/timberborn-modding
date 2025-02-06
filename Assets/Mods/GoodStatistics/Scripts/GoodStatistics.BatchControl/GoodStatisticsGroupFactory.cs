@@ -25,13 +25,13 @@ namespace GoodStatistics.BatchControl {
       _eventBus = eventBus;
     }
 
-    public GoodStatisticsGroup Create(GoodGroupSpecification groupSpecification,
+    public GoodStatisticsGroup Create(GoodGroupSpec goodGroupSpec,
                                       GoodSamplesRegistry goodSamplesRegistry,
                                       GoodTrendsRegistry goodTrendsRegistry) {
       var elementName = "GoodStatistics/GoodStatisticsGroup";
       var groupElement = _visualElementLoader.LoadVisualElement(elementName);
-      groupElement.Q<Image>("Icon").sprite = groupSpecification.Icon;
-      var items = CreateItems(groupSpecification.Id,
+      groupElement.Q<Image>("Icon").sprite = goodGroupSpec.Icon;
+      var items = CreateItems(goodGroupSpec.Id,
                               groupElement.Q<VisualElement>("Items"),
                               goodSamplesRegistry,
                               goodTrendsRegistry);

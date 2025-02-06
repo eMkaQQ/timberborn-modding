@@ -3,6 +3,7 @@ using Timberborn.BatchControl;
 using Timberborn.CoreUI;
 using Timberborn.EntitySystem;
 using Timberborn.GameDistricts;
+using Timberborn.SingletonSystem;
 
 namespace GoodStatistics.BatchControl {
   internal class GoodStatisticsBatchControlTab : BatchControlTab {
@@ -15,8 +16,9 @@ namespace GoodStatistics.BatchControl {
                                          BatchControlDistrict batchControlDistrict,
                                          DistrictCenterRegistry districtCenterRegistry,
                                          GoodStatisticsBatchControlRowGroupFactory
-                                             goodStatisticsBatchControlRowGroupFactory) : base(
-        visualElementLoader, batchControlDistrict) {
+                                             goodStatisticsBatchControlRowGroupFactory,
+                                         EventBus eventBus) : base(
+        visualElementLoader, batchControlDistrict, eventBus) {
       _districtCenterRegistry = districtCenterRegistry;
       _goodStatisticsBatchControlRowGroupFactory = goodStatisticsBatchControlRowGroupFactory;
     }
@@ -24,10 +26,10 @@ namespace GoodStatistics.BatchControl {
     public override string TabNameLocKey => "eMka.GoodStatistics.BatchControlTabName";
     public override string TabImage => "GoodStatistics";
     public override string BindingKey => "GoodStatisticsTab";
-    protected override bool RemoveEmptyRowGroups => true;
+    public override bool RemoveEmptyRowGroups => true;
 
-    protected override IEnumerable<BatchControlRowGroup> GetRowGroups(IEnumerable<EntityComponent>
-                                                                          entities) {
+    public override IEnumerable<BatchControlRowGroup> GetRowGroups(IEnumerable<EntityComponent>
+                                                                       entities) {
       yield return _goodStatisticsBatchControlRowGroupFactory.CreateGlobal();
       foreach (var districtCenter in _districtCenterRegistry.FinishedDistrictCenters) {
         yield return _goodStatisticsBatchControlRowGroupFactory.Create(districtCenter);

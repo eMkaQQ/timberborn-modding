@@ -4,5 +4,6 @@
   "references": [
     "ModSettings.Core",
     "ModSettings.Common"
-  ]
+  ],
+  "allowUnsafeCode": true
 }

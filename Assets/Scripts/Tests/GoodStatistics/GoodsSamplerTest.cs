@@ -400,11 +400,11 @@ namespace Tests.GoodStatistics {
         throw new NotSupportedException();
       }
 
-      public GoodSpecification GetGoodOrNull(string id) {
+      public GoodSpec GetGoodOrNull(string id) {
         throw new NotSupportedException();
       }
 
-      public GoodSpecification GetGood(string id) {
+      public GoodSpec GetGood(string id) {
         throw new NotSupportedException();
       }
 

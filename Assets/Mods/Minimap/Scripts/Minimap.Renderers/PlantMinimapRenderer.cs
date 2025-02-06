@@ -22,8 +22,8 @@ namespace Minimap.Renderers {
     public void Awake() {
       _livingNaturalResource = GetComponentFast<LivingNaturalResource>();
       _isWaterPlant =
-          GetComponentFast<WaterNaturalResourceSpecification>() is { MaxWaterHeight: > 0 } or
-                                                                   { MinWaterHeight: > 0 };
+          GetComponentFast<FloodableNaturalResourceSpec>() is { MaxWaterHeight: > 0 } or
+                                                              { MinWaterHeight: > 0 };
     }
 
     public Color GetColor() {

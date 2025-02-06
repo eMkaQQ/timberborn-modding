@@ -1,0 +1,6 @@
+ID,Text,Comment
+ModSettingsBox.GameNotChangeable,No se puede cambiar durante el juego.,Shown as a tooltip over the mod settings that can't be changed during the game
+ModSettingsBox.MainMenuNotChangeable,No se puede cambiar en el menú principal.,"Same as above, but for the main menu"
+ModSettingsBox.MapEditorNotChangeable,No se puede cambiar en el editor de mapas.,"Same as above, but for the map editor"
+ModSettingsBox.ResetMessage,¿Quieres restablecer todas las configuraciones a los valores predeterminados?,
+ModSettingsBox.ResetToDefault,restablecer a los valores predeterminados,

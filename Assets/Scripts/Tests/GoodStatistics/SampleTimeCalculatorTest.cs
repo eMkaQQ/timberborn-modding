@@ -42,17 +42,17 @@ namespace Tests.GoodStatistics {
       dayNightCycle.PartialDayNumber = 25.2f;
       Assert.AreEqual(25.5f, sampleTimeCalculator.CalculateNextSampleTime());
 
-      samplesPerDay.SetValue(24);
+      samplesPerDay.SetValue(12);
       dayNightCycle.PartialDayNumber = 0;
-      Assert.AreEqual(1 / 24f, sampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(1 / 12f, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.2f;
-      Assert.AreEqual(5 * (1 / 24f), sampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(3 * (1 / 12f), sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 0.6f;
-      Assert.AreEqual(15 * (1 / 24f), sampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(8 * (1 / 12f), sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 1;
-      Assert.AreEqual(1 + 1 / 24f, sampleTimeCalculator.CalculateNextSampleTime());
+      Assert.AreEqual(1 + 1 / 12f, sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 25.7f;
-      Assert.AreEqual(25 + 17 * (1 / 24f),
+      Assert.AreEqual(25 + 9 * (1 / 12f),
                       sampleTimeCalculator.CalculateNextSampleTime());
       dayNightCycle.PartialDayNumber = 25.99f;
       Assert.AreEqual(26, sampleTimeCalculator.CalculateNextSampleTime());

@@ -8,7 +8,7 @@ using System.Collections.Immutable;
 using System.Reflection;
 using Timberborn.Modding;
 using Timberborn.SettingsSystem;
-using Timberborn.Versioning;
+using Version = Timberborn.Versioning.Version;
 
 namespace Tests.ModSettings {
   [Obsolete]
@@ -284,8 +284,8 @@ namespace Tests.ModSettings {
     }
 
     private static Mod CreateMod(string modId) {
-      return new(new(), new("", "", ModVersion.Create("0"), modId,
-                            GameVersion.Create("0"), new List<VersionedMod>(), 
+      return new(new(), new("", "", Version.Create("0"), modId,
+                            Version.Create("0"), new List<VersionedMod>(),
                             new List<VersionedMod>()), true);
     }
 

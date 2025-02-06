@@ -10,21 +10,20 @@ namespace GoodStatistics.BatchControl {
   internal class GoodStatisticsRowItemFactory {
 
     private readonly GoodStatisticsGroupFactory _goodStatisticsGroupFactory;
-    private readonly GoodsGroupSpecificationService _goodsGroupSpecificationService;
+    private readonly GoodsGroupSpecService _goodsGroupSpecService;
     private readonly VisualElementLoader _visualElementLoader;
     private readonly BatchControlDistrict _batchControlDistrict;
     private readonly GlobalGoodSamplesRegistry _globalGoodSamplesRegistry;
     private readonly GlobalGoodTrendsRegistry _globalGoodTrendsRegistry;
 
     public GoodStatisticsRowItemFactory(GoodStatisticsGroupFactory goodStatisticsGroupFactory,
-                                        GoodsGroupSpecificationService
-                                            goodsGroupSpecificationService,
+                                        GoodsGroupSpecService goodsGroupSpecService,
                                         VisualElementLoader visualElementLoader,
                                         BatchControlDistrict batchControlDistrict,
                                         GlobalGoodSamplesRegistry globalGoodSamplesRegistry,
                                         GlobalGoodTrendsRegistry globalGoodTrendsRegistry) {
       _goodStatisticsGroupFactory = goodStatisticsGroupFactory;
-      _goodsGroupSpecificationService = goodsGroupSpecificationService;
+      _goodsGroupSpecService = goodsGroupSpecService;
       _visualElementLoader = visualElementLoader;
       _batchControlDistrict = batchControlDistrict;
       _globalGoodSamplesRegistry = globalGoodSamplesRegistry;
@@ -50,8 +49,8 @@ namespace GoodStatistics.BatchControl {
                                   _globalGoodTrendsRegistry.GoodTrendsRegistry));
     }
 
-    private ReadOnlyList<GoodGroupSpecification> GoodGroupSpecifications =>
-        _goodsGroupSpecificationService.GoodGroupSpecifications;
+    private ReadOnlyList<GoodGroupSpec> GoodGroupSpecifications =>
+        _goodsGroupSpecService.GoodGroupSpecs;
 
     private IBatchControlRowItem[] CreateGoodGroups(GoodSamplesRegistry goodSamplesRegistry,
                                                     GoodTrendsRegistry goodTrendsRegistry) {

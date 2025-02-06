@@ -6,5 +6,6 @@
     "ModSettings.CommonUI",
     "ModSettings.Core",
     "ModSettings.CoreUI"
-  ]
+  ],
+  "allowUnsafeCode": true
 }

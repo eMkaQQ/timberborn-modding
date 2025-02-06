@@ -20,7 +20,7 @@ namespace Minimap.Renderers {
     }
 
     public void Awake() {
-      _isPath = GetComponentFast<Path>()
+      _isPath = GetComponentFast<PathSpec>()
                 && !GetComponentFast<DistrictCenter>()
                 && !GetComponentFast<Wonder>();
     }

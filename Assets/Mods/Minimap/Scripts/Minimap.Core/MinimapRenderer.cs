@@ -21,6 +21,7 @@ namespace Minimap.Core {
     private readonly EventBus _eventBus;
     private readonly TopBlockObjectsRegistry _topBlockObjectsRegistry;
     private readonly TextureFactory _textureFactory;
+    private readonly IThreadSafeColumnTerrainMap _threadSafeColumnTerrainMap;
     private Vector3Int _mapSize;
     private Color32[] _chunkPixels;
     private Texture2D _chunkTexture;
@@ -39,7 +40,8 @@ namespace Minimap.Core {
                            MinimapColorSettings minimapColorSettings,
                            EventBus eventBus,
                            TopBlockObjectsRegistry topBlockObjectsRegistry,
-                           TextureFactory textureFactory) {
+                           TextureFactory textureFactory,
+                           IThreadSafeColumnTerrainMap threadSafeColumnTerrainMap) {
       _minimapTexture = minimapTexture;
       _threadSafeWaterMap = threadSafeWaterMap;
       _soilMoistureService = soilMoistureService;
@@ -50,6 +52,7 @@ namespace Minimap.Core {
       _eventBus = eventBus;
       _topBlockObjectsRegistry = topBlockObjectsRegistry;
       _textureFactory = textureFactory;
+      _threadSafeColumnTerrainMap = threadSafeColumnTerrainMap;
     }
 
     public void PostLoad() {
@@ -138,19 +141,18 @@ namespace Minimap.Core {
     }
 
     private Color GetColor(Vector2Int coordinates) {
-      var index2D = _mapIndexService.CoordinatesToIndex(coordinates);
+      var index2D = _mapIndexService.CellToIndex(coordinates);
       var waterHeight = GetWaterHeight(index2D, out var waterIndex3D);
+      var terrainHeight = GetTerrainHeight(index2D, out var terrainIndex3D);
       if (_topBlockObjectsRegistry.TryGetTopBlock(index2D, out var topBlock)
-          && (!waterHeight.HasValue || topBlock.Block.Coordinates.z >= waterHeight)) {
-        var color = topBlock.Renderer.GetColor();
-        return color;
+          && (!waterHeight.HasValue || topBlock.Block.Coordinates.z >= waterHeight)
+          && topBlock.Block.Coordinates.z >= terrainHeight) {
+        return topBlock.Renderer.GetColor();
       }
-      if (waterHeight.HasValue) {
-        var color = GetWaterColor(waterIndex3D);
-        return color;
+      if (waterHeight > terrainHeight) {
+        return GetWaterColor(waterIndex3D);
       }
-      var color2 = GetTerrainColor(index2D);
-      return color2;
+      return GetTerrainColor(terrainHeight, terrainIndex3D);
     }
 
     private int? GetWaterHeight(int index2D, out int waterIndex3D) {
@@ -158,6 +160,12 @@ namespace Minimap.Core {
         return _threadSafeWaterMap.CeiledWaterHeight(waterIndex3D);
       }
       return null;
+    }
+
+    private int GetTerrainHeight(int index2D, out int terrainIndex3D) {
+      var columnCount = _threadSafeColumnTerrainMap.GetColumnCount(index2D);
+      terrainIndex3D = index2D + (columnCount - 1) * _mapIndexService.VerticalStride;
+      return _threadSafeColumnTerrainMap.GetColumnCeiling(terrainIndex3D);
     }
 
     private Color GetWaterColor(int index3D) {
@@ -176,10 +184,9 @@ namespace Minimap.Core {
       return Color.Lerp(waterColor, badwaterColor, contaminationGradient);
     }
 
-    private Color GetTerrainColor(int index2D) {
-      var height = (float) _terrainService.UnsafeCellHeight(index2D);
+    private Color GetTerrainColor(float height, int index3D) {
       var heightProportion = height / _terrainService.Size.z;
-      if (_soilMoistureService.SoilMoisture(index2D) > 0) {
+      if (_soilMoistureService.SoilMoisture(index3D) > 0) {
         var lowestGrassColor = _minimapColorSettings.LowestGrassColor.Color;
         var highestGrassColor = _minimapColorSettings.HighestGrassColor.Color;
         return Color.Lerp(lowestGrassColor, highestGrassColor, heightProportion);

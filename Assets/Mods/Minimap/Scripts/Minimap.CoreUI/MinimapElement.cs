@@ -14,17 +14,15 @@ using UnityEngine.UIElements;
 
 namespace Minimap.CoreUI {
   internal class MinimapElement : ILoadableSingleton,
-                                  IUpdatableSingleton,
-                                  IPostLoadableSingleton {
+                                  IUpdatableSingleton {
 
     private static readonly int BackgroundMargin = 7;
-    private static readonly int BugTrackerOffset = 6;
     private readonly UILayout _uiLayout;
     private readonly VisualElementLoader _visualElementLoader;
     private readonly MinimapTexture _minimapTexture;
     private readonly ModSettingsBox _modSettingsBox;
     private readonly ModRepository _modRepository;
-    private readonly CameraComponent _cameraComponent;
+    private readonly CameraService _cameraService;
     private readonly MapSize _mapSize;
     private readonly InputService _inputService;
     private readonly UISoundController _uiSoundController;
@@ -35,14 +33,13 @@ namespace Minimap.CoreUI {
     private Image _minimapImage;
     private bool _isDragging;
     private Mod _minimapMod;
-    private VisualElement _bugTracker;
 
     public MinimapElement(UILayout uiLayout,
                           VisualElementLoader visualElementLoader,
                           MinimapTexture minimapTexture,
                           ModSettingsBox modSettingsBox,
                           ModRepository modRepository,
-                          CameraComponent cameraComponent,
+                          CameraService cameraService,
                           MapSize mapSize,
                           InputService inputService,
                           UISoundController uiSoundController) {
@@ -51,7 +48,7 @@ namespace Minimap.CoreUI {
       _minimapTexture = minimapTexture;
       _modSettingsBox = modSettingsBox;
       _modRepository = modRepository;
-      _cameraComponent = cameraComponent;
+      _cameraService = cameraService;
       _mapSize = mapSize;
       _inputService = inputService;
       _uiSoundController = uiSoundController;
@@ -66,13 +63,6 @@ namespace Minimap.CoreUI {
             : _mapSize.TerrainSize.y;
         _mapScale = 2f / mapSize;
         SetMinimapSize();
-      }
-    }
-
-    public void PostLoad() {
-      if (_minimapTexture.MinimapEnabled) {
-        var minimap = _minimapImage.parent;
-        _bugTracker = minimap.parent.parent.Q<VisualElement>("BugTracker");
       }
     }
 
@@ -98,7 +88,6 @@ namespace Minimap.CoreUI {
       _root.style.width = isPerpendicular
           ? new(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel)
           : new Length(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel);
-      _bugTracker.style.bottom = _root.style.height.value.value + BugTrackerOffset;
     }
 
     private void CreateVisualElements() {
@@ -152,17 +141,17 @@ namespace Minimap.CoreUI {
       var cameraYPos = localPos.y / _minimapImage.contentRect.height;
       var targetX = cameraXPos * _mapSize.TotalSize.x;
       var targetZ = (1 - cameraYPos) * _mapSize.TotalSize.y;
-      _cameraComponent.MoveTargetTo(new(targetX, 0, targetZ));
+      _cameraService.MoveTargetTo(new(targetX, 0, targetZ));
     }
 
     private void UpdateCameraFrustum() {
-      var zoomLevel = _cameraComponent.ZoomLevel;
+      var zoomLevel = _cameraService.ZoomLevel;
       var visibleTiles = Mathf.Pow(0.5f * zoomLevel + 3, 2);
       _cameraFrustum.SetScale(visibleTiles * _mapScale);
       _cameraFrustum.transform.rotation =
-          Quaternion.Euler(0, 0, _cameraComponent.HorizontalAngle + 180);
-      var cameraXPos = _cameraComponent.Target.x / _mapSize.TotalSize.x;
-      var cameraYPos = _cameraComponent.Target.z / _mapSize.TotalSize.y;
+          Quaternion.Euler(0, 0, _cameraService.HorizontalAngle + 180);
+      var cameraXPos = _cameraService.Target.x / _mapSize.TotalSize.x;
+      var cameraYPos = _cameraService.Target.z / _mapSize.TotalSize.y;
       _cameraFrustum.style.bottom = new Length(cameraYPos * 100, LengthUnit.Percent);
       _cameraFrustum.style.left = new Length(cameraXPos * 100, LengthUnit.Percent);
     }

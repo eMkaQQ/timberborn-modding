@@ -22,9 +22,9 @@ namespace Minimap.Renderers {
     private static TemplateModule ProvideTemplateModule() {
       var builder = new TemplateModule.Builder();
       builder.AddDecorator<TreeComponent, TreeMinimapRenderer>();
-      builder.AddDecorator<Bush, PlantMinimapRenderer>();
+      builder.AddDecorator<BushSpec, PlantMinimapRenderer>();
       builder.AddDecorator<Crop, PlantMinimapRenderer>();
-      builder.AddDecorator<Building, BuildingMinimapRenderer>();
+      builder.AddDecorator<BuildingSpec, BuildingMinimapRenderer>();
       return builder.Build();
     }
 

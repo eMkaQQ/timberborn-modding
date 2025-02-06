@@ -1,0 +1,14 @@
+{
+  "CustomCursorSpec": {
+    "Id": "GrabbingCursor",
+    "LargeCursor": "UI/Cursors/GrabbingCursorSmall",
+    "Hotspot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "LargeCursorOffset": {
+      "X": 35.0,
+      "Y": 20.0
+    }
+  }
+}

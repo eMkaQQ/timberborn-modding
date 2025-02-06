@@ -49,7 +49,7 @@ namespace Minimap.Core {
       var blockObject = blockObjectUnsetEvent.BlockObject;
       foreach (var occupiedBlock in blockObject.PositionedBlocks.GetOccupiedBlocks()) {
         var coordinates = occupiedBlock.Coordinates.XY();
-        var index = _mapIndexService.CoordinatesToIndex(coordinates);
+        var index = _mapIndexService.CellToIndex(coordinates);
         if (_topBlocks[index].HasValue && _topBlocks[index].Value.BlockObject == blockObject) {
           _topBlocks[index] = TryGetTopBlock(coordinates, out var topBlock) ? topBlock : null;
         }
@@ -68,7 +68,7 @@ namespace Minimap.Core {
     private void CheckIfIsTopObject(BlockObject blockObject) {
       var renderer = GetRenderer(blockObject);
       foreach (var occupiedBlock in blockObject.PositionedBlocks.GetOccupiedBlocks()) {
-        var index = _mapIndexService.CoordinatesToIndex(occupiedBlock.Coordinates.XY());
+        var index = _mapIndexService.CellToIndex(occupiedBlock.Coordinates.XY());
         var topBlock = new TopBlock(blockObject, occupiedBlock, renderer);
         if (!_topBlocks[index].HasValue
             || topBlock.Block.Coordinates.z > _topBlocks[index].Value.Block.Coordinates.z

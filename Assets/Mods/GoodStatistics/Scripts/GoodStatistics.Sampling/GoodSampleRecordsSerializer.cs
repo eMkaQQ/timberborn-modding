@@ -16,7 +16,7 @@ namespace GoodStatistics.Sampling {
     }
 
     public void Serialize(GoodSampleRecords value, IObjectSaver objectSaver) {
-      objectSaver.Set(GoodKey, SavedGood.Create(value.GoodId), _savedGoodObjectSerializer);
+      objectSaver.Set(GoodKey, new(value.GoodId), _savedGoodObjectSerializer);
       objectSaver.Set(GoodSamplesKey, value.GoodSamples, _goodSampleSerializer);
     }
 
