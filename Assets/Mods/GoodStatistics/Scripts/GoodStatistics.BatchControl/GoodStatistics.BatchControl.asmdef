@@ -6,5 +6,5 @@
     "GoodStatistics.Sampling",
     "GoodStatistics.UI"
   ],
-  "autoReferenced": false
+  "allowUnsafeCode": true
 }

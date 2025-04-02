@@ -2,7 +2,7 @@
 using Timberborn.Persistence;
 
 namespace GoodStatistics.Sampling {
-  public class GoodSamplesRegistrySerializer : IObjectSerializer<GoodSamplesRegistry> {
+  public class GoodSamplesRegistrySerializer : IValueSerializer<GoodSamplesRegistry> {
 
     private static readonly ListKey<GoodSampleRecords> GoodSampleRecordsKey =
         new("GoodSampleRecords");
@@ -15,11 +15,13 @@ namespace GoodStatistics.Sampling {
       _goodService = goodService;
     }
 
-    public void Serialize(GoodSamplesRegistry value, IObjectSaver objectSaver) {
+    public void Serialize(GoodSamplesRegistry value, IValueSaver valueSaver) {
+      var objectSaver = valueSaver.AsObject();
       objectSaver.Set(GoodSampleRecordsKey, value.GoodSampleRecords, _goodSampleRecordsSerializer);
     }
 
-    public Obsoletable<GoodSamplesRegistry> Deserialize(IObjectLoader objectLoader) {
+    public Obsoletable<GoodSamplesRegistry> Deserialize(IValueLoader valueLoader) {
+      var objectLoader = valueLoader.AsObject();
       var goodSamplesRegistry = GoodSamplesRegistry.CreateFromSave(
           objectLoader.Get(GoodSampleRecordsKey, _goodSampleRecordsSerializer));
       foreach (var goodId in _goodService.Goods) {

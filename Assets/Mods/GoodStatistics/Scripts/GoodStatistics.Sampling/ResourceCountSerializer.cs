@@ -1,38 +1,28 @@
-﻿using System.Linq;
-using System.Reflection;
-using Timberborn.Persistence;
+﻿using Timberborn.Persistence;
 using Timberborn.ResourceCountingSystem;
-using Timberborn.SingletonSystem;
 
 namespace GoodStatistics.Sampling {
-  public class ResourceCountSerializer : IObjectSerializer<ResourceCount>,
-                                         ILoadableSingleton {
+  public class ResourceCountSerializer : IValueSerializer<ResourceCount> {
 
     private static readonly PropertyKey<int> InputOutputStockKey = new("InputOutputStock");
     private static readonly PropertyKey<int> OutputStockKey = new("OutputStock");
     private static readonly PropertyKey<int> InputOutputCapacityKey = new("InputOutputCapacity");
     private static readonly PropertyKey<float> FillRateKey = new("FillRate");
-    private ConstructorInfo _constructor;
 
-    public void Load() {
-      _constructor = typeof(ResourceCount)
-          .GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Single();
-    }
-
-    public void Serialize(ResourceCount value, IObjectSaver objectSaver) {
+    public void Serialize(ResourceCount value, IValueSaver valueSaver) {
+      var objectSaver = valueSaver.AsObject();
       objectSaver.Set(InputOutputStockKey, value.InputOutputStock);
       objectSaver.Set(OutputStockKey, value.OutputStock);
       objectSaver.Set(InputOutputCapacityKey, value.InputOutputCapacity);
       objectSaver.Set(FillRateKey, value.FillRate);
     }
 
-    public Obsoletable<ResourceCount> Deserialize(IObjectLoader objectLoader) {
-      return (ResourceCount) _constructor.Invoke(new object[] {
-          objectLoader.Get(InputOutputStockKey),
-          objectLoader.Get(OutputStockKey),
-          objectLoader.Get(InputOutputCapacityKey),
-          objectLoader.Get(FillRateKey)
-      });
+    public Obsoletable<ResourceCount> Deserialize(IValueLoader valueLoader) {
+      var objectLoader = valueLoader.AsObject();
+      return new ResourceCount(objectLoader.Get(InputOutputStockKey),
+                               objectLoader.Get(OutputStockKey),
+                               objectLoader.Get(InputOutputCapacityKey),
+                               objectLoader.Get(FillRateKey));
     }
 
   }

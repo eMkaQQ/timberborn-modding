@@ -4,5 +4,6 @@
     "GoodStatistics.Sampling",
     "GoodStatistics.Settings",
     "ModSettings.Core"
-  ]
+  ],
+  "allowUnsafeCode": true
 }

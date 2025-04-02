@@ -4,5 +4,5 @@
     "GoodStatistics.Sampling",
     "GoodStatistics.Settings"
   ],
-  "autoReferenced": false
+  "allowUnsafeCode": true
 }

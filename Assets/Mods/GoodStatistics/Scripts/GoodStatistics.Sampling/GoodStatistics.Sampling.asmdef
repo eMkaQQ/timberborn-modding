@@ -5,5 +5,5 @@
     "ModSettings.Common",
     "ModSettings.Core"
   ],
-  "autoReferenced": false
+  "allowUnsafeCode": true
 }

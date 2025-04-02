@@ -3,5 +3,6 @@
   "references": [
     "ModSettings.Common",
     "ModSettings.Core"
-  ]
+  ],
+  "allowUnsafeCode": true
 }
