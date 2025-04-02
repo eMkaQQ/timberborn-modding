@@ -1,6 +1,7 @@
 ﻿using System;
 using Timberborn.Persistence;
 using Timberborn.SingletonSystem;
+using Timberborn.WorldPersistence;
 
 namespace Minimap.CoreUI {
   internal class MinimapElementRotator : ISaveableSingleton,

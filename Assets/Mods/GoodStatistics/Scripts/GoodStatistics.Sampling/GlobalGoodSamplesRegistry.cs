@@ -1,6 +1,7 @@
 ﻿using Timberborn.Goods;
 using Timberborn.Persistence;
 using Timberborn.SingletonSystem;
+using Timberborn.WorldPersistence;
 
 namespace GoodStatistics.Sampling {
   public class GlobalGoodSamplesRegistry : ISaveableSingleton,

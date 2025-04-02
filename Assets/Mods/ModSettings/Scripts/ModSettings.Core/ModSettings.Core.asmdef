@@ -1,4 +1,5 @@
 {
   "name": "ModSettings.Core",
-  "autoReferenced": false
+  "autoReferenced": false,
+  "allowUnsafeCode": true
 }

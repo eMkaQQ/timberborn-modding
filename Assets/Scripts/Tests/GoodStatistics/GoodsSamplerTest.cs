@@ -11,6 +11,7 @@ using Timberborn.InventorySystem;
 using Timberborn.Persistence;
 using Timberborn.ResourceCountingSystem;
 using Timberborn.TimeSystem;
+using Timberborn.WorldPersistence;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

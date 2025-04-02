@@ -5,6 +5,7 @@ using Timberborn.EntitySystem;
 using Timberborn.GameDistricts;
 using Timberborn.Goods;
 using Timberborn.Persistence;
+using Timberborn.WorldPersistence;
 
 namespace GoodStatistics.Sampling {
   public class DistrictGoodSamplesRegistry : BaseComponent,

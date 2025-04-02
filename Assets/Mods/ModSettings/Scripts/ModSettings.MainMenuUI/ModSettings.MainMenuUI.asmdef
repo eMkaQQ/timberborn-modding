@@ -4,5 +4,6 @@
     "ModSettings.Core",
     "ModSettings.CoreUI"
   ],
-  "autoReferenced": false
+  "autoReferenced": false,
+  "allowUnsafeCode": true
 }

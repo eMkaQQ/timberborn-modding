@@ -2,5 +2,6 @@
   "name": "ModSettings.ColorPicker",
   "references": [
   ],
-  "autoReferenced": false
+  "autoReferenced": false,
+  "allowUnsafeCode": true
 }

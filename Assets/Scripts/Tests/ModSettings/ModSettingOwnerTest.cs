@@ -293,6 +293,38 @@ namespace Tests.ModSettings {
       // then
       Assert.AreEqual(1, modSettingOwner.ModSettings.Count);
     }
+    
+    [Test]
+    public void ShouldInvokeModSettingChangedEvent() {
+      // given
+      var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
+      var modSettingOwner = new ModSettingOwnerMock(new FilledSettingsMock(), new(), modRepository);
+      modSettingOwner.Load();
+      var changed = false;
+      modSettingOwner.ModSettingChanged += (_, _) => changed = true;
+
+      // when
+      modSettingOwner.IntSetting.SetValue(2);
+
+      // then
+      Assert.IsTrue(changed);
+    }
+    
+    [Test]
+    public void ShouldPassCorrectModSettingToModSettingChangedEvent() {
+      // given
+      var modRepository = CreateModRepository(new[] { CreateMod("modMock") });
+      var modSettingOwner = new ModSettingOwnerMock(new FilledSettingsMock(), new(), modRepository);
+      modSettingOwner.Load();
+      ModSetting changedModSetting = null;
+      modSettingOwner.ModSettingChanged += (_, e) => changedModSetting = e.ModSetting;
+
+      // when
+      modSettingOwner.IntSetting.SetValue(2);
+
+      // then
+      Assert.AreEqual(modSettingOwner.IntSetting, changedModSetting);
+    }
 
     private static string GetModSettingKey(string modId, string modSettingOwnerName,
                                            string settingName) {
@@ -315,6 +347,7 @@ namespace Tests.ModSettings {
                        | BindingFlags.SetProperty);
       Assert.IsNotNull(modsProperty);
       modsProperty.SetValue(modRepository, mods.ToImmutableArray());
+      ModdedState.SetOfficialMods(mods);
       return modRepository;
     }
 

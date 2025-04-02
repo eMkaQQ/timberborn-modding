@@ -12,6 +12,7 @@ using UnityEngine;
 namespace ModSettings.Core {
   public abstract class ModSettingsOwner : ILoadableSingleton {
 
+    public event EventHandler<ModSettingChangedEvent> ModSettingChanged;
     private readonly ISettings _settings;
     private readonly ModSettingsOwnerRegistry _modSettingsOwnerRegistry;
     private readonly ModRepository _modRepository;
@@ -79,7 +80,8 @@ namespace ModSettings.Core {
       var key = $"ModSetting.{ModId}.{type.Name}.{propertyInfo.Name}";
       var settingObject = propertyInfo.GetValue(this);
       if (typeof(NonPersistentSetting).IsAssignableFrom(propertyInfo.PropertyType)) {
-        _modSettings.Add((ModSetting) settingObject);
+        var modSetting = (ModSetting) settingObject;
+        _modSettings.Add(modSetting);
       } else {
         var genericType = GetGenericType(propertyInfo.PropertyType);
         InitializeModSetting(settingObject, genericType, key);
@@ -124,7 +126,10 @@ namespace ModSettings.Core {
       if (modSetting.IsValid(this, _settings, key)) {
         _modSettings.Add(modSetting);
         modSetting.SetValue(valueGetter(key, modSetting.DefaultValue));
-        modSetting.ValueChanged += (_, value) => valueSetter(key, value);
+        modSetting.ValueChanged += (_, value) => {
+          valueSetter(key, value);
+          ModSettingChanged?.Invoke(this, new(modSetting));
+        };
       }
     }
 

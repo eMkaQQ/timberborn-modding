@@ -24,7 +24,8 @@
     "Timberborn.ResourceCountingSystem.dll",
     "Timberborn.SettingsSystem.dll",
     "Timberborn.SingletonSystem.dll",
-    "Timberborn.TimeSystem.dll"
+    "Timberborn.TimeSystem.dll",
+    "Timberborn.WorldPersistence.dll"
   ],
   "autoReferenced": false,
   "defineConstraints": [
