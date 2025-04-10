@@ -421,7 +421,8 @@ namespace Tests.GoodStatistics {
         throw new NotSupportedException();
       }
 
-      public bool HasSingleton(SingletonKey key) {
+      public bool TryGetSingleton(SingletonKey key, out IObjectLoader objectLoader) {
+        objectLoader = null;
         return false;
       }
 

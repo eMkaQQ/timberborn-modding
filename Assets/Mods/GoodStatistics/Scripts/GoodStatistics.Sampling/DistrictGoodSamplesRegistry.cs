@@ -47,8 +47,8 @@ namespace GoodStatistics.Sampling {
     }
 
     public void Load(IEntityLoader entityLoader) {
-      if (entityLoader.HasComponent(DistrictGoodSamplesRegistryKey)) {
-        var districtGoodSamplesRegistry = entityLoader.GetComponent(DistrictGoodSamplesRegistryKey);
+      if (entityLoader.TryGetComponent(DistrictGoodSamplesRegistryKey,
+                                       out var districtGoodSamplesRegistry)) {
         GoodSamplesRegistry = districtGoodSamplesRegistry.Get(GoodSamplesRegistryKey,
                                                               _goodSamplesRegistrySerializer);
       }

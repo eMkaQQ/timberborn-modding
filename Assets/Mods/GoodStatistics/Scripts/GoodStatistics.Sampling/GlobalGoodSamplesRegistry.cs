@@ -32,9 +32,8 @@ namespace GoodStatistics.Sampling {
     }
 
     public void Load() {
-      if (_singletonLoader.HasSingleton(GlobalGoodSamplesRegistryKey)) {
-        var globalGoodSamplesRegistry =
-            _singletonLoader.GetSingleton(GlobalGoodSamplesRegistryKey);
+      if (_singletonLoader.TryGetSingleton(GlobalGoodSamplesRegistryKey,
+                                           out var globalGoodSamplesRegistry)) {
         GoodSamplesRegistry = globalGoodSamplesRegistry.Get(GoodSamplesRegistryKey,
                                                             _goodSamplesRegistrySerializer);
       } else {

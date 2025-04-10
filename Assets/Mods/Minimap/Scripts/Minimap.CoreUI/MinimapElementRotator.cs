@@ -26,9 +26,9 @@ namespace Minimap.CoreUI {
     }
 
     public void Load() {
-      if (_singletonLoader.HasSingleton(MinimapElementRotatorKey)) {
-        var rotation = _singletonLoader.GetSingleton(MinimapElementRotatorKey).Get(RotationKey);
-        _minimapDirection = (MinimapDirection) rotation;
+      if (_singletonLoader.TryGetSingleton(MinimapElementRotatorKey,
+                                           out var minimapElementRotator)) {
+        _minimapDirection = (MinimapDirection) minimapElementRotator.Get(RotationKey);
       }
     }
 
