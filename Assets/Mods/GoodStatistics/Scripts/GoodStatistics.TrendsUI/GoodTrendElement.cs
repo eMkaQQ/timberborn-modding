@@ -1,7 +1,7 @@
-﻿using GoodStatistics.Analytics;
+﻿using GoodStatistics.Trends;
 using UnityEngine.UIElements;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   public class GoodTrendElement {
 
     public VisualElement Root { get; }

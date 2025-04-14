@@ -1,5 +1,5 @@
-﻿using GoodStatistics.Analytics;
-using GoodStatistics.Sampling;
+﻿using GoodStatistics.Sampling;
+using GoodStatistics.Trends;
 using System.Collections.Generic;
 using Timberborn.CoreUI;
 using Timberborn.Goods;

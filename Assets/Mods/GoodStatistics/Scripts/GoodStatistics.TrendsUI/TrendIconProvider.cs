@@ -4,7 +4,7 @@ using Timberborn.AssetSystem;
 using Timberborn.SingletonSystem;
 using UnityEngine;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   public class TrendIconProvider : ILoadableSingleton {
 
     private static readonly string FastGrowthIconName = "trend-growth-fast";

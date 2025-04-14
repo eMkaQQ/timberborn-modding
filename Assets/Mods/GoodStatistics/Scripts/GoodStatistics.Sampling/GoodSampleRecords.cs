@@ -1,11 +1,12 @@
-﻿using GoodStatistics.Settings;
+﻿using GoodStatistics.Analytics;
+using GoodStatistics.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using Timberborn.Common;
 using Timberborn.ResourceCountingSystem;
 
 namespace GoodStatistics.Sampling {
-  public class GoodSampleRecords {
+  public class GoodSampleRecords : ISampleRecords {
 
     public string GoodId { get; }
     private readonly List<GoodSample> _goodSamples;
@@ -37,10 +38,30 @@ namespace GoodStatistics.Sampling {
       ReplaceMissingSamples(goodSample);
     }
 
+    public int GetSamplesCount() {
+      return _goodSamples.Count;
+    }
+
+    public float GetDayTimestampAt(int index) {
+      return _goodSamples[index].DayTimestamp;
+    }
+
+    public int GetTotalAmountAt(int index) {
+      return _goodSamples[index].TotalStock;
+    }
+
+    public int GetTotalCapacityAt(int index) {
+      return _goodSamples[index].TotalCapacity;
+    }
+
     public int GetMaxCapacity() {
       return _goodSamples.Max(sample => sample.TotalCapacity);
     }
-    
+
+    public bool WasAtFullOrZeroPreviously() {
+      return GoodSamples[1].FillRate is > 0.999f or < 0.001f;
+    }
+
     private void ReplaceMissingSamples(GoodSample goodSample) {
       for (var i = 1; i < _goodSamples.Count; i++) {
         if (_goodSamples[i].DayTimestamp < 0) {

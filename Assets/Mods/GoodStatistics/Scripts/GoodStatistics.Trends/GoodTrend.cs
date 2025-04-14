@@ -1,4 +1,6 @@
-﻿namespace GoodStatistics.Analytics {
+﻿using GoodStatistics.Analytics;
+
+namespace GoodStatistics.Trends {
   public class GoodTrend {
 
     public TrendType TrendType { get; private set; } = TrendType.Stable;

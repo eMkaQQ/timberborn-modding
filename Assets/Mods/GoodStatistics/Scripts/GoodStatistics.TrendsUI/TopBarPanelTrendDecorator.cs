@@ -2,7 +2,7 @@
 using Timberborn.TopBarSystem;
 using UnityEngine.UIElements;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   internal class TopBarPanelTrendDecorator {
 
     private readonly GoodTrendElementFactory _goodTrendElementFactory;

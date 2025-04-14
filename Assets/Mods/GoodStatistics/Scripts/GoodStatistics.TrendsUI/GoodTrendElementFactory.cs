@@ -3,7 +3,7 @@ using Timberborn.StockpilesUI;
 using Timberborn.TooltipSystem;
 using UnityEngine.UIElements;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   public class GoodTrendElementFactory {
 
     private readonly VisualElementLoader _visualElementLoader;

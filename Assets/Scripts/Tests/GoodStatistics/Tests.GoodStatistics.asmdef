@@ -4,6 +4,7 @@
     "GoodStatistics.Analytics",
     "GoodStatistics.Sampling",
     "GoodStatistics.Settings",
+    "GoodStatistics.Trends",
     "ModSettings.Core"
   ],
   "includePlatforms": [

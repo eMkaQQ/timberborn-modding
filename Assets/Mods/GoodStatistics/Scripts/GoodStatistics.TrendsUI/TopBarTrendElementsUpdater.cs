@@ -1,12 +1,12 @@
-﻿using GoodStatistics.Analytics;
-using GoodStatistics.Sampling;
+﻿using GoodStatistics.Sampling;
 using GoodStatistics.Settings;
+using GoodStatistics.Trends;
 using System.Collections.Generic;
 using Timberborn.GameDistricts;
 using Timberborn.SingletonSystem;
 using Timberborn.UILayoutSystem;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   internal class TopBarTrendElementsUpdater : ILoadableSingleton {
 
     private readonly EventBus _eventBus;

@@ -1,6 +1,7 @@
 ﻿using GoodStatistics.Analytics;
 using GoodStatistics.Sampling;
 using GoodStatistics.Settings;
+using GoodStatistics.Trends;
 using NUnit.Framework;
 using Timberborn.ResourceCountingSystem;
 
@@ -99,12 +100,11 @@ namespace Tests.GoodStatistics {
       Assert.IsTrue(analyzer.WasAnalyzeCalled);
     }
 
-    private class MockGoodTrendAnalyzer : IGoodTrendAnalyzer {
+    private class MockGoodTrendAnalyzer : ITrendAnalyzer {
 
       public bool WasAnalyzeCalled { get; private set; }
 
-      public void Analyze(GoodSampleRecords goodSampleRecords,
-                          out TrendType trendType,
+      public void Analyze(ISampleRecords sampleRecords, out TrendType trendType,
                           out float daysLeft) {
         trendType = TrendType.HighGrowth;
         daysLeft = 500;

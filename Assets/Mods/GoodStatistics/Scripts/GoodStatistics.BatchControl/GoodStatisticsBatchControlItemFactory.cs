@@ -1,6 +1,6 @@
-﻿using GoodStatistics.Analytics;
-using GoodStatistics.AnalyticsUI;
-using GoodStatistics.Sampling;
+﻿using GoodStatistics.Sampling;
+using GoodStatistics.Trends;
+using GoodStatistics.TrendsUI;
 using GoodStatistics.UI;
 using Timberborn.CoreUI;
 using Timberborn.GoodsUI;

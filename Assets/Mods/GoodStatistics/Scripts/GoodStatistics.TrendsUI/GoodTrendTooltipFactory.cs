@@ -1,9 +1,10 @@
 ﻿using GoodStatistics.Analytics;
+using GoodStatistics.Trends;
 using Timberborn.CoreUI;
 using Timberborn.Localization;
 using UnityEngine.UIElements;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   public class GoodTrendTooltipFactory {
 
     private static readonly string GrowingLocKey = "eMka.GoodStatistics.GrowingDaysLeft";

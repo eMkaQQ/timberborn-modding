@@ -3,7 +3,7 @@ using GoodStatistics.Sampling;
 using Timberborn.BaseComponentSystem;
 using Timberborn.EntitySystem;
 
-namespace GoodStatistics.Analytics {
+namespace GoodStatistics.Trends {
   public class DistrictGoodTrendsRegistry : BaseComponent,
                                             IInitializableEntity {
 

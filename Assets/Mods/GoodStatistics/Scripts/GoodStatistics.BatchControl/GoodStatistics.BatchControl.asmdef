@@ -2,8 +2,9 @@
   "name": "GoodStatistics.BatchControl",
   "references": [
     "GoodStatistics.Analytics",
-    "GoodStatistics.AnalyticsUI",
     "GoodStatistics.Sampling",
+    "GoodStatistics.Trends",
+    "GoodStatistics.TrendsUI",
     "GoodStatistics.UI"
   ],
   "allowUnsafeCode": true

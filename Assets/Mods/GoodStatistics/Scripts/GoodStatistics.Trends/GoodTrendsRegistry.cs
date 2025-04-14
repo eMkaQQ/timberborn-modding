@@ -1,19 +1,20 @@
-﻿using GoodStatistics.Sampling;
+﻿using GoodStatistics.Analytics;
+using GoodStatistics.Sampling;
 using GoodStatistics.Settings;
 using System.Collections.Generic;
 
-namespace GoodStatistics.Analytics {
+namespace GoodStatistics.Trends {
   public class GoodTrendsRegistry {
 
-    private readonly IGoodTrendAnalyzer _goodTrendAnalyzer;
+    private readonly ITrendAnalyzer _trendAnalyzer;
     private readonly GoodStatisticsSettings _goodStatisticsSettings;
     private readonly GoodSamplesRegistry _goodSamplesRegistry;
     private readonly Dictionary<string, GoodTrend> _goodTrends = new();
 
-    public GoodTrendsRegistry(IGoodTrendAnalyzer goodTrendAnalyzer,
+    public GoodTrendsRegistry(ITrendAnalyzer trendAnalyzer,
                               GoodStatisticsSettings goodStatisticsSettings,
                               GoodSamplesRegistry goodSamplesRegistry) {
-      _goodTrendAnalyzer = goodTrendAnalyzer;
+      _trendAnalyzer = trendAnalyzer;
       _goodStatisticsSettings = goodStatisticsSettings;
       _goodSamplesRegistry = goodSamplesRegistry;
     }
@@ -36,7 +37,7 @@ namespace GoodStatistics.Analytics {
 
     private void Update(GoodSampleRecords goodSampleRecords) {
       if (ShouldBeAnalyzed(goodSampleRecords)) {
-        _goodTrendAnalyzer.Analyze(goodSampleRecords, out var trendType, out var daysLeft);
+        _trendAnalyzer.Analyze(goodSampleRecords, out var trendType, out var daysLeft);
         _goodTrends[goodSampleRecords.GoodId].Update(trendType, daysLeft);
       } else {
         _goodTrends[goodSampleRecords.GoodId].Update(TrendType.Stable, -1);

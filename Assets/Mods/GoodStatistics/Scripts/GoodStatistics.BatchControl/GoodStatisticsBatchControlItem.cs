@@ -1,5 +1,5 @@
-﻿using GoodStatistics.Analytics;
-using GoodStatistics.AnalyticsUI;
+﻿using GoodStatistics.Trends;
+using GoodStatistics.TrendsUI;
 using GoodStatistics.UI;
 using UnityEngine.UIElements;
 

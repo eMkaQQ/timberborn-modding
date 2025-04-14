@@ -1,6 +1,6 @@
 ﻿using Timberborn.Localization;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   public class GoodTrendDaysLeftDescriber {
 
     private static readonly string DaysLocKey = "Time.DaysShort";

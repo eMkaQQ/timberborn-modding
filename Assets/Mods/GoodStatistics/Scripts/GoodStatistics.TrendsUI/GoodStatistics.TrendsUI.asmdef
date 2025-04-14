@@ -1,9 +1,10 @@
 ﻿{
-  "name": "GoodStatistics.AnalyticsUI",
+  "name": "GoodStatistics.TrendsUI",
   "references": [
     "GoodStatistics.Analytics",
     "GoodStatistics.Sampling",
     "GoodStatistics.Settings",
+    "GoodStatistics.Trends",
     "ModSettings.Core"
   ],
   "allowUnsafeCode": true

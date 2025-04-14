@@ -1,6 +1,6 @@
 ﻿using Bindito.Core;
 
-namespace GoodStatistics.AnalyticsUI {
+namespace GoodStatistics.TrendsUI {
   [Context("Game")]
   public class GoodStatisticsAnalyticsUIConfigurator : IConfigurator {
 

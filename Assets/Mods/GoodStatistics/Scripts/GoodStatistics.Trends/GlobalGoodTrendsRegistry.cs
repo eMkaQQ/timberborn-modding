@@ -1,7 +1,7 @@
 ﻿using GoodStatistics.Sampling;
 using Timberborn.SingletonSystem;
 
-namespace GoodStatistics.Analytics {
+namespace GoodStatistics.Trends {
   public class GlobalGoodTrendsRegistry : ILoadableSingleton {
 
     public GoodTrendsRegistry GoodTrendsRegistry { get; private set; }

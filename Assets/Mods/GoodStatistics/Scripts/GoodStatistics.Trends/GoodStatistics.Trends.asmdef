@@ -1,6 +1,8 @@
 ﻿{
-  "name": "GoodStatistics.Analytics",
+  "name": "GoodStatistics.Trends",
   "references": [
+    "GoodStatistics.Analytics",
+    "GoodStatistics.Sampling",
     "GoodStatistics.Settings",
     "ModSettings.Core"
   ],
