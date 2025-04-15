@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Sampling;
+﻿using GoodStatistics.GoodSampling;
 using GoodStatistics.Settings;
 using NUnit.Framework;
 using System;

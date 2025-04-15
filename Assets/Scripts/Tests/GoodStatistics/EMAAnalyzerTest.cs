@@ -1,5 +1,5 @@
 ﻿using GoodStatistics.Analytics;
-using GoodStatistics.Sampling;
+using GoodStatistics.GoodSampling;
 using GoodStatistics.Settings;
 using NUnit.Framework;
 using Timberborn.ResourceCountingSystem;
