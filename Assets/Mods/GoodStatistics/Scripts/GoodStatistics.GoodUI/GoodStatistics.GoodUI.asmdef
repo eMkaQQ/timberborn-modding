@@ -1,0 +1,8 @@
+﻿{
+  "name": "GoodStatistics.GoodUI",
+  "references": [
+    "GoodStatistics.GoodSampling",
+    "GoodStatistics.Settings"
+  ],
+  "allowUnsafeCode": true
+}

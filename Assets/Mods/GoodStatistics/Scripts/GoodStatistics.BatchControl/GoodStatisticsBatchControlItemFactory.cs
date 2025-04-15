@@ -1,7 +1,7 @@
-﻿using GoodStatistics.Sampling;
-using GoodStatistics.Trends;
-using GoodStatistics.TrendsUI;
-using GoodStatistics.UI;
+﻿using GoodStatistics.GoodSampling;
+using GoodStatistics.GoodTrends;
+using GoodStatistics.GoodTrendsUI;
+using GoodStatistics.GoodUI;
 using Timberborn.CoreUI;
 using Timberborn.GoodsUI;
 using Timberborn.TooltipSystem;

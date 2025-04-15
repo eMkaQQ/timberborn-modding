@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Sampling;
+﻿using GoodStatistics.GoodSampling;
 using Timberborn.BatchControl;
 using Timberborn.CoreUI;
 using Timberborn.EntitySystem;

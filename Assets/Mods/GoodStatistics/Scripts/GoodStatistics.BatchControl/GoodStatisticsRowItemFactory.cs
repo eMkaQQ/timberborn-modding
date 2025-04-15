@@ -1,5 +1,5 @@
-﻿using GoodStatistics.Sampling;
-using GoodStatistics.Trends;
+﻿using GoodStatistics.GoodSampling;
+using GoodStatistics.GoodTrends;
 using Timberborn.BatchControl;
 using Timberborn.Common;
 using Timberborn.CoreUI;

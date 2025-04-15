@@ -1,0 +1,10 @@
+﻿{
+  "name": "GoodStatistics.GoodSampling",
+  "references": [
+    "GoodStatistics.Analytics",
+    "GoodStatistics.Settings",
+    "ModSettings.Common",
+    "ModSettings.Core"
+  ],
+  "allowUnsafeCode": true
+}

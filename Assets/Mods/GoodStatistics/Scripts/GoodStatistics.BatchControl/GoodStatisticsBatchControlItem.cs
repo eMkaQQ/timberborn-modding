@@ -1,6 +1,6 @@
-﻿using GoodStatistics.Trends;
-using GoodStatistics.TrendsUI;
-using GoodStatistics.UI;
+﻿using GoodStatistics.GoodTrends;
+using GoodStatistics.GoodTrendsUI;
+using GoodStatistics.GoodUI;
 using UnityEngine.UIElements;
 
 namespace GoodStatistics.BatchControl {

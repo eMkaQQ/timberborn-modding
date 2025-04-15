@@ -1,4 +1,4 @@
-﻿using GoodStatistics.Sampling;
+﻿using GoodStatistics.GoodSampling;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Timberborn.BatchControl;
