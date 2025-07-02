@@ -142,7 +142,10 @@ namespace Minimap.Core {
 
     private Color GetColor(Vector2Int coordinates) {
       var index2D = _mapIndexService.CellToIndex(coordinates);
-      var waterHeight = GetWaterHeight(index2D, out var waterIndex3D);
+      var wateredColumn = GetTopWateredColumn(index2D);
+      float? waterHeight = wateredColumn != null
+          ? wateredColumn.Value.Floor + wateredColumn.Value.WaterDepth
+          : null;
       var terrainHeight = GetTerrainHeight(index2D, out var terrainIndex3D);
       if (_topBlockObjectsRegistry.TryGetTopBlock(index2D, out var topBlock)
           && (!waterHeight.HasValue || topBlock.Block.Coordinates.z >= waterHeight)
@@ -150,14 +153,18 @@ namespace Minimap.Core {
         return topBlock.Renderer.GetColor();
       }
       if (waterHeight > terrainHeight) {
-        return GetWaterColor(waterIndex3D);
+        return GetWaterColor(wateredColumn.Value);
       }
       return GetTerrainColor(terrainHeight, terrainIndex3D);
     }
-
-    private int? GetWaterHeight(int index2D, out int waterIndex3D) {
-      if (_threadSafeWaterMap.TryGetTopWateredColumn(int.MaxValue, index2D, out waterIndex3D)) {
-        return _threadSafeWaterMap.CeiledWaterHeight(waterIndex3D);
+    
+    private ReadOnlyWaterColumn? GetTopWateredColumn(int index2D) {
+      var columnCounts = _threadSafeWaterMap.ColumnCount(index2D);
+      for (var i = columnCounts - 1; i >= 0; i--) {
+        var index3D = i * _mapIndexService.VerticalStride + index2D;
+        if (_threadSafeWaterMap.WaterDepth(index3D) > 0) {
+          return _threadSafeWaterMap.WaterColumns[index3D];
+        }
       }
       return null;
     }
@@ -168,11 +175,11 @@ namespace Minimap.Core {
       return _threadSafeColumnTerrainMap.GetColumnCeiling(terrainIndex3D);
     }
 
-    private Color GetWaterColor(int index3D) {
-      var contamination = _threadSafeWaterMap.ColumnContamination(index3D);
+    private Color GetWaterColor(ReadOnlyWaterColumn readOnlyWaterColumn) {
+      var contamination = readOnlyWaterColumn.Contamination;
       var contaminationGradient = contamination < 0.05f ? contamination * 10 :
           contamination < 0.5f ? 0.5f + (contamination - 0.05f) * 2.22f : 1;
-      var waterDepth = _threadSafeWaterMap.WaterDepth(index3D);
+      var waterDepth = readOnlyWaterColumn.WaterDepth;
       var waterProportion = waterDepth / 10;
       var shallowWaterColor = _minimapColorSettings.ShallowWaterColor.Color;
       var deepWaterColor = _minimapColorSettings.DeepWaterColor.Color;
