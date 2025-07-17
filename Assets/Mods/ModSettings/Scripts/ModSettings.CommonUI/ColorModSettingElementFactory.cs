@@ -43,6 +43,8 @@ namespace ModSettings.CommonUI {
                                                       colorImage.style.backgroundColor = newColor;
                                                       colorModSetting.SetValue(newColor);
                                                     }));
+        colorModSetting.ValueChanged +=
+            (_, _) => colorImage.style.backgroundColor = colorModSetting.Color;
         element = new ModSettingElement(root, modSetting);
         return true;
       }
