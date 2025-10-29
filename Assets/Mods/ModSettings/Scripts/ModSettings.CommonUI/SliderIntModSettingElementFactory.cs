@@ -46,6 +46,10 @@ namespace ModSettings.CommonUI {
         valueLabel.text = rangeIntModSetting.Value.ToString(CultureInfo.InvariantCulture);
       });
       valueLabel.text = rangeIntModSetting.Value.ToString(CultureInfo.InvariantCulture);
+      rangeIntModSetting.ValueChanged += (_, newValue) => {
+        slider.SetValueWithoutNotify(newValue);
+        valueLabel.text = newValue.ToString(CultureInfo.InvariantCulture);
+      };
     }
 
   }

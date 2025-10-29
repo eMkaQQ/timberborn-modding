@@ -1,0 +1,6 @@
+ID,Text,Comment
+ModSettingsBox.GameNotChangeable,Нельзя изменить во время игры.,Shown as a tooltip over the mod settings that can't be changed during the game
+ModSettingsBox.MainMenuNotChangeable,Нельзя изменить в главном меню.,"Same as above, but for the main menu"
+ModSettingsBox.MapEditorNotChangeable,Нельзя изменить в редакторе карт.,"Same as above, but for the map editor"
+ModSettingsBox.ResetMessage,Вы хотите сбросить все установки в настройки по умолчанию?,
+ModSettingsBox.ResetToDefault,Сбросить установки,
