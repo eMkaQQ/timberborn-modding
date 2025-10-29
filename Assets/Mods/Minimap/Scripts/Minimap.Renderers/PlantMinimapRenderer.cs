@@ -8,7 +8,8 @@ using UnityEngine;
 
 namespace Minimap.Renderers {
   internal class PlantMinimapRenderer : BaseComponent,
-                                        IMinimapBlockObjectRenderer {
+                                        IMinimapBlockObjectRenderer,
+                                        IAwakableComponent {
 
     private MinimapColorSettings _minimapColorSettings;
     private LivingNaturalResource _livingNaturalResource;
@@ -20,9 +21,9 @@ namespace Minimap.Renderers {
     }
 
     public void Awake() {
-      _livingNaturalResource = GetComponentFast<LivingNaturalResource>();
+      _livingNaturalResource = GetComponent<LivingNaturalResource>();
       _isWaterPlant =
-          GetComponentFast<FloodableNaturalResourceSpec>() is { MaxWaterHeight: > 0 } or
+          GetComponent<FloodableNaturalResourceSpec>() is { MaxWaterHeight: > 0 } or
                                                               { MinWaterHeight: > 0 };
     }
 

@@ -9,7 +9,8 @@ using UnityEngine;
 
 namespace Minimap.Renderers {
   internal class BuildingMinimapRenderer : BaseComponent,
-                                           IMinimapBlockObjectRenderer {
+                                           IMinimapBlockObjectRenderer, 
+                                           IAwakableComponent {
 
     private MinimapColorSettings _minimapColorSettings;
     private bool _isPath;
@@ -20,9 +21,9 @@ namespace Minimap.Renderers {
     }
 
     public void Awake() {
-      _isPath = GetComponentFast<PathSpec>()
-                && !GetComponentFast<DistrictCenter>()
-                && !GetComponentFast<Wonder>();
+      _isPath = HasComponent<PathSpec>()
+                && !HasComponent<DistrictCenter>()
+                && !HasComponent<Wonder>();
     }
 
     public Color GetColor() {

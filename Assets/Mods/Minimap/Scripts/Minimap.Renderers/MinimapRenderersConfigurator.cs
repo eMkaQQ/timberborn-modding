@@ -3,18 +3,22 @@ using Minimap.Core;
 using Timberborn.Buildings;
 using Timberborn.Fields;
 using Timberborn.Forestry;
-using Timberborn.TemplateSystem;
+using Timberborn.TemplateInstantiation;
 
 namespace Minimap.Renderers {
   [Context("Game")]
   [Context("MapEditor")]
-  internal class MinimapRenderersConfigurator : IConfigurator {
+  internal class MinimapRenderersConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<IMinimapBlockObjectRenderer>()
+    protected override void Configure() {
+      Bind<TreeMinimapRenderer>().AsTransient();
+      Bind<PlantMinimapRenderer>().AsTransient();
+      Bind<BuildingMinimapRenderer>().AsTransient();
+      
+      Bind<IMinimapBlockObjectRenderer>()
           .To<BlockObjectMinimapRenderer>()
           .AsSingleton();
-      containerDefinition.MultiBind<TemplateModule>()
+      MultiBind<TemplateModule>()
           .ToProvider(ProvideTemplateModule)
           .AsSingleton();
     }

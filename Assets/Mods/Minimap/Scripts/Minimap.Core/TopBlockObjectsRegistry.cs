@@ -97,7 +97,7 @@ namespace Minimap.Core {
     }
 
     private IMinimapBlockObjectRenderer GetRenderer(BlockObject blockObject) {
-      var customRenderer = blockObject.GetComponentFast<IMinimapBlockObjectRenderer>();
+      var customRenderer = blockObject.GetComponent<IMinimapBlockObjectRenderer>();
       return customRenderer ?? _blockObjectRenderer;
     }
 

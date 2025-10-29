@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Minimap.Renderers {
   internal class TreeMinimapRenderer : BaseComponent,
+                                       IAwakableComponent,
                                        IMinimapBlockObjectRenderer {
 
     private MinimapColorSettings _minimapColorSettings;
@@ -18,7 +19,7 @@ namespace Minimap.Renderers {
     }
 
     public void Awake() {
-      _livingNaturalResource = GetComponentFast<LivingNaturalResource>();
+      _livingNaturalResource = GetComponent<LivingNaturalResource>();
     }
 
     public Color GetColor() {

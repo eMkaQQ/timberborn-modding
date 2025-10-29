@@ -3,12 +3,12 @@
 namespace Minimap.Core {
   [Context("Game")]
   [Context("MapEditor")]
-  internal class MinimapCoreConfigurator : IConfigurator {
+  internal class MinimapCoreConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<MinimapTexture>().AsSingleton();
-      containerDefinition.Bind<MinimapRenderer>().AsSingleton();
-      containerDefinition.Bind<TopBlockObjectsRegistry>().AsSingleton();
+    protected override void Configure() {
+      Bind<MinimapTexture>().AsSingleton();
+      Bind<MinimapRenderer>().AsSingleton();
+      Bind<TopBlockObjectsRegistry>().AsSingleton();
     }
 
   }

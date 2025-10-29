@@ -4,11 +4,11 @@ namespace Minimap.Settings {
   [Context("Game")]
   [Context("MapEditor")]
   [Context("MainMenu")]
-  internal class MinimapSettingsConfigurator : IConfigurator {
+  internal class MinimapSettingsConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<MinimapColorSettings>().AsSingleton();
-      containerDefinition.Bind<MinimapSettings>().AsSingleton();
+    protected override void Configure() {
+      Bind<MinimapColorSettings>().AsSingleton();
+      Bind<MinimapSettings>().AsSingleton();
     }
 
   }

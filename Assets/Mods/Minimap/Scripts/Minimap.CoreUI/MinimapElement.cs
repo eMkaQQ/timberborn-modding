@@ -81,7 +81,7 @@ namespace Minimap.CoreUI {
 
     public void SetMinimapRotation(int rotation) {
       var isPerpendicular = rotation is 90 or 270;
-      _background.transform.rotation = Quaternion.Euler(0, 0, rotation);
+      _background.style.rotate = Quaternion.Euler(0, 0, rotation);
       _root.style.height = isPerpendicular
           ? new(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel)
           : new Length(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel);
@@ -148,7 +148,7 @@ namespace Minimap.CoreUI {
       var zoomLevel = _cameraService.ZoomLevel;
       var visibleTiles = Mathf.Pow(0.5f * zoomLevel + 3, 2);
       _cameraFrustum.SetScale(visibleTiles * _mapScale);
-      _cameraFrustum.transform.rotation =
+      _cameraFrustum.style.rotate =
           Quaternion.Euler(0, 0, _cameraService.HorizontalAngle + 180);
       var cameraXPos = _cameraService.Target.x / _mapSize.TotalSize.x;
       var cameraYPos = _cameraService.Target.z / _mapSize.TotalSize.y;
