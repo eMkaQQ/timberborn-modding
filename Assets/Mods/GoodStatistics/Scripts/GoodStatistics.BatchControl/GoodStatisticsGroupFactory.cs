@@ -30,7 +30,7 @@ namespace GoodStatistics.BatchControl {
                                       GoodTrendsRegistry goodTrendsRegistry) {
       var elementName = "GoodStatistics/GoodStatisticsGroup";
       var groupElement = _visualElementLoader.LoadVisualElement(elementName);
-      groupElement.Q<Image>("Icon").sprite = goodGroupSpec.Icon;
+      groupElement.Q<Image>("Icon").sprite = goodGroupSpec.Icon.Asset;
       var items = CreateItems(goodGroupSpec.Id,
                               groupElement.Q<VisualElement>("Items"),
                               goodSamplesRegistry,

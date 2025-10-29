@@ -3,11 +3,11 @@
 namespace GoodStatistics.Settings {
   [Context("Game")]
   [Context("MainMenu")]
-  public class GoodStatisticsSettingsConfigurator : IConfigurator {
+  public class GoodStatisticsSettingsConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<GoodStatisticsSettings>().AsSingleton();
-      containerDefinition.Bind<EMAAnalyzerSettings>().AsSingleton();
+    protected override void Configure() {
+      Bind<GoodStatisticsSettings>().AsSingleton();
+      Bind<EMAAnalyzerSettings>().AsSingleton();
     }
 
   }

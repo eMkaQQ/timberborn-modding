@@ -17,7 +17,7 @@ namespace GoodStatistics.Analytics {
 
     public void InitializeEntity() {
       var goodSamplesRegistry =
-          GetComponentFast<DistrictGoodSamplesRegistry>().GoodSamplesRegistry;
+          GetComponent<DistrictGoodSamplesRegistry>().GoodSamplesRegistry;
       GoodTrendsRegistry = _goodTrendsRegistryFactory.Create(goodSamplesRegistry);
     }
 

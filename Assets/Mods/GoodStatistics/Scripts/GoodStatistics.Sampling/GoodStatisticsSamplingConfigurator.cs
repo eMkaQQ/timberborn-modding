@@ -1,21 +1,23 @@
 ﻿using Bindito.Core;
 using Timberborn.GameDistricts;
-using Timberborn.TemplateSystem;
+using Timberborn.TemplateInstantiation;
 
 namespace GoodStatistics.Sampling {
   [Context("Game")]
-  public class GoodStatisticsSamplingConfigurator : IConfigurator {
+  public class GoodStatisticsSamplingConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<GlobalGoodSamplesRegistry>().AsSingleton();
-      containerDefinition.Bind<GoodsSampler>().AsSingleton();
-      containerDefinition.Bind<GoodsSampleTrigger>().AsSingleton();
-      containerDefinition.Bind<ResourceCountSerializer>().AsSingleton();
-      containerDefinition.Bind<GoodSampleSerializer>().AsSingleton();
-      containerDefinition.Bind<GoodSampleRecordsSerializer>().AsSingleton();
-      containerDefinition.Bind<GoodSamplesRegistrySerializer>().AsSingleton();
-      containerDefinition.Bind<SampleTimeCalculator>().AsSingleton();
-      containerDefinition.MultiBind<TemplateModule>()
+    protected override void Configure() {
+      Bind<DistrictGoodSamplesRegistry>().AsTransient();
+      
+      Bind<GlobalGoodSamplesRegistry>().AsSingleton();
+      Bind<GoodsSampler>().AsSingleton();
+      Bind<GoodsSampleTrigger>().AsSingleton();
+      Bind<ResourceCountSerializer>().AsSingleton();
+      Bind<GoodSampleSerializer>().AsSingleton();
+      Bind<GoodSampleRecordsSerializer>().AsSingleton();
+      Bind<GoodSamplesRegistrySerializer>().AsSingleton();
+      Bind<SampleTimeCalculator>().AsSingleton();
+      MultiBind<TemplateModule>()
           .ToProvider(ProvideTemplateModule)
           .AsSingleton();
     }

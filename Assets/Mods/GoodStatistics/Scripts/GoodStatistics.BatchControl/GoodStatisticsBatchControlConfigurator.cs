@@ -3,16 +3,16 @@ using Timberborn.BatchControl;
 
 namespace GoodStatistics.BatchControl {
   [Context("Game")]
-  public class GoodStatisticsBatchControlConfigurator : IConfigurator {
+  public class GoodStatisticsBatchControlConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<GoodStatisticsBatchControlRowGroupFactory>().AsSingleton();
-      containerDefinition.Bind<GoodStatisticsBatchControlTab>().AsSingleton();
-      containerDefinition.Bind<GoodStatisticsGroupFactory>().AsSingleton();
-      containerDefinition.Bind<GoodStatisticsRowItemFactory>().AsSingleton();
-      containerDefinition.Bind<GoodStatisticsBatchControlItemFactory>().AsSingleton();
+    protected override void Configure() {
+      Bind<GoodStatisticsBatchControlRowGroupFactory>().AsSingleton();
+      Bind<GoodStatisticsBatchControlTab>().AsSingleton();
+      Bind<GoodStatisticsGroupFactory>().AsSingleton();
+      Bind<GoodStatisticsRowItemFactory>().AsSingleton();
+      Bind<GoodStatisticsBatchControlItemFactory>().AsSingleton();
 
-      containerDefinition.MultiBind<BatchControlModule>()
+      MultiBind<BatchControlModule>()
           .ToProvider<BatchControlModuleProvider>()
           .AsSingleton();
     }

@@ -3,6 +3,8 @@
     "Id": "GoodStatisticsTab",
     "GroupId": "SettlementPanel",
     "LocKey": "eMka.GoodStatistics.BatchControlKeyBinding",
-    "Order": 85
+    "Order": 85,
+    "AllowOtherModifiers": false,
+    "DevModeOnly": false
   }
 }

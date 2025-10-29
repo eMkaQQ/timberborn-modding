@@ -22,7 +22,7 @@ namespace GoodStatistics.Sampling {
       return new ResourceCount(objectLoader.Get(InputOutputStockKey),
                                objectLoader.Get(OutputStockKey),
                                objectLoader.Get(InputOutputCapacityKey),
-                               objectLoader.Get(FillRateKey));
+                               objectLoader.Get(FillRateKey), 0);
     }
 
   }

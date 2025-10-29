@@ -34,9 +34,9 @@ namespace GoodStatistics.BatchControl {
       var elementName = "Game/BatchControl/DistributionSettingsRowItem";
       var root = _visualElementLoader.LoadVisualElement(elementName);
       var trendRegistry =
-          districtGoodSamplesRegistry.GetComponentFast<DistrictGoodTrendsRegistry>()
+          districtGoodSamplesRegistry.GetComponent<DistrictGoodTrendsRegistry>()
               .GoodTrendsRegistry;
-      return new(root, districtGoodSamplesRegistry.GetComponentFast<EntityComponent>(),
+      return new(root, districtGoodSamplesRegistry.GetComponent<EntityComponent>(),
                  () => _batchControlDistrict.SelectedDistrict,
                  CreateGoodGroups(districtGoodSamplesRegistry.GoodSamplesRegistry, trendRegistry));
     }

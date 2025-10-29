@@ -57,7 +57,7 @@ namespace GoodStatistics.AnalyticsUI {
 
     private void UpdateTrendElements() {
       var trendRegistry = _districtContextService.SelectedDistrict
-          ? _districtContextService.SelectedDistrict.GetComponentFast<DistrictGoodTrendsRegistry>()
+          ? _districtContextService.SelectedDistrict.GetComponent<DistrictGoodTrendsRegistry>()
               .GoodTrendsRegistry
           : _globalGoodTrendsRegistry.GoodTrendsRegistry;
       foreach (var goodTrendElement in _goodTrendElements) {

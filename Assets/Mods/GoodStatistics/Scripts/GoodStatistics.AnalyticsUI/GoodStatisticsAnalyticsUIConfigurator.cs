@@ -2,15 +2,15 @@
 
 namespace GoodStatistics.AnalyticsUI {
   [Context("Game")]
-  public class GoodStatisticsAnalyticsUIConfigurator : IConfigurator {
+  public class GoodStatisticsAnalyticsUIConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<TopBarTrendElementsUpdater>().AsSingleton();
-      containerDefinition.Bind<GoodTrendElementFactory>().AsSingleton();
-      containerDefinition.Bind<TrendIconProvider>().AsSingleton();
-      containerDefinition.Bind<TopBarPanelTrendDecorator>().AsSingleton();
-      containerDefinition.Bind<GoodTrendDaysLeftDescriber>().AsSingleton();
-      containerDefinition.Bind<GoodTrendTooltipFactory>().AsSingleton();
+    protected override void Configure() {
+      Bind<TopBarTrendElementsUpdater>().AsSingleton();
+      Bind<GoodTrendElementFactory>().AsSingleton();
+      Bind<TrendIconProvider>().AsSingleton();
+      Bind<TopBarPanelTrendDecorator>().AsSingleton();
+      Bind<GoodTrendDaysLeftDescriber>().AsSingleton();
+      Bind<GoodTrendTooltipFactory>().AsSingleton();
     }
 
   }

@@ -29,9 +29,9 @@ namespace GoodStatistics.BatchControl {
       var root = _visualElementLoader.LoadVisualElement(elementName);
 
       var districtGoodSamplesRegistry =
-          districtCenter.GetComponentFast<DistrictGoodSamplesRegistry>();
+          districtCenter.GetComponent<DistrictGoodSamplesRegistry>();
       var districtCenterRowItem = _districtCenterRowItemFactory.Create(districtCenter);
-      var row = new BatchControlRow(root, districtCenter.GetComponentFast<EntityComponent>(),
+      var row = new BatchControlRow(root, districtCenter.GetComponent<EntityComponent>(),
                                     districtCenterRowItem);
       var goodStatisticsRowGroup = _batchControlRowGroupFactory.CreateUnsorted(row);
       goodStatisticsRowGroup.AddRow(

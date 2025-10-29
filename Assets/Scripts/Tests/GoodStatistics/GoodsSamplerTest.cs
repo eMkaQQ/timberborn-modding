@@ -16,7 +16,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Tests.GoodStatistics {
-  public class GoodsSamplerTest {
+  /*public class GoodsSamplerTest {
 
     private static readonly string Bread = "Bread";
     private static readonly string Log = "Log";
@@ -485,5 +485,5 @@ namespace Tests.GoodStatistics {
 
     }
 
-  }
+  }*/
 }

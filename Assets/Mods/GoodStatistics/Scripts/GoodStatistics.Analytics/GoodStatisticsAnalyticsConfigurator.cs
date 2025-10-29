@@ -1,16 +1,18 @@
 ﻿using Bindito.Core;
 using GoodStatistics.Sampling;
-using Timberborn.TemplateSystem;
+using Timberborn.TemplateInstantiation;
 
 namespace GoodStatistics.Analytics {
   [Context("Game")]
-  public class GoodStatisticsAnalyticsConfigurator : IConfigurator {
+  public class GoodStatisticsAnalyticsConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<IGoodTrendAnalyzer>().To<EMAAnalyzer>().AsSingleton();
-      containerDefinition.Bind<GlobalGoodTrendsRegistry>().AsSingleton();
-      containerDefinition.Bind<GoodTrendsRegistryFactory>().AsSingleton();
-      containerDefinition.MultiBind<TemplateModule>()
+    protected override void Configure() {
+      Bind<DistrictGoodTrendsRegistry>().AsTransient();
+      
+      Bind<IGoodTrendAnalyzer>().To<EMAAnalyzer>().AsSingleton();
+      Bind<GlobalGoodTrendsRegistry>().AsSingleton();
+      Bind<GoodTrendsRegistryFactory>().AsSingleton();
+      MultiBind<TemplateModule>()
           .ToProvider(ProvideTemplateModule)
           .AsSingleton();
     }

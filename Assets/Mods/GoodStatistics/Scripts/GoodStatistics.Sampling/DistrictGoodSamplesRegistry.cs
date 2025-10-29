@@ -9,6 +9,7 @@ using Timberborn.WorldPersistence;
 
 namespace GoodStatistics.Sampling {
   public class DistrictGoodSamplesRegistry : BaseComponent,
+                                             IAwakableComponent,
                                              IInitializableEntity,
                                              IFinishedStateListener,
                                              IPersistentEntity {
@@ -33,7 +34,7 @@ namespace GoodStatistics.Sampling {
     }
 
     public void Awake() {
-      DistrictCenter = GetComponentFast<DistrictCenter>();
+      DistrictCenter = GetComponent<DistrictCenter>();
     }
 
     public void InitializeEntity() {
