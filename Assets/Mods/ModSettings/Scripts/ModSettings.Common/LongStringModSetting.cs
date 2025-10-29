@@ -1,15 +1,9 @@
 ﻿using ModSettings.Core;
-using System;
 using Timberborn.SettingsSystem;
 using UnityEngine;
 
 namespace ModSettings.Common {
   public class LongStringModSetting : ModSetting<string> {
-
-    [Obsolete("Use constructor with ModSettingDescriptor parameter instead.")]
-    public LongStringModSetting(string locKey,
-                                string defaultValue) : base(locKey, defaultValue) {
-    }
 
     public LongStringModSetting(string defaultValue,
                                 ModSettingDescriptor descriptor) : base(defaultValue, descriptor) {

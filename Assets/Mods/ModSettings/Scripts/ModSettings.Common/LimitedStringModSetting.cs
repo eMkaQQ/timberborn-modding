@@ -11,15 +11,6 @@ namespace ModSettings.Common {
 
     private readonly List<ILimitedStringModSettingValue> _values;
 
-    [Obsolete("Use constructor with ModSettingDescriptor parameter instead.")]
-    public LimitedStringModSetting(string locKey,
-                                   int defaultOptionIndex,
-                                   IList<LimitedStringModSettingValue> values)
-        : base(locKey, values[defaultOptionIndex].Value) {
-      _values = new(values);
-      IsLocalized = true;
-    }
-
     public LimitedStringModSetting(int defaultOptionIndex,
                                    IList<LimitedStringModSettingValue> values,
                                    ModSettingDescriptor descriptor)

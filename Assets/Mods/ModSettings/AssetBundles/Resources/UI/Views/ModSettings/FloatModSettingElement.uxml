@@ -5,7 +5,7 @@
         <ui:VisualElement name="SettingWrapper" class="mod-setting__wrapper">
             <ui:Instance template="Descriptor" name="Descriptor" />
             <ui:VisualElement name="ScrollbarSpacer" class="mod-setting__scrollbar-spacer" />
-            <ModSettings.CoreUI.NineSliceFloatField name="FloatField" class="mod-setting__text-field mod-setting__controls text-field" />
+            <Timberborn.CoreUI.NineSliceFloatField name="FloatField" class="mod-setting__text-field mod-setting__controls text-field" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
