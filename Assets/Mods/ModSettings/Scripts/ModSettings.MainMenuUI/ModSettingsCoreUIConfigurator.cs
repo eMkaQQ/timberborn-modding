@@ -3,10 +3,10 @@ using ModSettings.Core;
 
 namespace ModSettings.MainMenuUI {
   [Context("MainMenu")]
-  internal class ModSettingsCoreUIConfigurator : IConfigurator {
+  internal class ModSettingsCoreUIConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<IModSettingsContextProvider>()
+    protected override void Configure() {
+      Bind<IModSettingsContextProvider>()
           .To<MainMenuModSettingsContext>()
           .AsSingleton();
     }

@@ -5,33 +5,36 @@ namespace ModSettings.CommonUI {
   [Context("MainMenu")]
   [Context("Game")]
   [Context("MapEditor")]
-  internal class ModSettingsCommonUIConfigurator : IConfigurator {
+  internal class ModSettingsCommonUIConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<ModSettingDescriptorInitializer>().AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+    protected override void Configure() {
+      Bind<ModSettingDescriptorInitializer>().AsSingleton();
+      MultiBind<IModSettingElementFactory>()
           .To<BoolModSettingElementFactory>()
           .AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+      MultiBind<IModSettingElementFactory>()
           .To<FloatModSettingElementFactory>()
           .AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+      MultiBind<IModSettingElementFactory>()
           .To<StringModSettingElementFactory>()
           .AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+      MultiBind<IModSettingElementFactory>()
           .To<IntModSettingElementFactory>()
           .AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+      MultiBind<IModSettingElementFactory>()
           .To<DropdownModSettingElementFactory>()
           .AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+      MultiBind<IModSettingElementFactory>()
           .To<SliderIntModSettingElementFactory>()
           .AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+      MultiBind<IModSettingElementFactory>()
           .To<LongStringModSettingElementFactory>()
           .AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+      MultiBind<IModSettingElementFactory>()
           .To<ColorModSettingElementFactory>()
+          .AsSingleton();
+      MultiBind<IModSettingElementFactory>()
+          .To<ReadonlyTextModSettingElementFactory>()
           .AsSingleton();
     }
 

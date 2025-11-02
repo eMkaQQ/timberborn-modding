@@ -4,10 +4,10 @@ namespace ModSettings.Common {
   [Context("MainMenu")]
   [Context("Game")]
   [Context("MapEditor")]
-  public class ModSettingsCommonConfigurator : IConfigurator {
+  public class ModSettingsCommonConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<DefaultModFileStoredSettings>().AsSingleton();
+    protected override void Configure() {
+      Bind<DefaultModFileStoredSettings>().AsSingleton();
     }
 
   }

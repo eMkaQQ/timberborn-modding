@@ -3,11 +3,11 @@ using ModSettings.Core;
 
 namespace ModSettings.MapEditorUI {
   [Context("MapEditor")]
-  internal class ModSettingsMapEditorUIConfigurator : IConfigurator {
+  internal class ModSettingsMapEditorUIConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<MapEditorModManagerOpener>().AsSingleton();
-      containerDefinition.Bind<IModSettingsContextProvider>()
+    protected override void Configure() {
+      Bind<MapEditorModManagerOpener>().AsSingleton();
+      Bind<IModSettingsContextProvider>()
           .To<MapEditorModSettingsContext>()
           .AsSingleton();
     }

@@ -4,11 +4,11 @@ namespace ModSettings.CoreUI {
   [Context("MainMenu")]
   [Context("Game")]
   [Context("MapEditor")]
-  internal class ModSettingsCoreUIConfigurator : IConfigurator {
+  internal class ModSettingsCoreUIConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<ModSettingsBox>().AsSingleton();
-      containerDefinition.Bind<ModItemSettingsInitializer>().AsSingleton();
+    protected override void Configure() {
+      Bind<ModSettingsBox>().AsSingleton();
+      Bind<ModItemSettingsInitializer>().AsSingleton();
     }
 
   }

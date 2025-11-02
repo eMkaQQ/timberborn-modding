@@ -4,11 +4,11 @@ namespace ModSettings.ColorPicker {
   [Context("MainMenu")]
   [Context("Game")]
   [Context("MapEditor")]
-  internal class ColorPickerConfigurator : IConfigurator {
+  internal class ColorPickerConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<ColorPickerShower>().AsSingleton();
-      containerDefinition.Bind<ColorPickerFactory>().AsSingleton();
+    protected override void Configure() {
+      Bind<ColorPickerShower>().AsSingleton();
+      Bind<ColorPickerFactory>().AsSingleton();
     }
 
   }

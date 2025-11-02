@@ -4,14 +4,14 @@ using ModSettings.CoreUI;
 namespace ModSettingsExamples {
   [Context("MainMenu")]
   [Context("Game")]
-  internal class ModSettingsConfigurator : IConfigurator {
+  internal class ModSettingsConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<AdvancedSettingsExample>().AsSingleton();
-      containerDefinition.Bind<SimpleSettingsExample>().AsSingleton();
-      containerDefinition.Bind<SettingsLogger>().AsSingleton();
-      containerDefinition.Bind<FileStoredSettingsExample>().AsSingleton();
-      containerDefinition.MultiBind<IModSettingElementFactory>()
+    protected override void Configure() {
+      Bind<AdvancedSettingsExample>().AsSingleton();
+      Bind<SimpleSettingsExample>().AsSingleton();
+      Bind<SettingsLogger>().AsSingleton();
+      Bind<FileStoredSettingsExample>().AsSingleton();
+      MultiBind<IModSettingElementFactory>()
           .To<DummyButtonElementFactory>()
           .AsSingleton();
     }
@@ -19,10 +19,10 @@ namespace ModSettingsExamples {
   }
 
   [Context("MainMenu")]
-  internal class MainMenuConfigurator : IConfigurator {
+  internal class MainMenuConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<ValueChangeListenerExample>().AsSingleton();
+    protected override void Configure() {
+      Bind<ValueChangeListenerExample>().AsSingleton();
     }
 
   }

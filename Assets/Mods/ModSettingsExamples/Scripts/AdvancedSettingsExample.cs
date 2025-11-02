@@ -21,6 +21,11 @@ namespace ModSettingsExamples {
 
     public ColorModSetting TransparentColorSetting { get; } = new(
         "FF00FF88", ModSettingDescriptor.Create("Transparent color"), true);
+    
+    [UsedImplicitly]
+    public ReadonlyTextModSetting ReadonlyTextSetting { get; } = new(
+        ModSettingDescriptor.CreateLocalized("eMka.ModSettingsExamples.ReadonlyText"), 
+        new(textAlignment: TextAnchor.MiddleCenter, margin: new (30,30,4,10)));
 
     public LimitedStringModSetting DropdownSetting { get; } = new(
         0, new[] {

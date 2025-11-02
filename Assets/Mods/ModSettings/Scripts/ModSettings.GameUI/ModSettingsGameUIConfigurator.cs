@@ -3,11 +3,11 @@ using ModSettings.Core;
 
 namespace ModSettings.GameUI {
   [Context("Game")]
-  internal class ModSettingsGameUIConfigurator : IConfigurator {
+  internal class ModSettingsGameUIConfigurator : Configurator {
 
-    public void Configure(IContainerDefinition containerDefinition) {
-      containerDefinition.Bind<GameModManagerOpener>().AsSingleton();
-      containerDefinition.Bind<IModSettingsContextProvider>()
+    protected override void Configure() {
+      Bind<GameModManagerOpener>().AsSingleton();
+      Bind<IModSettingsContextProvider>()
           .To<GameModSettingsContext>()
           .AsSingleton();
     }
