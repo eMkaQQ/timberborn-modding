@@ -1,0 +1,9 @@
+{
+  "Name": "Texture Extractor",
+  "Version": "1.0.1.0",
+  "Id": "eMka.TextureExtractor",
+  "MinimumGameVersion": "1.0.0.0",
+  "Description": "",
+  "RequiredMods": [
+  ]
+}
