@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.emka.timberborn-harmony": {
+      "version": "https://github.com/eMkaQQ/timberborn-harmony.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "586955698b4ebc48d32fcf855222c9e72ce1a779"
+    },
     "com.mechanistry.timberborn-modding": {
       "version": "https://github.com/mechanistry/timberborn-modding.git?path=/Assets/Tools#staging",
       "depth": 0,

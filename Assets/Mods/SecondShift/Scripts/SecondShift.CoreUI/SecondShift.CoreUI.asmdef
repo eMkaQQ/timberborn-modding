@@ -1,0 +1,8 @@
+{
+  "name": "SecondShift.CoreUI",
+  "references": [
+    "SecondShift.Core"
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

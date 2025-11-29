@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Timberborn.CoreUI.NineSliceVisualElement name="TwoShiftsWorkplaceFragment" class="entity-sub-panel bg-sub-box--green">
+        <Style src="/Assets/Mods/SecondShift/AssetBundles/Resources/UI/Views/Game/EntityPanel/SecondShiftStyle.uss" />
+        <Timberborn.CoreUI.NineSliceVisualElement name="HeaderWrapper" />
+        <ui:VisualElement class="workplace-fragment">
+            <ui:Label name="Text" text="Item" class="entity-panel__text workplace-fragment__text" />
+            <ui:Button name="Decrease" class="button-square button-minus button-square--large" />
+            <ui:Button name="Increase" class="button-square button-plus button-plus--margin button-square--large" />
+            <ui:VisualElement name="WorkerTypeToggleWrapper" class="workplace-fragment__worker-type-toggle-wrapper" />
+        </ui:VisualElement>
+        <ui:VisualElement class="workplace-fragment">
+            <Timberborn.CoreUI.LocalizableToggle text="Two shifts" name="TwoShiftsToggle" text-loc-key="SecondShift.TwoShiftsToggle" class="game-toggle entity-panel__single-line-text workplace-fragment__two-shifts-toggle" />
+            <ui:VisualElement name="TwoShiftsWorkersToggleWrapper" class="workplace-fragment__two-shifts-workers-toggle-wrapper" />
+        </ui:VisualElement>
+        <ui:VisualElement name="WorkplaceUsers" class="workplace-user-fragment" />
+    </Timberborn.CoreUI.NineSliceVisualElement>
+</ui:UXML>

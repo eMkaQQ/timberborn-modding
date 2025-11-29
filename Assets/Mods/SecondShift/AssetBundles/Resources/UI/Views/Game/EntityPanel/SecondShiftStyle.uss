@@ -1,0 +1,9 @@
+.workplace-fragment__two-shifts-workers-toggle-wrapper {
+    height: 30px;
+    width: 72px;
+}
+
+.workplace-fragment__two-shifts-toggle {
+    align-self: center;
+    margin-left: 2px;
+}
