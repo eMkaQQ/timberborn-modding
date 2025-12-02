@@ -1,4 +1,5 @@
 ID,Text,Comment
+Name_TwoShiftsWorkplaceFragment,"Workplace (Second Shift Variant)","Name of the entity panel fragment for TImprove4UX mod"
 SecondShift.Disabled,"Two shifts are not available for selected type of worker",Tooltip shown when two shifts toggle is disabled
 SecondShift.ShowFirstShift,"Show first shift",Tooltip for a button that shows the first shift workers
 SecondShift.ShowSecondShift,"Show second shift",Tooltip for a button that shows the second shift workers

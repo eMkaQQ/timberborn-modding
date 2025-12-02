@@ -57,7 +57,7 @@ namespace SecondShift.Core {
 
     public void DuplicateFrom(TwoShiftsWorkplace source) {
       if (source.TwoShiftsEnabled != TwoShiftsEnabled) {
-        SetTwoShifts(source.TwoShiftsEnabled);
+        SetTwoShifts(source.TwoShiftsEnabled, true);
       }
     }
 

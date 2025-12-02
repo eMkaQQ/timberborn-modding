@@ -14,6 +14,7 @@ using Timberborn.SelectionSystem;
 using Timberborn.TooltipSystem;
 using Timberborn.WorkSystem;
 using Timberborn.WorkSystemUI;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace SecondShift.CoreUI {
@@ -197,6 +198,12 @@ namespace SecondShift.CoreUI {
           ? _workplace.DesiredWorkers / 2
           : _workplace.DesiredWorkers;
       if (_workplace.Understaffed && (bool) (BaseComponent) component.InstantDistrict) {
+        if (desiredWorkers > _views.Count) {
+          Debug.LogError($"{nameof(TwoShiftsWorkplaceFragment)}: Not enough views to show all "
+                         + $"workers. Desired: {desiredWorkers}, Current: {_views.Count}, " 
+                         + $"Workplace: {component.Name}, MaxWorkers: {_workplace.MaxWorkers}, "
+                         + $"TwoShiftsEnabled: {_twoShiftsWorkplace.TwoShiftsEnabled}");
+        }
         for (; index < desiredWorkers; ++index) {
           _views[index].ShowVacant();
         }
