@@ -80,14 +80,18 @@ namespace Minimap.CoreUI {
     }
 
     public void SetMinimapRotation(int rotation) {
-      var isPerpendicular = rotation is 90 or 270;
-      _background.style.rotate = Quaternion.Euler(0, 0, rotation);
-      _root.style.height = isPerpendicular
-          ? new(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel)
-          : new Length(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel);
-      _root.style.width = isPerpendicular
-          ? new(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel)
-          : new Length(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel);
+      if (_minimapTexture.MinimapEnabled) {
+        var isPerpendicular = rotation is 90 or 270;
+        _background.style.rotate = Quaternion.Euler(0, 0, rotation);
+        _root.style.height = isPerpendicular
+            ? new(_minimapImage.style.width.value.value + BackgroundMargin, LengthUnit.Pixel)
+            : new Length(_minimapImage.style.height.value.value + BackgroundMargin,
+                         LengthUnit.Pixel);
+        _root.style.width = isPerpendicular
+            ? new(_minimapImage.style.height.value.value + BackgroundMargin, LengthUnit.Pixel)
+            : new Length(_minimapImage.style.width.value.value + BackgroundMargin,
+                         LengthUnit.Pixel);
+      }
     }
 
     private void CreateVisualElements() {
