@@ -293,7 +293,7 @@ namespace Tests.ModSettings {
       // then
       Assert.AreEqual(1, modSettingOwner.ModSettings.Count);
     }
-    
+
     [Test]
     public void ShouldInvokeModSettingChangedEvent() {
       // given
@@ -309,7 +309,7 @@ namespace Tests.ModSettings {
       // then
       Assert.IsTrue(changed);
     }
-    
+
     [Test]
     public void ShouldPassCorrectModSettingToModSettingChangedEvent() {
       // given
@@ -496,6 +496,15 @@ namespace Tests.ModSettings {
         _boolSettings.Remove(key);
       }
 
+      public void ValidateInt(string key, ImmutableArray<int> validValues, int defaultValue) {
+        throw new NotSupportedException();
+      }
+
+      public void ValidateString(string key, ImmutableArray<string> validValues,
+                                 string defaultValue) {
+        throw new NotSupportedException();
+      }
+
     }
 
     private class FilledSettingsMock : ISettings {
@@ -564,6 +573,15 @@ namespace Tests.ModSettings {
       }
 
       public void Clear(string key) {
+        throw new NotSupportedException();
+      }
+
+      public void ValidateInt(string key, ImmutableArray<int> validValues, int defaultValue) {
+        throw new NotSupportedException();
+      }
+
+      public void ValidateString(string key, ImmutableArray<string> validValues,
+                                 string defaultValue) {
         throw new NotSupportedException();
       }
 
