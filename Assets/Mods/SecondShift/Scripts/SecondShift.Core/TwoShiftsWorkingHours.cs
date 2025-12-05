@@ -35,6 +35,7 @@ namespace SecondShift.Core {
 
     public bool IsSecondShiftWorker() {
       return _worker is { Employed: true }
+             && IsTwoShiftsWorkplace()
              && _worker.Workplace.AssignedWorkers.IndexOf(_worker) % 2 == 1;
     }
 

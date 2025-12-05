@@ -46,7 +46,7 @@ namespace SecondShift.Core {
         SetTwoShifts(component.Get(TwoShiftsEnabledKey), true);
       }
       if (_desiredWorkersToLoad.HasValue) {
-        _workplace.SetDesiredWorkers(_desiredWorkersToLoad.Value);
+        _workplace.SetDesiredWorkers(Math.Min(_desiredWorkersToLoad.Value, _workplace.MaxWorkers));
       }
       WasLoaded = true;
     }
