@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Globalization;
 using System.IO;
 using Timberborn.SettingsSystem;
@@ -94,6 +95,15 @@ namespace ModSettings.Common {
       if (_data.ContainsKey(key)) {
         _data.Remove(key);
       }
+    }
+
+    public void ValidateInt(string key, ImmutableArray<int> validValues, int defaultValue) {
+      throw new NotSupportedException();
+    }
+
+    public void ValidateString(string key, ImmutableArray<string> validValues,
+                               string defaultValue) {
+      throw new NotSupportedException();
     }
 
     private void Save() {
