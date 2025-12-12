@@ -1,13 +1,13 @@
 ﻿{
   "Name": "Minimap",
-  "Version": "1.0.4.0",
+  "Version": "1.0.6.0",
   "Id": "eMka.Minimap",
-  "MinimumGameVersion": "1.0.0.0",
+  "MinimumGameVersion": "1.0.6.0",
   "Description": "Adds a minimap to the game. That's all. Oh, and all colors are customizable in the settings (right click on the minimap to open them).\n\nSource code: https://github.com/eMkaQQ/timberborn-modding\n\nDisclaimer: although I work for Mechanistry and I'm one of the developers of Timberborn, this mod is my personal creation, made independently of my job. It shouldn't be considered official game content nor associated with Mechanistry in any way.\n\nSpecial thanks to:\n@ikalpro for the Spanish localization",
   "RequiredMods": [
     {
       "Id": "eMka.ModSettings",
-      "MinimumVersion": "1.0.0.0"
+      "MinimumVersion": "1.0.6.0"
     }
   ]
 }
