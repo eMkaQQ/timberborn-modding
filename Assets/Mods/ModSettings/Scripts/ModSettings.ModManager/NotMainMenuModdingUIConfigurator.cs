@@ -9,13 +9,12 @@ namespace ModSettings.ModManager {
 
     protected override void Configure() {
       Bind<ModManagerBox>().AsSingleton();
-      Bind<ModUploaderBox>().AsSingleton();
       Bind<CreateModBox>().AsSingleton();
-      Bind<ModTemplateDropdownProvider>().AsSingleton();
       Bind<ModCreator>().AsSingleton();
-      Bind<ModCreatedReporter>().AsSingleton();
+      Bind<ModUploaderBox>().AsSingleton();
       Bind<IModManagerTooltipRegistrar>().To<ModManagerBoxTooltipRegistrar>().AsSingleton();
       Bind<IModItemFactory>().To<MainMenuModItemFactory>().AsSingleton();
+      Bind<ModTemplateDropdownProvider>().AsSingleton();
     }
 
   }
