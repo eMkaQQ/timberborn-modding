@@ -14,7 +14,6 @@ namespace Minimap.CoreUI {
           .To<MinimapRotationSettingElementFactory>()
           .AsSingleton();
       Bind<MinimapRotationSettingElementFactory>().AsSingleton();
-      Bind<TutorialPanelsAdjuster>().AsSingleton();
     }
 
   }

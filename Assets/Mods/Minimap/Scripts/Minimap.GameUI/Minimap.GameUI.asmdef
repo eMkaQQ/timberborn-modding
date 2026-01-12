@@ -1,0 +1,8 @@
+﻿{
+  "name": "Minimap.GameUI",
+  "autoReferenced": false,
+  "references": [
+    "Minimap.Core"
+  ],
+  "allowUnsafeCode": true
+}

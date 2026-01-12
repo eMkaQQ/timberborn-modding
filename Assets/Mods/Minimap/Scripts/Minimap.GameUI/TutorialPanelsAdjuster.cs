@@ -2,7 +2,7 @@
 using Timberborn.SingletonSystem;
 using Timberborn.TutorialSystemUI;
 
-namespace Minimap.CoreUI {
+namespace Minimap.GameUI {
   internal class TutorialPanelsAdjuster : ILoadableSingleton {
 
     private readonly MinimapTexture _minimapTexture;
