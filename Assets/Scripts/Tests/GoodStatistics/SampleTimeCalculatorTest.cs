@@ -106,6 +106,8 @@ namespace Tests.GoodStatistics {
       public bool IsNighttime { get; }
       public float FixedDeltaTimeInHours { get; }
 
+      public float DayLengthInSeconds { get; }
+
       public float DayNumberHoursFromNow(float hours) {
         throw new NotSupportedException();
       }

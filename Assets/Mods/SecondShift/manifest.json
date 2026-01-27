@@ -1,8 +1,8 @@
 {
   "Name": "Second Shift",
-  "Version": "1.0.6.0",
+  "Version": "1.0.8.0",
   "Id": "eMka.SecondShift",
-  "MinimumGameVersion": "1.0.6.0",
+  "MinimumGameVersion": "1.0.8.0",
   "Description": "This mod allows you to convert any workplace into a two-shift operation, enabling beavers to work in two 12-hour shifts per day.\n\n- Adds a Two Shifts toggle to the workplace panel. (Note: this mod replaces the entire panel, so it may not be compatible with other mods that modify workplace UI)\n- Both shifts last 12 hours, with the second shift covering the night.\n- Second shift workers sleep during the day before their shift starts. This may interfere with Folktails breeding, although the mod attempts to minimize this by optimizing housing assignments.\n\nSource code: https://github.com/eMkaQQ/timberborn-modding        \n\nDisclaimer: although I work for Mechanistry and I'm one of the developers of Timberborn, this mod is my personal creation, made independently of my job. It shouldn't be considered official game content nor associated with Mechanistry in any way.",
   "RequiredMods": [
     {

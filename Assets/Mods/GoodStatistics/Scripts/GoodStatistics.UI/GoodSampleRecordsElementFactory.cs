@@ -62,8 +62,7 @@ namespace GoodStatistics.UI {
 
     private string GetSampleTimeText(GoodSample goodSample) {
       var timeDiff = _dayNightCycle.PartialDayNumber - goodSample.DayTimestamp;
-      var secondsDiff = timeDiff * _dayNightCycle.ConfiguredDayLengthInSeconds;
-      var hoursDiff = (int) _dayNightCycle.SecondsToHours(secondsDiff);
+      var hoursDiff = (int) (timeDiff * 24f);
       return _loc.T(SampleTimeLocKey, _loc.T(HoursShortLocKey, hoursDiff.ToString()));
     }
 

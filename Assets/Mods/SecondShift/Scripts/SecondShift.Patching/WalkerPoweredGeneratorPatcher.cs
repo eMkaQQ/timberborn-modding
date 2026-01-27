@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using JetBrains.Annotations;
 using SecondShift.Core;
-using Timberborn.PowerGenerating;
+using Timberborn.PowerGeneration;
 
 namespace SecondShift.Patching {
   [HarmonyPatch(typeof(WalkerPoweredGenerator))]
