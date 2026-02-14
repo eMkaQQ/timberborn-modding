@@ -36,7 +36,6 @@ namespace SecondShift.CoreUI {
     private readonly BotPopulation _botPopulation;
     private readonly WorkerTypeToggleFactory _workerTypeToggleFactory;
     private readonly BindableButtonFactory _bindableButtonFactory;
-    private readonly EntityBadgeService _entityBadgeService;
     private readonly TwoShiftsWorkersToggle _twoShiftsWorkersToggle;
     private VisualElement _root;
     private VisualElement _workplaceUsers;
@@ -61,7 +60,6 @@ namespace SecondShift.CoreUI {
         BotPopulation botPopulation,
         WorkerTypeToggleFactory workerTypeToggleFactory,
         BindableButtonFactory bindableButtonFactory,
-        EntityBadgeService entityBadgeService,
         TwoShiftsWorkersToggle twoShiftsWorkersToggle) {
       _visualElementLoader = visualElementLoader;
       _workerViewFactory = workerViewFactory;
@@ -72,7 +70,6 @@ namespace SecondShift.CoreUI {
       _botPopulation = botPopulation;
       _workerTypeToggleFactory = workerTypeToggleFactory;
       _bindableButtonFactory = bindableButtonFactory;
-      _entityBadgeService = entityBadgeService;
       _twoShiftsWorkersToggle = twoShiftsWorkersToggle;
     }
 
@@ -187,9 +184,8 @@ namespace SecondShift.CoreUI {
         if (ShouldBeShown(worker) && index < _views.Count) {
           var character = worker.GetComponent<Character>();
           var view = _views[index];
-          var entityName = _entityBadgeService.GetEntityName(character);
           var onClick = (Action) (() => _entitySelectionService.SelectAndFollow(character));
-          view.Fill(character, onClick, entityName);
+          view.Fill(character, onClick, character.FirstName);
           ++index;
         }
       }
@@ -200,7 +196,7 @@ namespace SecondShift.CoreUI {
       if (_workplace.Understaffed && (bool) (BaseComponent) component.InstantDistrict) {
         if (desiredWorkers > _views.Count) {
           Debug.LogError($"{nameof(TwoShiftsWorkplaceFragment)}: Not enough views to show all "
-                         + $"workers. Desired: {desiredWorkers}, Current: {_views.Count}, " 
+                         + $"workers. Desired: {desiredWorkers}, Current: {_views.Count}, "
                          + $"Workplace: {component.Name}, MaxWorkers: {_workplace.MaxWorkers}, "
                          + $"TwoShiftsEnabled: {_twoShiftsWorkplace.TwoShiftsEnabled}");
         }
