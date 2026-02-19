@@ -17,8 +17,9 @@ namespace GoodStatistics.Sampling {
     }
 
     public static GoodSampleRecords CreateNew(string goodId) {
-      var goodSamples = Enumerable.Repeat(new GoodSample(ResourceCount.Create(0, 0, 0, 0), -1),
-                                          GoodStatisticsConstants.MaxSamples).ToList();
+      var goodSamples = Enumerable.Repeat(
+          new GoodSample(ResourceCount.Create(0, 0, 0, 0, 0, 0, 0), -1),
+          GoodStatisticsConstants.MaxSamples).ToList();
       return new(goodId, goodSamples);
     }
 
@@ -40,7 +41,7 @@ namespace GoodStatistics.Sampling {
     public int GetMaxCapacity() {
       return _goodSamples.Max(sample => sample.TotalCapacity);
     }
-    
+
     private void ReplaceMissingSamples(GoodSample goodSample) {
       for (var i = 1; i < _goodSamples.Count; i++) {
         if (_goodSamples[i].DayTimestamp < 0) {

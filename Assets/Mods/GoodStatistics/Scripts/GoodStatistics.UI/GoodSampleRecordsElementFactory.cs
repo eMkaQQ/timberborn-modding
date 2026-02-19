@@ -51,9 +51,9 @@ namespace GoodStatistics.UI {
         var root =
             _visualElementLoader.LoadVisualElement("GoodStatistics/GoodSampleElementTooltip");
         var resourceCount = goodSampleElement.GoodSample.ResourceCount;
-        root.Q<Label>("WorkplaceAmount").text = $"{resourceCount.OutputStock}";
+        root.Q<Label>("WorkplaceAmount").text = $"{resourceCount.BufferedStock}";
         root.Q<Label>("StockpileAmount").text =
-            $"{resourceCount.InputOutputStock} / {resourceCount.InputOutputCapacity}";
+            $"{resourceCount.StockpiledStock} / {resourceCount.InputOutputCapacity}";
         root.Q<Label>("SampleTime").text = GetSampleTimeText(goodSampleElement.GoodSample);
         return root;
       }

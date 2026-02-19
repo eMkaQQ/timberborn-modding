@@ -11,8 +11,8 @@ namespace GoodStatistics.Sampling {
 
     public void Serialize(ResourceCount value, IValueSaver valueSaver) {
       var objectSaver = valueSaver.AsObject();
-      objectSaver.Set(InputOutputStockKey, value.InputOutputStock);
-      objectSaver.Set(OutputStockKey, value.OutputStock);
+      objectSaver.Set(InputOutputStockKey, value.BufferedStock);
+      objectSaver.Set(OutputStockKey, value.StockpiledStock);
       objectSaver.Set(InputOutputCapacityKey, value.InputOutputCapacity);
       objectSaver.Set(FillRateKey, value.FillRate);
     }
@@ -22,7 +22,7 @@ namespace GoodStatistics.Sampling {
       return new ResourceCount(objectLoader.Get(InputOutputStockKey),
                                objectLoader.Get(OutputStockKey),
                                objectLoader.Get(InputOutputCapacityKey),
-                               objectLoader.Get(FillRateKey), 0);
+                               objectLoader.Get(FillRateKey), 0, 0, 0, 0);
     }
 
   }

@@ -1,8 +1,8 @@
 ﻿{
   "Name": "Goods Statistics",
-  "Version": "1.0.8.0",
+  "Version": "1.0.10.0",
   "Id": "eMka.GoodsStatistics",
-  "MinimumGameVersion": "1.0.8.0",
+  "MinimumGameVersion": "1.0.10.0",
   "Description": "Goods Statistics is a mod that collects and analyzes data about goods production and consumption in your settlement.\n\nMain features:\n- Settlement panel tab with charts showing historical quantities of goods.\n- Top bar indicators showing stock depletion and growth rates.\n- Estimation of the time left until a good runs out or fills up the storage.\n- Customizable settings (check the gear icon next to the mod name in the mod list on the main menu).\n\nSource code: https://github.com/eMkaQQ/timberborn-modding        \n\nDisclaimer: although I work for Mechanistry and I'm one of the developers of Timberborn, this mod is my personal creation, made independently of my job. It shouldn't be considered official game content nor associated with Mechanistry in any way.\n\nSpecial thanks to:\n@juf0816 for the German localization\n@Erazil for the French localization\n@ikalpro for the Spanish localization",
   "RequiredMods": [
     {

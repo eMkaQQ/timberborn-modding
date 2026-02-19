@@ -15,7 +15,6 @@ namespace GoodStatistics.Sampling {
     }
 
     public int InputOutputCapacity => ResourceCount.InputOutputCapacity;
-    public int InputOutputStock => ResourceCount.InputOutputStock;
     public int TotalStock => ResourceCount.TotalStock;
     public float FillRate => ResourceCount.FillRate;
 

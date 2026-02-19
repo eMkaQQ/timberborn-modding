@@ -21,7 +21,7 @@ namespace Tests.GoodStatistics {
       settings.AnalyzeGoodsWithoutStockpiles.SetValue(true);
 
       // When
-      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(10, 10, 10, 10), 0));
+      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(10, 10, 10, 10, 0, 0, 0), 0));
 
       // Then
       Assert.IsTrue(analyzer.WasAnalyzeCalled);
@@ -39,7 +39,7 @@ namespace Tests.GoodStatistics {
       settings.AnalyzeGoodsWithoutStockpiles.SetValue(false);
 
       // When
-      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(0, 10, 0, 10), 0));
+      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(0, 10, 0, 10, 0, 0, 0), 0));
 
       // Then
       Assert.IsFalse(analyzer.WasAnalyzeCalled);
@@ -57,7 +57,7 @@ namespace Tests.GoodStatistics {
       settings.AnalyzeGoodsWithoutStockpiles.SetValue(true);
 
       // When
-      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(0, 10, 0, 10), 0));
+      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(0, 10, 0, 10, 0, 0, 0), 0));
 
       // Then
       Assert.IsTrue(analyzer.WasAnalyzeCalled);
@@ -75,7 +75,7 @@ namespace Tests.GoodStatistics {
       settings.AnalyzeGoodsWithoutStockpiles.SetValue(false);
 
       // When
-      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(5, 0, 5, 0), 0));
+      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(5, 0, 5, 0, 0, 0, 0), 0));
 
       // Then
       Assert.IsFalse(analyzer.WasAnalyzeCalled);
@@ -93,7 +93,7 @@ namespace Tests.GoodStatistics {
       settings.AnalyzeGoodsWithoutStockpiles.SetValue(false);
 
       // When
-      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(0, 0, 10, 0), 0));
+      goodSampleRegistry.AddSample(BreadId, new(ResourceCount.Create(0, 0, 10, 0, 0, 0, 0), 0));
 
       // Then
       Assert.IsTrue(analyzer.WasAnalyzeCalled);
