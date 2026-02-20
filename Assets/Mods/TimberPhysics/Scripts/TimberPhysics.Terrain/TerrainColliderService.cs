@@ -10,10 +10,12 @@ using TimberPhysics.Layers;
 using UnityEngine;
 
 namespace TimberPhysics.Terrain {
-  public class TerrainColliderService : ILoadableSingleton {
+  public class TerrainColliderService : ILoadableSingleton,
+                                        IUnloadableSingleton {
 
     [UsedImplicitly]
     public static readonly string TerrainLayerName = "Terrain";
+    public static int? TerrainLayerIndex { get; private set; }
     private readonly RootObjectProvider _rootObjectProvider;
     private readonly ColumnTerrainMap _columnTerrainMap;
     private readonly MapSize _mapSize;
@@ -41,9 +43,19 @@ namespace TimberPhysics.Terrain {
       _rootObject = _rootObjectProvider.CreateRootObject("TerrainColliders");
       _rootObject.isStatic = true;
       _physicsLayerRegistry.AssignGameObjectToLayer(_rootObject, TerrainLayerName);
+      if (_physicsLayerRegistry.TryGetLayerIndex(TerrainLayerName, out var terrainLayerIndex)) {
+        TerrainLayerIndex = terrainLayerIndex;
+      } else {
+        Debug.LogWarning($"Failed to assign terrain colliders to layer {TerrainLayerName}. "
+                         + "Raycasts may not work correctly.");
+      }
       SpawnColliders();
       _terrainService.PreTerrainHeightChanged += OnPreTerrainHeightChanged;
       _terrainService.TerrainHeightChanged += OnTerrainHeightChanged;
+    }
+
+    public void Unload() {
+      TerrainLayerIndex = null;
     }
 
     internal void ToggleColliders() {

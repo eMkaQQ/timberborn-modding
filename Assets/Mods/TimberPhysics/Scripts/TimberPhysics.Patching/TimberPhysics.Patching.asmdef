@@ -1,6 +1,7 @@
 ﻿{
   "name": "TimberPhysics.Patching",
   "references": [
+    "TimberPhysics.Terrain"
   ],
   "allowUnsafeCode": true,
   "autoReferenced": false

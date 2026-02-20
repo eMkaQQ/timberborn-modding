@@ -52,7 +52,7 @@ namespace Riverborne.Core {
     public void Save(IEntitySaver entitySaver) {
       var raft = entitySaver.GetComponent(RaftKey);
       raft.Set(NameKey, _name);
-      if (OriginDock != null) {
+      if (OriginDock) {
         raft.Set(OriginDockKey, OriginDock, _referenceSerializer.Of<RaftDock>());
       }
     }
