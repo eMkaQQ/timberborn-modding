@@ -1,0 +1,7 @@
+﻿{
+  "name": "TimberPhysics.Layers",
+  "references": [
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

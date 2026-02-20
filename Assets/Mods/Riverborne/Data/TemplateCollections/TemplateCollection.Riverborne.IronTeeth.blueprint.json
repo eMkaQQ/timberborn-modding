@@ -1,0 +1,11 @@
+{
+  "TemplateCollectionSpec": {
+    "CollectionId": "Buildings.IronTeeth",
+    "Blueprints": [
+      "Riverborne/RaftDock/RaftDock.IronTeeth.blueprint",
+      "Riverborne/RaftGuide/DiagonalRaftGuide.IronTeeth.blueprint",
+      "Riverborne/RaftGuide/RaftGuide.IronTeeth.blueprint",
+      "Riverborne/RaftRamp/RaftRamp.IronTeeth.blueprint"
+    ]
+  }
+}

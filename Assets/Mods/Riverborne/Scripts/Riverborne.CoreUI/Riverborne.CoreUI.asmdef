@@ -1,0 +1,8 @@
+﻿{
+  "name": "Riverborne.CoreUI",
+  "references": [
+    "Riverborne.Core"
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

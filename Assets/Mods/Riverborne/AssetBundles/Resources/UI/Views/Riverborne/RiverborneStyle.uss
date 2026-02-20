@@ -1,0 +1,278 @@
+.raft-dock-fragment__header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+    margin-top: 4px;
+}
+
+.raft-dock-fragment__create-dispatch-button {
+    height: 20px;
+    width: 20px;
+    --click-sound: "UI.Click";
+    background-image: resource('UI/Images/Buttons/plus');
+}
+
+.raft-dock-fragment__create-dispatch-button:enabled:hover {
+    background-image: resource('UI/Images/Buttons/plus-hover');
+}
+
+.dispatches-list {
+    min-height: 1px;
+    max-height: 400px;
+}
+
+.dispatches-list > .unity-scroll-view > .unity-scroll-view__content-and-vertical-scroll-container > .unity-scroller > .unity-slider .unity-base-slider__dragger {
+    background-image: resource('UI/Images/Backgrounds/bg-pixel-2');
+}
+
+.dispatches-list > .unity-scroll-view > .unity-scroll-view__content-and-vertical-scroll-container > .unity-scroller {
+    width: 10px;
+}
+
+.dispatches-list > .unity-scroll-view > .unity-scroll-view__content-and-vertical-scroll-container > .unity-scroller > .unity-slider {
+    min-width: 10px;
+    width: 10px;
+}
+
+.raft-dispatch {
+    flex-grow: 1;
+    padding: 2px 0;
+}
+
+.raft-dispatch__background {
+    --background-image: resource('UI/Images/Backgrounds/bg-square-1');
+    --background-slice-scale: 0.5;
+    --background-slice: 10;
+    flex-grow: 1;
+    padding: 4px;
+}
+
+.raft-dispatch__name {
+    flex-shrink: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.raft-dispatch__pause-button {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("project://database/Assets/Mods/Riverborne/AssetBundles/Resources//UI/Images/dispatch-pause.png");
+    --click-sound: "UI.Click";
+}
+
+.raft-dispatch__pause-button:hover:enabled {
+    background-image: url("project://database/Assets/Mods/Riverborne/AssetBundles/Resources//UI/Images/dispatch-pause-hover.png");
+}
+
+.raft-dispatch__pause-button.paused {
+    background-image: url("project://database/Assets/Mods/Riverborne/AssetBundles/Resources//UI/Images/dispatch-unpause.png");
+}
+
+.raft-dispatch__pause-button.paused:hover:enabled {
+    background-image: url("project://database/Assets/Mods/Riverborne/AssetBundles/Resources//UI/Images/dispatch-unpause-hover.png");
+}
+
+.raft-dispatch__good {
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding: 2px 1px;
+}
+
+.raft-dispatch__interval-progress {
+    min-height: 22px;
+    flex-grow: 1;
+    margin-right: 2px;
+}
+
+.raft-dispatch__interval-progress > .progress-bar {
+    min-height: 22px;
+    flex-grow: 0;
+}
+
+.raft-dispatch__button {
+    width: 24px;
+    height: 24px;
+    margin-left: 3px;
+    background-image: resource('UI/Images/Buttons/empty-batch');
+    --click-sound: "UI.Click";
+}
+
+.raft-dispatch__button:hover:enabled {
+    background-image: resource('UI/Images/Buttons/empty-batch-hover');
+}
+
+.raft-dispatch__edit-icon {
+    background-image: url("project://database/Assets/Mods/Riverborne/AssetBundles/Resources//UI/Images/dispatch-edit.png");
+    width: 24px;
+    height: 24px;
+}
+
+.raft-dispatch__remove-icon {
+    background-image: resource('UI/Images/Game/ico-trash');
+    width: 28px;
+    height: 28px;
+    margin: -2px;
+}
+
+.edit-dispatch-panel {
+    width: 1100px;
+}
+
+.edit-dispatch-panel__content {
+    flex-direction: row;
+    flex-shrink: 1;
+    height: 100%;
+}
+
+.edit-dispatch-panel__good-groups {
+    flex-direction: column;
+}
+
+.edit-dispatch-panel-good-group {
+    flex-direction: row;
+    margin-top: 5px;
+    padding-left: 15px;
+}
+
+.edit-dispatch-panel-good-group__icon {
+    height: 26px;
+    width: 26px;
+    margin: 4px 4px 0 0;
+}
+
+.edit-dispatch-panel-good-group__items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding-left: 1px;
+}
+
+.edit-dispatch-panel-good {
+    margin-bottom: 7px;
+    margin-left: 7px;
+    height: 32px;
+    width: 182px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.edit-dispatch-panel-good__good-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    margin-right: 4px;
+}
+
+.edit-dispatch-panel-good--chosen {
+    --background-image: resource('UI/Images/Backgrounds/bg-square-4');
+}
+
+.edit-dispatch-panel-good__weight {
+    width: 45px;
+    margin-right: 4px;
+    flex-grow: 0;
+    -unity-text-align: middle-right;
+}
+
+.edit-dispatch-panel-good__amount {
+    width: 35px;
+    height: 24px;
+    margin-right: 2px;
+    --background-image: resource('UI/Images/Backgrounds/bg-button-2');
+}
+
+.edit-dispatch-panel-good__amount:enabled:hover {
+    --background-image: resource('UI/Images/Backgrounds/bg-button-2-hover');
+}
+
+.edit-dispatch-panel-good__minus-button {
+    background-image: resource('UI/Images/Buttons/minus-batch');
+}
+
+.edit-dispatch-panel-good__minus-button:enabled:hover {
+    background-image: resource('UI/Images/Buttons/minus-batch-hover');
+}
+
+.edit-dispatch-panel-good__minus-button.clickable--alternate {
+    background-image: resource('UI/Images/Buttons/minus-batch-multi');
+}
+
+.edit-dispatch-panel-good__minus-button.clickable--alternate:enabled:hover {
+    background-image: resource('UI/Images/Buttons/minus-batch-multi-hover');
+}
+
+.edit-dispatch-panel-good__plus-button {
+    background-image: resource('UI/Images/Buttons/plus-batch');
+}
+
+.edit-dispatch-panel-good__plus-button:enabled:hover {
+    background-image: resource('UI/Images/Buttons/plus-batch-hover');
+}
+
+.edit-dispatch-panel-good__plus-button.clickable--alternate {
+    background-image: resource('UI/Images/Buttons/plus-batch-multi');
+}
+
+.edit-dispatch-panel-good__plus-button.clickable--alternate:enabled:hover {
+    background-image: resource('UI/Images/Buttons/plus-batch-multi-hover');
+}
+
+.edit-dispatch-panel__total-weight {
+    flex-grow: 1;
+    margin-left: 52px;
+}
+
+.edit-dispatch-panel__interval-label {
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.edit-dispatch-panel__interval {
+    min-width: 100px;
+    width: 250px;
+}
+
+.edit-dispatch-panel__interval > .precise-slider > .precise-slider__buttons {
+    align-items: center;
+    margin-left: 5px;
+}
+
+.edit-dispatch-panel__interval > .precise-slider > .precise-slider__buttons > .button-minus {
+    background-image: resource('UI/Images/Buttons/minus-batch');
+}
+
+.edit-dispatch-panel__interval > .precise-slider > .precise-slider__buttons > .button-minus:enabled:hover {
+    background-image: resource('UI/Images/Buttons/minus-batch-hover');
+}
+
+.edit-dispatch-panel__interval > .precise-slider > .precise-slider__buttons > .button-plus {
+    background-image: resource('UI/Images/Buttons/plus-batch');
+}
+
+.edit-dispatch-panel__interval > .precise-slider > .precise-slider__buttons > .button-plus:enabled:hover {
+    background-image: resource('UI/Images/Buttons/plus-batch-hover');
+}
+
+.edit-dispatch-panel__name {
+    margin-left: 20px;
+    margin-right: 5px;
+    min-width: 50px;
+    width: 150px;
+    --background-image: resource('UI/Images/Backgrounds/bg-button-2');
+}
+
+.edit-dispatch-panel__name:enabled:hover {
+    --background-image: resource('UI/Images/Backgrounds/bg-button-2-hover');
+}
+
+.edit-dispatch-panel__save-button {
+    margin-right: 15px;
+}

@@ -1,0 +1,8 @@
+﻿{
+  "name": "TimberPhysics.Terrain",
+  "references": [
+    "GUID:a89be783bf08494e975a55738f5c19e1"
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

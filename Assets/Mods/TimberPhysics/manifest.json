@@ -1,0 +1,17 @@
+﻿{
+  "Name": "Bober's Laws of Motion",
+  "Version": "1.0.10.2",
+  "Id": "eMka.TimberPhysics",
+  "MinimumGameVersion": "1.0.10.2",
+  "Description": "This is a library mod. It does not add any gameplay features on its own, but it may be required by other mods.\n\nUnity's physics system is largely singleton-based, and Timberborn makes only limited use of it. As a result, mods that would introduce or modify physical behavior would need to implement their own solutions, which could potentially lead to conflicts or overwriting each other's functionality.\n\nThis mod aims to centralize and unify physical operations in one place. It provides a shared foundation for physics-related features, including:\n\n- Adding colliders to terrain.\n- Managing and modifying collision layers.\n- Running and controlling physics simulations.\n\nBy offering a common framework, it helps ensure better compatibility between mods that would like to rely on Unity's physics.\n\nIf you'd like to learn more, check out the source code here: https://github.com/eMkaQQ/timberborn-modding\n\nI'm always happy to help - whether on that GitHub page, the official Timberborn Discord server, or here in the comments.\n\nDisclaimer: although I work for Mechanistry and I'm one of the developers of Timberborn, this mod is my personal creation, made independently of my job. It shouldn't be considered official game content nor associated with Mechanistry in any way.",
+  "RequiredMods": [
+    {
+      "Id": "Harmony",
+      "MinimumVersion": "2.3.0"
+    },
+    {
+      "Id": "eMka.ModSettings",
+      "MinimumVersion": "1.0.7.0"
+    }
+  ]
+}

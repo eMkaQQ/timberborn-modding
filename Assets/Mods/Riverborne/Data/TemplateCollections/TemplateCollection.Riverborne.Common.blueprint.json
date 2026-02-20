@@ -1,0 +1,8 @@
+{
+  "TemplateCollectionSpec": {
+    "CollectionId": "Common",
+    "Blueprints": [
+      "Riverborne/Raft/Raft.blueprint"
+    ]
+  }
+}

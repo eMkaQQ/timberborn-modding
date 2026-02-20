@@ -1,0 +1,8 @@
+﻿{
+  "name": "TimberPhysics.WaterSettings",
+  "references": [
+    "ModSettings.Core"
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

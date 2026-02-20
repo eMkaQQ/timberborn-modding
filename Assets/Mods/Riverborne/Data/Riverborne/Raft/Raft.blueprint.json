@@ -1,0 +1,89 @@
+{
+  "RigidbodyAttacherSpec": {
+    "Rigidbody": "Riverborne/Raft/RaftRigidbody"
+  },
+  "FloatingObjectSpec": {
+    "FloatingPoints": [
+      {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Weight": 0.5
+      },
+      {
+        "Position": {
+          "X": -0.35,
+          "Y": -0.35
+        },
+        "Weight": 0.125
+      },
+      {
+        "Position": {
+          "X": -0.35,
+          "Y": 0.35
+        },
+        "Weight": 0.125
+      },
+      {
+        "Position": {
+          "X": 0.35,
+          "Y": -0.35
+        },
+        "Weight": 0.125
+      },
+      {
+        "Position": {
+          "X": 0.35,
+          "Y": 0.35
+        },
+        "Weight": 0.125
+      }
+    ],
+    "Immersion": 0.01,
+    "PointStiffness": 10.0,
+    "PointDamping": 6.0,
+    "WaterLinearDamping": 2.5,
+    "WaterAngularDamping": 2.0,
+    "CurrentForceMultiplier": 1.5,
+    "PhysicsMaterial": "Riverborne/Raft/RaftPhysicsMaterial"
+  },
+  "TemplateSpec": {
+    "TemplateName": "Riverborne.Raft",
+    "BackwardCompatibleTemplateNames": [],
+    "RequiredFeatureToggle": "",
+    "DisablingFeatureToggle": ""
+  },
+  "RaftSpec": {},
+  "LabeledEntitySpec": {
+    "DisplayNameLocKey": "Riverborne.Raft.DisplayName",
+    "DescriptionLocKey": "Riverborne.Raft.Description",
+    "FlavorDescriptionLocKey": "Riverborne.Raft.FlavorDescription",
+    "Icon": "Riverborne/Raft/RaftIcon"
+  },
+  "Children": {
+    "Model": {
+      "TimbermeshSpec": {
+        "Model": "Riverborne/Raft/Raft.Model"
+      },
+      "CollidersSpec": {
+        "BoxColliders": [
+          {
+            "Center": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Size": {
+              "X": 0.6,
+              "Y": 0.15,
+              "Z": 0.6
+            }
+          }
+        ],
+        "SphereColliders": [],
+        "CapsuleColliders": []
+      }
+    }
+  }
+}

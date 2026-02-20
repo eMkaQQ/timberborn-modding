@@ -1,0 +1,8 @@
+﻿{
+  "name": "Riverborne.Core",
+  "references": [
+    "GUID:bf8e564e44234b0783895b81990b75dc"
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

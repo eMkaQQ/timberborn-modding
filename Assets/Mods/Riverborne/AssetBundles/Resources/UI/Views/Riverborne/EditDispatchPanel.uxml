@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="EditDispatchPanel" class="content-row-centered" picking-mode="Ignore">
+        <Style src="/Assets/Mods/Riverborne/AssetBundles/Resources/UI/Views/Riverborne/RiverborneStyle.uss" />
+        <ui:VisualElement name="EditDispatchPanel" class="edit-dispatch-panel">
+            <ui:VisualElement name="Content" class="edit-dispatch-panel__content">
+                <Timberborn.CoreUI.NineSliceVisualElement class="sliced-border box__content-container">
+                    <ui:VisualElement name="GoodGroups" class="edit-dispatch-panel__good-groups" />
+                    <ui:VisualElement class="content-row-centered">
+                        <ui:Label name="TotalWeightLabel" text="Total weight: 0kg / 50kg" class="game-text-normal edit-dispatch-panel__total-weight" />
+                        <ui:Label name="IntervalLabel" text="Interval: 24h" class="game-text-normal edit-dispatch-panel__interval-label" />
+                        <Timberborn.CoreUI.PreciseSlider name="IntervalSlider" class="edit-dispatch-panel__interval" />
+                        <Timberborn.CoreUI.NineSliceTextField name="Name" class="text-field edit-dispatch-panel__name" />
+                        <Timberborn.CoreUI.LocalizableButton name="SaveButton" text="Save" text-loc-key="Core.Save" focusable="false" class="menu-button menu-button--medium edit-dispatch-panel__save-button" />
+                    </ui:VisualElement>
+                    <ui:Button name="CloseButton" class="close-button" />
+                </Timberborn.CoreUI.NineSliceVisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

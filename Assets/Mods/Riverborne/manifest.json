@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Riverborne: Raft Logistics",
+  "Version": "1.0.10.2",
+  "Id": "eMka.Riverborne",
+  "MinimumGameVersion": "1.0.10.2",
+  "Description": "Adds water-based logistics to Timberborn, allowing rafts to transport goods using natural currents.\n\nAdded buildings (Folktails and Iron Teeth):\nRaft Dock: A logistics hub for water transport. Configure Dispatches in a dedicated panel to control what goods are sent and when. Workers deliver selected goods to the dock for loading. Incoming rafts are received automatically upon reaching the pickup area.\nRaft Guide and Diagonal Raft Guide: Passive structures that influence raft movement by shaping their path with the flow.\nRaft Ramp: Propels rafts over barriers and elevation changes - or just yeet them at your will.\n\nSpecial thanks to my colleague Tomek Bigosiński for creating the icons for this mod.\n\nSource code: https://github.com/eMkaQQ/timberborn-modding\n\nDisclaimer: although I work for Mechanistry and I'm one of the developers of Timberborn, this mod is my personal creation, made independently of my job. It shouldn't be considered official game content nor associated with Mechanistry in any way.",
+  "RequiredMods": [
+    {
+      "Id": "eMka.TimberPhysics",
+      "MinimumVersion": "1.0.10.2"
+    }
+  ]
+}

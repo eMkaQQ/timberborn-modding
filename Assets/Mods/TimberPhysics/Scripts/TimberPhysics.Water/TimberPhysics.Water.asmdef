@@ -1,0 +1,12 @@
+﻿{
+  "name": "TimberPhysics.Water",
+  "references": [
+    "ModSettings.Core",
+    "TimberPhysics.Core",
+    "TimberPhysics.GameLayers",
+    "TimberPhysics.Layers",
+    "TimberPhysics.WaterSettings"
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="EditDispatchPanelGoodGroup" class="edit-dispatch-panel-good-group">
+        <Style src="/Assets/Mods/Riverborne/AssetBundles/Resources/UI/Views/Riverborne/RiverborneStyle.uss" />
+        <ui:Image name="Icon" class="edit-dispatch-panel-good-group__icon" />
+        <ui:VisualElement name="Goods" class="edit-dispatch-panel-good-group__items" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,7 @@
+﻿{
+  "name": "TimberPhysics.Patching",
+  "references": [
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

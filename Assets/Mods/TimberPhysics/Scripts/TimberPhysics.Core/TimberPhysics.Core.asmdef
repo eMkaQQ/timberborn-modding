@@ -1,0 +1,7 @@
+﻿{
+  "name": "TimberPhysics.Core",
+  "references": [
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

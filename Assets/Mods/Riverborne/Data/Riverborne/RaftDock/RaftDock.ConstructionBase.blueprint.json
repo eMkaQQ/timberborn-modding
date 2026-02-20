@@ -1,0 +1,23 @@
+{
+  "TimbermeshSpec": {
+    "Model": "Riverborne/RaftDock/RaftDock.ConstructionBase.Model"
+  },
+  "CollidersSpec": {
+    "BoxColliders": [
+      {
+        "Center": {
+          "X": 2.5,
+          "Y": 0.0,
+          "Z": 1.5
+        },
+        "Size": {
+          "X": 5.0,
+          "Y": 0.1,
+          "Z": 3.0
+        }
+      }
+    ],
+    "SphereColliders": [],
+    "CapsuleColliders": []
+  }
+}

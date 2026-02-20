@@ -1,0 +1,11 @@
+{
+  "TemplateCollectionSpec": {
+    "CollectionId": "Buildings.Folktails",
+    "Blueprints": [
+      "Riverborne/RaftDock/RaftDock.Folktails.blueprint",
+      "Riverborne/RaftRamp/RaftRamp.Folktails.blueprint",
+      "Riverborne/RaftGuide/RaftGuide.Folktails.blueprint",
+      "Riverborne/RaftGuide/DiagonalRaftGuide.Folktails.blueprint"
+    ]
+  }
+}

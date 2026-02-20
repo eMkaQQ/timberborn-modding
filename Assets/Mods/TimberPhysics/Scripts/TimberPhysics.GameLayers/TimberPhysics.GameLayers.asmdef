@@ -1,0 +1,8 @@
+﻿{
+  "name": "TimberPhysics.GameLayers",
+  "references": [
+    "TimberPhysics.Layers"
+  ],
+  "allowUnsafeCode": true,
+  "autoReferenced": false
+}

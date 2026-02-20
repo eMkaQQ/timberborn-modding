@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="RaftDispatchItem" class="raft-dispatch">
+        <Timberborn.CoreUI.NineSliceVisualElement name="RaftDispatchBackground" class="raft-dispatch__background">
+            <ui:VisualElement name="Header" class="content-row-centered--no-grow">
+                <ui:Label name="Name" text="Dispatch" class="entity-panel__text raft-dispatch__name" />
+                <ui:Image name="PauseButton" class="raft-dispatch__pause-button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Goods" class="content-row-centered" />
+            <ui:VisualElement name="Controls" class="content-row-centered">
+                <Timberborn.CoreUI.ProgressBar name="IntervalProgress" class="raft-dispatch__interval-progress progress-bar--green">
+                    <ui:Label name="Progress" class="entity-panel__text" />
+                </Timberborn.CoreUI.ProgressBar>
+                <ui:Button name="EditButton" class="raft-dispatch__button">
+                    <ui:Image name="EditIcon" class="raft-dispatch__edit-icon" />
+                </ui:Button>
+                <ui:Button name="RemoveButton" class="raft-dispatch__button">
+                    <ui:Image name="RemoveIcon" class="raft-dispatch__remove-icon" />
+                </ui:Button>
+            </ui:VisualElement>
+        </Timberborn.CoreUI.NineSliceVisualElement>
+    </ui:VisualElement>
+</ui:UXML>
