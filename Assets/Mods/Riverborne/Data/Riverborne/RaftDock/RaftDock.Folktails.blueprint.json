@@ -152,14 +152,14 @@
       },
       {
         "MatterBelow": "Any",
-        "Occupations": "None",
+        "Occupations": "All",
         "Stackable": "None",
         "OccupyAllBelow": false,
         "Underground": false
       },
       {
         "MatterBelow": "Any",
-        "Occupations": "None",
+        "Occupations": "All",
         "Stackable": "None",
         "OccupyAllBelow": false,
         "Underground": false
@@ -822,7 +822,8 @@
   "WorkplaceSlotManagerSpec": {},
   "RaftDockSpec": {
     "DropPointName": "#RaftSpawnPoint",
-    "StaticRaftName": "#Raft"
+    "StaticRaftName": "#Raft",
+    "PreviewRaftName": "#RaftPreview"
   },
   "RaftPickerSpec": {
     "PickerCoordinates": [

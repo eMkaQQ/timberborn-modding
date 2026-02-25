@@ -61,6 +61,9 @@
     "FlavorDescriptionLocKey": "Riverborne.Raft.FlavorDescription",
     "Icon": "Riverborne/Raft/RaftIcon"
   },
+  "RaftModelHiderSpec": {
+    "ModelName": "Model"
+  },
   "Children": {
     "Model": {
       "TimbermeshSpec": {

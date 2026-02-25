@@ -1,5 +1,6 @@
 ﻿using Timberborn.BaseComponentSystem;
 using Timberborn.BlockingSystem;
+using Timberborn.BlockSystem;
 using Timberborn.Common;
 using Timberborn.InventorySystem;
 using Timberborn.Persistence;
@@ -11,6 +12,7 @@ using UnityEngine;
 namespace Riverborne.Core {
   public class RaftDispatcher : TickableComponent,
                                 IPersistentEntity,
+                                IFinishedStateListener,
                                 IAwakableComponent {
 
     private static readonly ComponentKey RaftDispatcherKey = new("Riverborne.RaftDispatcher");
@@ -39,7 +41,14 @@ namespace Riverborne.Core {
       _blockableObject = GetComponent<BlockableObject>();
       _inventory = GetComponent<RaftDockInventory>().Inventory;
       _staticRaftObject = GameObject.FindChild(GetComponent<RaftDockSpec>().StaticRaftName);
-      _staticRaftObject.SetActive(true);
+      DisableComponent();
+    }
+
+    public void OnEnterFinishedState() {
+      EnableComponent();
+    }
+
+    public void OnExitFinishedState() {
     }
 
     public override void Tick() {

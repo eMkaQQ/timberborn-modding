@@ -27,6 +27,8 @@ namespace Riverborne.Core {
       Bind<RaftDischarger>().AsTransient();
       Bind<RaftRamp>().AsTransient();
       Bind<RaftRampAnimator>().AsTransient();
+      Bind<RaftModelHider>().AsTransient();
+      Bind<RaftDockPreview>().AsTransient();
 
       Bind<RaftDispatchSerializer>().AsSingleton();
       Bind<RaftDockInventoryInitializer>().AsSingleton();
@@ -54,6 +56,7 @@ namespace Riverborne.Core {
         builder.AddDecorator<Raft, RaftModel>();
         builder.AddDecorator<Raft, RaftDischarger>();
         builder.AddDecorator<RaftModel, EntityMaterials>();
+        builder.AddDecorator<RaftModelHiderSpec, RaftModelHider>();
         builder.AddDecorator<RaftDockSpec, RaftDock>();
         builder.AddDecorator<RaftDock, InventoryNeedBehavior>();
         builder.AddDecorator<RaftDock, RaftDockInventory>();
@@ -64,6 +67,7 @@ namespace Riverborne.Core {
         builder.AddDecorator<RaftDock, RaftSpawner>();
         builder.AddDecorator<RaftDock, RaftDispatcher>();
         builder.AddDecorator<RaftDock, WorkplaceWithBackpacks>();
+        builder.AddDecorator<RaftDock, RaftDockPreview>();
         builder.AddDecorator<RaftPickerSpec, RaftPicker>();
         builder.AddDecorator<RaftRampSpec, RaftRamp>();
         builder.AddDecorator<RaftRampSpec, RaftRampAnimator>();

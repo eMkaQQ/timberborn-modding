@@ -9,5 +9,8 @@ namespace Riverborne.Core {
     [Serialize]
     public string StaticRaftName { get; init; }
 
+    [Serialize]
+    public string PreviewRaftName { get; init; }
+
   }
 }
