@@ -1,5 +1,5 @@
 ﻿using Bindito.Core;
-using Timberborn.BottomBarSystem;
+using Timberborn.BlockSystem;
 using Timberborn.Emptying;
 using Timberborn.EntityPanelSystem;
 using Timberborn.Hauling;
@@ -34,6 +34,7 @@ namespace Riverborne.Core {
       Bind<RaftPickingService>().AsSingleton();
 
       MultiBind<TemplateModule>().ToProvider<TemplateModuleProvider>().AsSingleton();
+      MultiBind<IBlockObjectValidator>().To<RaftGuideValidator>().AsSingleton();
     }
 
     private class TemplateModuleProvider : IProvider<TemplateModule> {

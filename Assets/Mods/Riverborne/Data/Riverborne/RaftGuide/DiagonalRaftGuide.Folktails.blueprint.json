@@ -41,7 +41,7 @@
       {
         "MatterBelow": "GroundOrStackable",
         "Occupations": "Bottom, Top, Corners, Path, Middle",
-        "Stackable": "None",
+        "Stackable": "BlockObject",
         "OccupyAllBelow": false,
         "Underground": false
       }
@@ -85,6 +85,9 @@
     "DescriptionLocKey": "Riverborne.RaftGuide.Description",
     "FlavorDescriptionLocKey": "Riverborne.DiagonalRaftGuide.FlavorDescription",
     "Icon": "Riverborne/RaftGuide/DiagonalRaftGuideIcon"
+  },
+  "RaftGuideSpec": {
+    "FlippedOrientationSupports": true
   },
   "Children": {
     "#Finished": {
