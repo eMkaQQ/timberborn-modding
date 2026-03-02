@@ -1,5 +1,6 @@
 using ModSettings.Common;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Timberborn.DropdownSystem;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine;
 namespace ModSettings.CommonUI {
   internal class LimitedStringDropdownProvider : IExtendedDropdownProvider {
 
-    public IReadOnlyList<string> Items { get; private set; }
+    public IReadOnlyList<string> Items { get; private init; }
 
     private readonly LimitedStringModSetting _limitedStringModSetting;
 
@@ -32,12 +33,16 @@ namespace ModSettings.CommonUI {
                                             .Single(v => v.Key == value).Value);
     }
 
-    public string FormatDisplayText(string value) {
+    public string FormatDisplayText(string value, bool selected) {
       return value;
     }
 
     public Sprite GetIcon(string value) {
       return null;
+    }
+
+    public ImmutableArray<string> GetItemClasses(string value) {
+      return ImmutableArray<string>.Empty;
     }
 
   }

@@ -8,12 +8,12 @@ using Timberborn.GoodsUI;
 using Timberborn.Localization;
 using Timberborn.TimeSystem;
 using Timberborn.TooltipSystem;
+using Timberborn.UIFormatters;
 using UnityEngine.UIElements;
 
 namespace Riverborne.CoreUI {
   internal class RaftDispatchItemFactory {
 
-    private static readonly string HoursShortLocKey = "Time.HoursShort";
     private static readonly string PausedLocKey = "Riverborne.DispatchItem.Paused";
     private static readonly string PausedClass = "paused";
     private readonly VisualElementLoader _visualElementLoader;
@@ -92,7 +92,7 @@ namespace Riverborne.CoreUI {
           var progress = dayTimeInterval == 0 ? 1 : cooldownClamped / dayTimeInterval;
           progressBar.SetProgress(progress);
           var hoursLeft = (dayTimeInterval - cooldownClamped) * 24f;
-          label.text = _loc.T(HoursShortLocKey, hoursLeft.ToString("F1"));
+          label.text = UnitFormatter.FormatHours(hoursLeft.ToString("F1"), _loc);
         }
       }
     }

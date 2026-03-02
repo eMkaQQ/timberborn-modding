@@ -36,7 +36,7 @@ namespace ModSettings.CommonUI {
           _dropdownItemsSetter.SetItems(
               dropdown, NonLocalizedLimitedStringDropdownProvider.Create(limitedString));
         }
-        limitedString.ValueChanged += (_, _) => dropdown.RefreshContent();
+        limitedString.ValueChanged += (_, _) => dropdown.UpdateSelectedValue();
         element = new ModSettingElement(root, modSetting);
         return true;
       }

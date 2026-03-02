@@ -1,9 +1,9 @@
 ﻿using Timberborn.Localization;
+using Timberborn.UIFormatters;
 
 namespace GoodStatistics.AnalyticsUI {
   public class GoodTrendDaysLeftDescriber {
 
-    private static readonly string DaysLocKey = "Time.DaysShort";
     private static readonly string NoDaysLeftText = "—";
     private readonly ILoc _loc;
 
@@ -23,6 +23,8 @@ namespace GoodStatistics.AnalyticsUI {
       }
       return _loc.T(DaysLocKey, daysLeft.ToString("F0"));
     }
+
+    private static string DaysLocKey => UnitFormatter.DayUnitLocKey;
 
   }
 }

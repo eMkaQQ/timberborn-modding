@@ -62,7 +62,8 @@
     "NoAutoWalls": false,
     "GenerateFloorsOnStackable": false,
     "EdgeGroups": [],
-    "UnblockedCoordinates": []
+    "UnblockedCoordinates": [],
+    "BlockedEdges": []
   },
   "PlaceableBlockObjectSpec": {
     "ToolGroupId": "DistrictManagement",

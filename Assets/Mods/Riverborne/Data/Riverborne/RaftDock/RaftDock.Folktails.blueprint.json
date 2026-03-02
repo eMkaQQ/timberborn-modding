@@ -803,9 +803,9 @@
     "NoAutoWalls": false,
     "GenerateFloorsOnStackable": false,
     "EdgeGroups": [],
-    "UnblockedCoordinates": []
+    "UnblockedCoordinates": [],
+    "BlockedEdges": []
   },
-  "EnterableLightingSpec": {},
   "WorkplaceSpec": {
     "MaxWorkers": 6,
     "DefaultWorkers": 3,
@@ -818,7 +818,6 @@
       }
     ]
   },
-  "WorkplaceLightingSpec": {},
   "WorkplaceSlotManagerSpec": {},
   "RaftDockSpec": {
     "DropPointName": "#RaftSpawnPoint",
@@ -870,6 +869,7 @@
   "WorkplaceWorkerOutfitSpec": {
     "WorkerOutfit": "Hauler"
   },
+  "WorkplaceIlluminatorSpec": {},
   "Children": {
     "#Finished": {
       "TimbermeshSpec": {

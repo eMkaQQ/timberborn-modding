@@ -18,7 +18,7 @@ namespace GoodStatistics.Sampling {
 
     public static GoodSampleRecords CreateNew(string goodId) {
       var goodSamples = Enumerable.Repeat(
-          new GoodSample(ResourceCount.Create(0, 0, 0, 0, 0, 0, 0), -1),
+          new GoodSample(ResourceCount.Create(0, 0, 0, 0, 0, 0, 0, 0), -1),
           GoodStatisticsConstants.MaxSamples).ToList();
       return new(goodId, goodSamples);
     }

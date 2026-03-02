@@ -5,12 +5,12 @@ using Timberborn.CoreUI;
 using Timberborn.Localization;
 using Timberborn.TimeSystem;
 using Timberborn.TooltipSystem;
+using Timberborn.UIFormatters;
 using UnityEngine.UIElements;
 
 namespace GoodStatistics.UI {
   public class GoodSampleRecordsElementFactory {
 
-    private static readonly string HoursShortLocKey = "Time.HoursShort";
     private static readonly string SampleTimeLocKey = "eMka.GoodStatistics.GoodSampleTime";
     private readonly VisualElementLoader _visualElementLoader;
     private readonly ITooltipRegistrar _tooltipRegistrar;
@@ -51,7 +51,7 @@ namespace GoodStatistics.UI {
         var root =
             _visualElementLoader.LoadVisualElement("GoodStatistics/GoodSampleElementTooltip");
         var resourceCount = goodSampleElement.GoodSample.ResourceCount;
-        root.Q<Label>("WorkplaceAmount").text = $"{resourceCount.BufferedStock}";
+        root.Q<Label>("WorkplaceAmount").text = $"{resourceCount.AvailableStock}";
         root.Q<Label>("StockpileAmount").text =
             $"{resourceCount.StockpiledStock} / {resourceCount.InputOutputCapacity}";
         root.Q<Label>("SampleTime").text = GetSampleTimeText(goodSampleElement.GoodSample);
@@ -63,7 +63,7 @@ namespace GoodStatistics.UI {
     private string GetSampleTimeText(GoodSample goodSample) {
       var timeDiff = _dayNightCycle.PartialDayNumber - goodSample.DayTimestamp;
       var hoursDiff = (int) (timeDiff * 24f);
-      return _loc.T(SampleTimeLocKey, _loc.T(HoursShortLocKey, hoursDiff.ToString()));
+      return _loc.T(SampleTimeLocKey, UnitFormatter.FormatHours(hoursDiff, _loc));
     }
 
   }

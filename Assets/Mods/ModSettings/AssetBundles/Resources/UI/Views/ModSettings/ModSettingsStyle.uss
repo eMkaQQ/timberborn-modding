@@ -1,6 +1,6 @@
 .mod-settings-button {
-    width: 29px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     flex-grow: 0;
     flex-shrink: 0;
     --background-image: resource('UI/Images/Backgrounds/bg-button-4');
@@ -14,12 +14,9 @@
 }
 
 .mod-settings-button__icon {
-    width: 36px;
-    height: 36px;
-    left: -4px;
-    top: -5px;
-    position: absolute;
-    background-image: resource('UI/Images/Game/sluice-auto');
+    width: 26px;
+    height: 26px;
+    background-image: resource('UI/Images/Game/ico-automated');
 }
 
 .mod-settings-box {

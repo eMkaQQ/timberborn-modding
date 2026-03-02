@@ -6,6 +6,7 @@ using Timberborn.Goods;
 using Timberborn.Localization;
 using Timberborn.SingletonSystem;
 using Timberborn.TimeSystem;
+using Timberborn.UIFormatters;
 using UnityEngine.UIElements;
 
 namespace Riverborne.CoreUI {
@@ -20,7 +21,6 @@ namespace Riverborne.CoreUI {
         "Riverborne.EditDispatchPanel.DefaultDispatchName";
     private static readonly string TotalWeightLocKey = "Riverborne.EditDispatchPanel.TotalWeight";
     private static readonly string IntervalLocKey = "Riverborne.EditDispatchPanel.Interval";
-    private static readonly string HoursShortLocKey = "Time.HoursShort";
     private static readonly string OverloadClass = "game-text--red";
     private readonly VisualElementLoader _visualElementLoader;
     private readonly PanelStack _panelStack;
@@ -59,7 +59,8 @@ namespace Riverborne.CoreUI {
       _root.Q<Button>("CloseButton").RegisterCallback<ClickEvent>(_ => Close());
       _intervalLabel = _root.Q<Label>("IntervalLabel");
       _intervalSlider = _root.Q<PreciseSlider>("IntervalSlider");
-      _intervalSlider.Initialize(UpdateIntervalLabel, CooldownChangeStep);
+      _intervalSlider.SetValueChangedCallback(UpdateIntervalLabel);
+      _intervalSlider.SetStepWithoutNotify(CooldownChangeStep);
       _totalWeightLabel = _root.Q<Label>("TotalWeightLabel");
       _nameField = _root.Q<TextField>("Name");
       _nameField.RegisterValueChangedCallback(_ => UpdateSaveButton());
@@ -114,7 +115,7 @@ namespace Riverborne.CoreUI {
     }
 
     private void UpdateIntervalLabel(float interval) {
-      var hours = _loc.T(HoursShortLocKey, interval.ToString("F1"));
+      var hours = UnitFormatter.FormatHours(interval.ToString("F1"), _loc);
       _intervalLabel.text = _loc.T(IntervalLocKey, hours);
     }
 

@@ -15,14 +15,14 @@ namespace GoodStatistics.Sampling {
     }
 
     public int InputOutputCapacity => ResourceCount.InputOutputCapacity;
-    public int TotalStock => ResourceCount.TotalStock;
+    public int TotalStock => ResourceCount.AvailableStock;
     public float FillRate => ResourceCount.FillRate;
 
     private static int CalculateTotalCapacity(ResourceCount resourceCount) {
       if (resourceCount.FillRate == 0) {
         return resourceCount.InputOutputCapacity;
       }
-      return (int) (resourceCount.TotalStock / resourceCount.FillRate);
+      return (int) (resourceCount.AvailableStock / resourceCount.FillRate);
     }
 
   }

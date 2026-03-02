@@ -105,6 +105,7 @@ namespace Tests.GoodStatistics {
       public bool IsDaytime { get; }
       public bool IsNighttime { get; }
       public float FixedDeltaTimeInHours { get; }
+      public float FluidSecondsPassedToday { get; }
 
       public float DayLengthInSeconds { get; }
 
@@ -121,6 +122,14 @@ namespace Tests.GoodStatistics {
       }
 
       public float SecondsToHours(float seconds) {
+        throw new NotSupportedException();
+      }
+
+      public int HoursToTicks(float hours) {
+        throw new NotSupportedException();
+      }
+
+      public float TicksToHours(int ticks) {
         throw new NotSupportedException();
       }
 
