@@ -1,6 +1,7 @@
 ﻿using Timberborn.BlockSystem;
 using Timberborn.Common;
 using Timberborn.Coordinates;
+using Timberborn.RecoveredGoodSystem;
 using Timberborn.TemplateSystem;
 using Timberborn.TerrainSystem;
 using UnityEngine;
@@ -19,6 +20,9 @@ namespace Riverborne.Core {
 
     public bool IsValid(BlockObject blockObject, out string errorMessage) {
       errorMessage = string.Empty;
+      if (blockObject.HasComponent<RecoveredGoodStack>()) {
+        return true;
+      }
       foreach (var foundationCoordinate in
                blockObject.PositionedBlocks.GetFoundationCoordinates()) {
         var belowCoordinate = foundationCoordinate.Below();
