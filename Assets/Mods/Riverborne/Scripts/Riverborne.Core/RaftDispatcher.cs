@@ -63,12 +63,12 @@ namespace Riverborne.Core {
     }
 
     public void Save(IEntitySaver entitySaver) {
-      if (_lastLaunchedRaft != null || _lastLaunchedDispatchIndex >= 0) {
+      if (_lastLaunchedRaft || _lastLaunchedDispatchIndex >= 0) {
         var raftDispatcher = entitySaver.GetComponent(RaftDispatcherKey);
         if (_lastLaunchedDispatchIndex >= 0) {
           raftDispatcher.Set(LastLaunchedDispatchIndexKey, _lastLaunchedDispatchIndex);
         }
-        if (_lastLaunchedRaft != null) {
+        if (_lastLaunchedRaft) {
           raftDispatcher.Set(LastLaunchedRaftKey, _lastLaunchedRaft,
                              _referenceSerializer.Of<Raft>());
         }
