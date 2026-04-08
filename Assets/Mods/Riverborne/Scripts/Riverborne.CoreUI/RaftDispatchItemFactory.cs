@@ -22,6 +22,7 @@ namespace Riverborne.CoreUI {
     private readonly IDayNightCycle _dayNightCycle;
     private readonly ILoc _loc;
     private readonly Dictionary<VisualElement, RaftDispatch> _raftDispatchItems = new();
+    private readonly Phrase _hoursLeftPhrase = Phrase.New().FormatHours<float>("F1");
     private Action<RaftDispatch> _editDispatch;
     private Action<RaftDispatch> _removeDispatch;
     private Action<RaftDispatch> _toggleDispatchPause;
@@ -92,7 +93,7 @@ namespace Riverborne.CoreUI {
           var progress = dayTimeInterval == 0 ? 1 : cooldownClamped / dayTimeInterval;
           progressBar.SetProgress(progress);
           var hoursLeft = (dayTimeInterval - cooldownClamped) * 24f;
-          label.text = UnitFormatter.FormatHours(hoursLeft.ToString("F1"), _loc);
+          label.text = _loc.T(_hoursLeftPhrase, hoursLeft);
         }
       }
     }

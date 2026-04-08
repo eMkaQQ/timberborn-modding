@@ -27,6 +27,7 @@ namespace Riverborne.CoreUI {
     private readonly EditDispatchPanelGoodFactory _editDispatchPanelGoodFactory;
     private readonly ILoc _loc;
     private readonly IDayNightCycle _dayNightCycle;
+    private readonly Phrase _intervalPhrase = Phrase.New(IntervalLocKey).FormatHours<float>("F1");
     private VisualElement _root;
     private Label _intervalLabel;
     private PreciseSlider _intervalSlider;
@@ -115,8 +116,7 @@ namespace Riverborne.CoreUI {
     }
 
     private void UpdateIntervalLabel(float interval) {
-      var hours = UnitFormatter.FormatHours(interval.ToString("F1"), _loc);
-      _intervalLabel.text = _loc.T(IntervalLocKey, hours);
+      _intervalLabel.text = _loc.T(_intervalPhrase, interval);
     }
 
     private void UpdateWeight() {

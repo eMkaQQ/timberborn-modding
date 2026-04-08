@@ -16,6 +16,7 @@ namespace GoodStatistics.UI {
     private readonly ITooltipRegistrar _tooltipRegistrar;
     private readonly ILoc _loc;
     private readonly IDayNightCycle _dayNightCycle;
+    private readonly Phrase _hoursShortPhrase = Phrase.New(SampleTimeLocKey).FormatHours<int>();
 
     public GoodSampleRecordsElementFactory(VisualElementLoader visualElementLoader,
                                            ITooltipRegistrar tooltipRegistrar,
@@ -63,7 +64,7 @@ namespace GoodStatistics.UI {
     private string GetSampleTimeText(GoodSample goodSample) {
       var timeDiff = _dayNightCycle.PartialDayNumber - goodSample.DayTimestamp;
       var hoursDiff = (int) (timeDiff * 24f);
-      return _loc.T(SampleTimeLocKey, UnitFormatter.FormatHours(hoursDiff, _loc));
+      return _loc.T(_hoursShortPhrase, hoursDiff);
     }
 
   }

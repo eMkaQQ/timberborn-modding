@@ -20,9 +20,10 @@
       "source": "git",
       "dependencies": {
         "com.unity.inputsystem": "1.12.0",
+        "com.unity.modules.unitywebrequestwww": "1.0.0",
         "com.unity.render-pipelines.universal": "17.0.3"
       },
-      "hash": "39860ddbbb297b62018b29c057fa935d581123d2"
+      "hash": "ae8bd6ffbf7a051bba5fdaa46377ed0ef4be8024"
     },
     "com.unity.burst": {
       "version": "1.8.27",
