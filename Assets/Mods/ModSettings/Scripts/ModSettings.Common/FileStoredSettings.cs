@@ -91,6 +91,10 @@ namespace ModSettings.Common {
       Save();
     }
 
+    public bool Has(string key) {
+      return _data.ContainsKey(key);
+    }
+
     public void Clear(string key) {
       if (_data.ContainsKey(key)) {
         _data.Remove(key);

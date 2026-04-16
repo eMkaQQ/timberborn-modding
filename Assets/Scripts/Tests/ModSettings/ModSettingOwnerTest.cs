@@ -473,6 +473,10 @@ namespace Tests.ModSettings {
         _stringSettings[key] = value;
       }
 
+      public bool Has(string key) {
+        throw new NotSupportedException();
+      }
+
       public string GetString(string key, string defaultValue) {
         return _stringSettings.GetValueOrDefault(key, defaultValue);
       }
@@ -554,6 +558,10 @@ namespace Tests.ModSettings {
 
       public void SetString(string key, string value) {
         _stringSettings[key] = value;
+      }
+
+      public bool Has(string key) {
+        throw new NotSupportedException();
       }
 
       public string GetString(string key, string defaultValue) {
