@@ -38,7 +38,7 @@ namespace Riverborne.Core {
     public void InitializeEntity() {
       if (!_cargo.IsDefault) {
         foreach (var goodAmount in _cargo) {
-          Inventory.Give(goodAmount);
+          Inventory.GiveExisting(goodAmount);
         }
       }
     }

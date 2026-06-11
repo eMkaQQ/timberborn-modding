@@ -145,7 +145,7 @@ namespace Riverborne.Core {
 
     private void Launch(RaftDispatch dispatch) {
       foreach (var goodAmount in dispatch.Cargo) {
-        _inventory.Take(goodAmount);
+        _inventory.TakeExported(goodAmount);
       }
       _lastLaunchedRaft = _raftSpawner.Spawn(dispatch);
       _staticRaftObject.SetActive(false);

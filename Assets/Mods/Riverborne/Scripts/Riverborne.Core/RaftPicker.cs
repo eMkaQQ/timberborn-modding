@@ -49,7 +49,7 @@ namespace Riverborne.Core {
     public void TryPickRaft(Raft raft) {
       if (raft.OriginDock != _raftDock && _blockableObject.IsUnblocked && HasCapacityFor(raft)) {
         foreach (var goodAmount in raft.Inventory.Stock) {
-          _raftDockInventory.Inventory.Give(goodAmount);
+          _raftDockInventory.Inventory.GiveImported(goodAmount);
         }
         _entityService.Delete(raft);
       }

@@ -8,7 +8,7 @@ namespace Riverborne.Core {
                                    IAwakableComponent,
                                    IUnfinishedStateListener,
                                    IFinishedStateListener,
-                                   IPreviewStateListener {
+                                   IInitializablePreview {
 
     private GameObject _staticRaft;
     private GameObject _previewRaft;
@@ -19,7 +19,7 @@ namespace Riverborne.Core {
       _previewRaft = GameObject.FindChild(spec.PreviewRaftName).gameObject;
     }
 
-    public void OnEnterPreviewState() {
+    public void InitializePreview() {
       _staticRaft.SetActive(false);
       _previewRaft.SetActive(true);
     }

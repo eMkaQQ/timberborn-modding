@@ -35,7 +35,9 @@ namespace Riverborne.Core {
       UpdateModel();
     }
 
-    private void OnInventoryStockChanged(object sender, InventoryAmountChangedEventArgs e) {
+    private void OnInventoryStockChanged(object sender,
+                                         InventoryStockChangedEventArgs
+                                             inventoryStockChangedEventArgs) {
       UpdateModel();
     }
 
