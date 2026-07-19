@@ -1,0 +1,6 @@
+ID,Text,Comment
+Name_TwoShiftsWorkplaceFragment,"Робоче місце (варіант із другою зміною)","Name of the entity panel fragment for TImprove4UX mod"
+SecondShift.Disabled,"Для вибраного типу працівників дві зміни недоступні",Tooltip shown when two shifts toggle is disabled
+SecondShift.ShowFirstShift,"Показати першу зміну",Tooltip for a button that shows the first shift workers
+SecondShift.ShowSecondShift,"Показати другу зміну",Tooltip for a button that shows the second shift workers
+SecondShift.TwoShiftsToggle,"Дві зміни",Label for the toggle to enable or disable the two shifts for a selected building
