@@ -1,0 +1,18 @@
+ID,Text,Comment
+eMka.GoodStatistics.BatchControlKeyBinding,Відкрити вкладку статистики товарів,KeyBinding label
+eMka.GoodStatistics.BatchControlTabName,Статистика товарів,Name of the tab in settlement panel
+eMka.GoodStatistics.DepletionDaysLeft,Орієнтовний час до вичерпання: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.GoodSampleTime,Востаннє оновлено {0} тому,"{0} stands for formatted Time.HoursShort, e.g. ""1h"" for 1 hour"
+eMka.GoodStatistics.GrowingDaysLeft,Орієнтовний час до заповнення: {0},"{0} stands for formatted Time.DaysShort, e.g. ""1d"" for 1 day"
+eMka.GoodStatistics.Settings.AnalyzeGoodsWithoutStockpiles,Аналізувати товари без сховищ,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThreshold,Поріг послідовних незначних змін,
+eMka.GoodStatistics.Settings.ConsecutiveMicroChangesThresholdTooltip,"Кількість послідовних незначних змін (менших за поріг повільної добової зміни), які вважаються тенденцією.","Tooltip for ConsecutiveMicroChangesThreshold setting, text in the brackets should be the same as eMka.GoodStatistics.Settings.SlowChangeThreshold key"
+eMka.GoodStatistics.Settings.EMAAnalyzerHeader,Аналізатор експоненційного ковзного середнього,
+eMka.GoodStatistics.Settings.FastChangeThreshold,Поріг швидкої добової зміни,
+eMka.GoodStatistics.Settings.IgnoreGoodsWithStorageLessThan,Ігнорувати товари із запасом менше ніж,
+eMka.GoodStatistics.Settings.ModerateChangeThreshold,Поріг помірної добової зміни,
+eMka.GoodStatistics.Settings.SamplesPerDay,Вимірювань на день,
+eMka.GoodStatistics.Settings.SamplesToAnalyze,Кількість вимірювань для аналізу,
+eMka.GoodStatistics.Settings.BaseSettings,Основні налаштування,
+eMka.GoodStatistics.Settings.ShowTrendsOnTopBar,Показувати тенденції на верхній панелі,
+eMka.GoodStatistics.Settings.SlowChangeThreshold,Поріг повільної добової зміни,
