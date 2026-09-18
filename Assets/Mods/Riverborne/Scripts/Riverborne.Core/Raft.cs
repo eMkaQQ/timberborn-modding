@@ -1,7 +1,6 @@
 ﻿using System.Collections.Immutable;
 using Timberborn.BaseComponentSystem;
 using Timberborn.Common;
-using Timberborn.EntitySystem;
 using Timberborn.Goods;
 using Timberborn.GoodStackSystem;
 using Timberborn.InventorySystem;
@@ -10,7 +9,6 @@ using Timberborn.WorldPersistence;
 
 namespace Riverborne.Core {
   public class Raft : BaseComponent,
-                      IInitializableEntity,
                       IGoodStackInventory,
                       IPersistentEntity {
 
@@ -23,7 +21,6 @@ namespace Riverborne.Core {
     public RaftDock OriginDock { get; private set; }
     private readonly ReferenceSerializer _referenceSerializer;
     private string _name;
-    private ImmutableArray<GoodAmount> _cargo;
 
     public Raft(ReferenceSerializer referenceSerializer) {
       _referenceSerializer = referenceSerializer;
@@ -32,12 +29,8 @@ namespace Riverborne.Core {
     public void Initialize(string name, RaftDock raftDock, ImmutableArray<GoodAmount> cargo) {
       _name = name;
       OriginDock = raftDock;
-      _cargo = cargo;
-    }
-
-    public void InitializeEntity() {
-      if (!_cargo.IsDefault) {
-        foreach (var goodAmount in _cargo) {
+      if (!cargo.IsDefault) {
+        foreach (var goodAmount in cargo) {
           Inventory.GiveExisting(goodAmount);
         }
       }
